@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"dto","l":"DTOCuenta"}]

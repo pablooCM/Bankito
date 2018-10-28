@@ -15,7 +15,6 @@ public class RegistroPin implements IRegistro{
 		numeroCuenta= pNumeroCuenta;
 		pinCuenta=pPinCuenta;
 	}
-	@Override
 	public void registrarEnBaseDatos() {
 		// TODO Auto-generated method stub
 		

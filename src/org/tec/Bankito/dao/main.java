@@ -4,7 +4,7 @@ public class main {
 
 	public static void main(String[] args) 
 	{
-		Connection con = Connection.getInstance();
+		Conexion con = Conexion.getInstance();
 	}
 
 }

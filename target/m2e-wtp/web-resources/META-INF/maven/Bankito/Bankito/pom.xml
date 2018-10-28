@@ -23,4 +23,11 @@
       </plugin>
     </plugins>
   </build>
+  <dependencies>
+	  <dependency>
+	    <groupId>com.microsoft.sqlserver</groupId>
+	    <artifactId>mssql-jdbc</artifactId>
+	    <version>7.0.0.jre10</version>
+	  </dependency>
+  </dependencies>
 </project>

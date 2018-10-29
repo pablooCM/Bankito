@@ -33,6 +33,10 @@ public class DirectorCuenta {
 		return constructor.construirRetiroColones(pNumeroCuenta, pPin, pMonto);
 	}
 	
+	public Cuenta getRetiroCambioMoneda(int pNumeroCuenta, String pPin, int pMonto) {
+		return constructor.construirRetiroCambioMoneda(pNumeroCuenta, pPin, pMonto);
+	}
+	
 	public Cuenta getTransferencia(int pNumeroCuentaOrigen, String pPin, int pMonto, int pCuentaDestino) {
 		return constructor.construirTransferencia(pNumeroCuentaOrigen, pPin, pMonto, pCuentaDestino);
 	}

@@ -11,6 +11,7 @@ public class ConsultaEstadoCuenta implements IConsulta{
 	public ConsultaEstadoCuenta(int pNumeroCuenta, String pPin) {
 		numeroCuenta=pNumeroCuenta;
 		pin = pPin;
+		
 	}
 
 	@Override

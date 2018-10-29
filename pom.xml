@@ -29,5 +29,32 @@
 	    <artifactId>mssql-jdbc</artifactId>
 	    <version>7.0.0.jre10</version>
 	  </dependency>
+	  <dependency>
+	  	<groupId>javax.servlet</groupId>
+	  	<artifactId>servlet-api</artifactId>
+	  	</dependency>
+	  <dependency>
+	  	<groupId>javax.mail</groupId>
+	  	<artifactId>javax.mail-api</artifactId>
+	  	</dependency>
   </dependencies>
+  <dependencyManagement>
+  	<dependencies>
+  		<dependency>
+  			<groupId>javax.servlet</groupId>
+  			<artifactId>servlet-api</artifactId>
+  			<version>3.0-alpha-1</version>
+  		</dependency>
+  		<dependency>
+  			<groupId>javax.mail</groupId>
+  			<artifactId>javax.mail-api</artifactId>
+  			<version>1.6.0</version>
+  		</dependency>
+  		<dependency>
+  			<groupId>com.ibm.db2.jcc</groupId>
+  			<artifactId>db2jcc4</artifactId>
+  			<version>10.1</version>
+  		</dependency>
+  	</dependencies>
+  </dependencyManagement>
 </project>

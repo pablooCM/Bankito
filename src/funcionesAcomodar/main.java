@@ -2,8 +2,19 @@ package funcionesAcomodar;
 
 public class main {
 
+	
 	public static void main(String[] args) 
 	{
+        //Crea el servicio del API
+        TipoCambio servicioTipoCambio = new TipoCambio();
+        
+        //Obtiene el valor del precio de compra USD
+        System.out.println(servicioTipoCambio.getCompra());
+        
+        //Obtiene el valor del precio de venta USD
+        System.out.println(servicioTipoCambio.getVenta());
+
+		/*
 		try
 		{
 			//Definimos un texto a cifrar
@@ -57,7 +68,7 @@ public class main {
 		catch (Exception e)
 		{
 			System.out.println(e);
-		}
+		}*/
+	
 	}
-
 }

@@ -1,15 +1,25 @@
 <!DOCTYPE html>
-<html style="width: 624px; height: 339px">
+<html style="width: 496px; height: 610px; ">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<title>BANK-iTo</title>
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"
+	media="all">
+
+<title>Bank-iTo</title>
 
 <style>
+html
+{
+	text-align: center;
+}
 body {
-	margin: 0 auto;
+	margin: 20px;
 	max-width: 800px;
-	padding: 0 20px;
+	padding: 20px;
+	background: url('img/bankito.png');	
+    background-repeat: no-repeat;
+    background-size: 440px 570px;
+	
 }
 
 .container {
@@ -18,6 +28,7 @@ body {
 	border-radius: 5px;
 	padding: 10px;
 	margin: 10px 0;
+	
 }
 
 .darker {
@@ -54,33 +65,31 @@ body {
 	float: left;
 	color: #999;
 }
+
 </style>
 
 </head>
-
-<body style="width: 695px; height: 350px">
-	<h1 style="text-align: center">Bank-iTo</h1>
-	 
-	<div class="container darker" style="height: 270px; width: 645px">
-		<div class="container" style="width: 607px;">
-			<fieldset style="width: 543px;">
-				<legend>Iniciar Sesión:
-				<form action="ServletLogin" method="post" class="navbar-form navbar-right" style="width: 519px;">
-					<p>
-						<label>Correo Electrónico:</label>
-						<input name="correo" type="email" id="correo" style="width: 207px;">
-					</p>
-					
-					<p style="width: 495px; height: 65px">
-						<label style="width: 131px;">Contraseña:</label> 
-						<input name="contrasena" type="password" id="contrasena" style="width: 206px;">
-						<input type="submit" class="btn btn-success" value="Iniciar Sesión" style="width: 132px; height: 45px;">
-					</p>
-				</form></legend>
-				
-			</fieldset>
-		</div><br> 
-			<a style="font-weight: bold;"href="registrarEstudiante.jsp">Registrar nueva cuenta.</a>
-	</div>
+<body style="width: 472px; height: 573px; ">
+	<fieldset style=" text-align: left; width: 365px; height: 252px">
+		<legend>Iniciar Sesión:</legend>
+		<form action="SERVLET" method="post" style="width: 365px; height: 225px">
+			<p style="height: 30px; width: 342px">
+				<label for="correo" style="width: 153px;">Correo Electrónico:</label>
+				<input name="correo" type="text" id="correo" class="correo" style="width: 173px;">
+			</p> 				
+			<p style="width: 348px; height: 37px">
+				<label for="contrasenna" style="width: 153px;">Contraseña:</label>
+				<input name="contrasenna" type="text" id="contrasenna" class="contrasenna" style="width: 175px;"> 				
+			</p>
+			<p style="text-align: center;" >
+				<input type="submit" class="btn btn-success" value="Iniciar Sesión" style="width: 132px; height: 53px;">
+			</p>
+			<br><br><br>
+			<p style="text-align: center;" >
+				<a style="font-weight: bold;" href="">Registrar nueva cuenta.</a>
+			</p>
+		</form>
+	</fieldset>	
 </body>
 </html>
+	

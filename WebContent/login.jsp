@@ -13,7 +13,7 @@ html
 	text-align: center;
 }
 body {
-	margin: 20px;
+	margin: 23px;
 	max-width: 800px;
 	padding: 20px;
 	background: url('img/bankito.png');	
@@ -75,7 +75,7 @@ body {
 		<form action="SERVLET" method="post" style="width: 365px; height: 225px">
 			<p style="height: 30px; width: 342px">
 				<label for="correo" style="width: 153px;">Correo Electrónico:</label>
-				<input name="correo" type="text" id="correo" class="correo" style="width: 173px;">
+				<input name="correo" type="email" id="correo" class="correo" style="width: 173px;">
 			</p> 				
 			<p style="width: 348px; height: 37px">
 				<label for="contrasenna" style="width: 153px;">Contraseña:</label>
@@ -86,7 +86,7 @@ body {
 			</p>
 			<br><br><br>
 			<p style="text-align: center;" >
-				<a style="font-weight: bold;" href="">Registrar nueva cuenta.</a>
+				<a style="font-weight: bold;" href="registrarCuenta.jsp">Registrar nueva cuenta.</a>
 			</p>
 		</form>
 	</fieldset>	

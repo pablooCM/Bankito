@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="width: 644px; height: 993px; ">
+<html style="width: 577px; height: 855px; ">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"
@@ -13,12 +13,12 @@ html
 	text-align: center;
 }
 body {
-	margin: 40px;
+	margin: 20px;
 	max-width: 800px;
 	padding: 20px;
 	background: url('img/bankito.png');	
     background-repeat: no-repeat;
-    background-size: 500px 650px;	
+    background-size: 430px 520px;	
 	
 }
 
@@ -68,10 +68,14 @@ body {
 </style>
 
 </head>
-<body style="width: 472px; height: 520px; ">
+<body style="width: 472px; height: 780px; ">
 	<fieldset style="text-align: left; width: 381px; height: 394px">
 		<legend>Cambiar Pin:</legend>
-		<form action="SERVLET" method="post" style="width: 375px; height: 339px">
+		<form action="SERVLET" method="post" style="width: 375px; height: 231px">
+			<p style="width: 369px; height: 37px">
+				<label for="cuenta" style="width: 143px;">Número de cuenta:</label>
+				<input name="cuenta" type="text" id="cuenta" class="cuenta" style="width: 202px;">
+			</p> 	
 			<p style="width: 369px; height: 37px">
 				<label for="pinA" style="width: 143px;">Pin actual:</label>
 				<input name="pinA" type="text" id="pinA" class="pinA" style="width: 202px;" value="El pin debe ser alfanumérico">
@@ -80,25 +84,9 @@ body {
 				<label for="pin" style="width: 143px;">Pin:</label>
 				<input name="pin" type="text" id="pin" class="pin" style="width: 202px;" value="El pin debe ser alfanumérico"> 				
 			</p>
-			<p>					
-				<label for="nombre" style="width: 143px; height: 26px">Nombre dueño:</label> 
-				<input name="nombre" type="text" id="nombre" class="nombre" style="width: 203px;">
-			</p>
-			<p>
-				<label for="telefono" style="width: 144px;">Teléfono:</label> 
-				<input name="telefono" type="text" id="telefono" class="telefono" style="width: 202px;">
-			</p>
-			<p>
-				<label for="correo" style="width: 144px;">Correo Electrónico:</label> 
-				<input name="correo" type="email" id="correo" class="correo" style="width: 203px; height: 24px">
-			</p>					
-			<p>
-				<label for="montoInicial" style="width: 143px;">Monto Inicial:</label>
-				<input name="montoInicial" type="number" id="montoInicial" class="carnet" style="width: 204px;">
-			</p>
 			<p style="text-align: center;" >
 				<a href="login.jsp"> <input type="button" class="btn btn-info" value="Volver" style="width: 132px; height: 53px;"></a>
-				<input type="submit" class="btn btn-warning" value="Registrar" style="width: 132px; height: 53px;">
+				<input type="submit" class="btn btn-warning" value="Actualizar" style="width: 132px; height: 53px;">
 			</p>
 		</form>
 	</fieldset>	

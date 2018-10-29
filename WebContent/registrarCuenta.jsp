@@ -19,7 +19,7 @@ body {
 	padding: 20px;
 	background: url('img/bankito.png');	
     background-repeat: no-repeat;
-    background-size: 430px 580px;	
+    background-size: 430px 600px;	
 	
 }
 
@@ -89,7 +89,7 @@ body {
 		</p>
 		<p>
 			<label for="montoInicial" style="width: 143px;">Monto Inicial:</label> 
-			<input name="montoInicial" type="number" id="montoInicial" class="carnet" style="width: 204px;">		
+			<input name="montoInicial" type="number" id="montoInicial" class="monto" style="width: 204px;">		
 		</p>			
 		<p style="text-align: center;" >
 			<a href="login.jsp"> <input type="button" class="btn btn-info" value="Volver" style="width: 132px; height: 53px;"></a>

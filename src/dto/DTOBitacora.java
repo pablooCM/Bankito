@@ -1,6 +1,3 @@
-/**
- * 
- */
 package dto;
 
 import java.time.LocalDateTime;

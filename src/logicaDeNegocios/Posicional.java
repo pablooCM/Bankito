@@ -4,7 +4,7 @@ import dto.DTOBitacora;
 
 public class Posicional implements IBitacora{
 	
-    private final String RUTA; // TODO buscar la forma de hacerle el path para crear el archivo
+    private final String RUTA = ""; // TODO buscar la forma de hacerle el path para crear el archivo
     private static Posicional singletonPosicional;
 	//TODO
     

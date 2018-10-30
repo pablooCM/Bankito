@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="width: 577px; height: 855px; ">
+<html style="width: 644px; height: 993px; ">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"
@@ -68,27 +68,23 @@ body {
 </style>
 
 </head>
-<body style="width: 472px; height: 780px; ">
-	<fieldset style="text-align: left; width: 381px; height: 394px">
-		<legend style="width: 340px; ">Cambiar Pin:</legend>
-		<form action="SERVLET" method="post" style="width: 375px; height: 231px">
+<body style="width: 472px; height: 520px; ">
+	<fieldset style="text-align: left; width: 381px; height: 541px">
+		<legend style="width: 296px; ">Consultar estado de cuenta en colones:</legend>
+		<form action="SERVLET" method="post" style="width: 375px; height: 339px">
 			<p style="width: 369px; height: 37px">
 				<label for="cuenta" style="width: 143px;">Número de cuenta:</label>
 				<input name="cuenta" type="text" id="cuenta" class="cuenta" style="width: 202px;">
 			</p> 	
 			<p style="width: 369px; height: 37px">
-				<label for="pinA" style="width: 143px;">Pin actual:</label>
-				<input name="pinA" type="text" id="pinA" class="pinA" style="width: 202px;" value="El pin debe ser alfanumérico">
-			</p> 				
-			<p style="width: 369px; height: 37px">
 				<label for="pin" style="width: 143px;">Pin:</label>
-				<input name="pin" type="text" id="pin" class="pin" style="width: 202px;" value="El pin debe ser alfanumérico"> 				
-			</p>
-			<p style="text-align: center; width: 361px" >
+				<input name="pin" type="text" id="pin" class="pin" style="width: 202px;">
+			</p>	
+			<div style="text-align: center; width: 358px" >
 				<a href="Bank-iTo.jsp"> <input type="button" class="btn btn-info" value="Volver" style="width: 132px; height: 53px;"></a>
-				<input type="submit" class="btn btn-warning" value="Actualizar" style="width: 132px; height: 53px;">
-			</p>
+				<input type="submit" class="btn btn-warning" value="Consultar." style="width: 169px; height: 53px;">				
+			</div>
 		</form>
-	</fieldset>	
+	</fieldset>
 </body>
 </html>

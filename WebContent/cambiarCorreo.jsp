@@ -75,14 +75,14 @@ body {
 			<p style="width: 369px; height: 37px">
 				<label for="cuenta" style="width: 143px;">Número de cuenta:</label>
 				<input name="cuenta" type="text" id="cuenta" class="cuenta" style="width: 202px;">
-			</p> 	
-			<p style="width: 369px; height: 37px">
-				<label for="pinA" style="width: 143px;">Pin actual:</label>
-				<input name="pinA" type="text" id="pinA" class="pinA" style="width: 202px;" value="El pin debe ser alfanumérico">
 			</p> 				
 			<p style="width: 369px; height: 37px">
 				<label for="pin" style="width: 143px;">Pin:</label>
 				<input name="pin" type="text" id="pin" class="pin" style="width: 202px;" value="El pin debe ser alfanumérico"> 				
+			</p>
+			<p>
+				<label for="correo" style="width: 144px;">Correo Electrónico nuevo:</label>
+				<input name="correo" type="email" id="correo" class="correo" style="width: 203px; height: 24px">
 			</p>
 			<p style="text-align: center; width: 361px" >
 				<a href="Bank-iTo.jsp"> <input type="button" class="btn btn-info" value="Volver" style="width: 132px; height: 53px;"></a>

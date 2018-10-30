@@ -13,12 +13,12 @@ html
 	text-align: center;
 }
 body {
-	margin: 40px;
+	margin: 20px;
 	max-width: 800px;
 	padding: 20px;
 	background: url('img/bankito.png');	
     background-repeat: no-repeat;
-    background-size: 480px 680px;	
+    background-size: 430px 550px;	
 	
 }
 
@@ -70,37 +70,40 @@ body {
 </head>
 <body style="width: 472px; height: 520px; ">
 	<fieldset style="text-align: left; width: 381px; height: 541px">
-		<legend>Realizar depósito:</legend>
+		<legend style="width: 296px; ">Realizar depósito:</legend>
 		<form action="SERVLET" method="post" style="width: 375px; height: 339px">
 			<p style="width: 369px; height: 37px">
 				<label for="cuenta" style="width: 143px;">Número de cuenta:</label>
 				<input name="cuenta" type="text" id="cuenta" class="cuenta" style="width: 202px;">
 			</p> 	
 			<p>
-				<label for="monto" style="width: 143px;">Monto Inicial:</label> 
-				<input name="monto" type="number" id="monto" class="monto" style="width: 204px;">		
-			</p>		
-			<p>					
-				<label for="nombre" style="width: 143px; height: 26px">Nombre dueño:</label> 
-				<input name="nombre" type="text" id="nombre" class="nombre" style="width: 203px;">
+				<label for="monto" style="width: 143px;">Monto a depositar:</label> 
+				<input name="monto" type="number" id="monto" class="monto" style="width: 136px;">		
+				colones.
+				
 			</p>
-			<p>
-				<label for="telefono" style="width: 144px;">Teléfono:</label> 
-				<input name="telefono" type="text" id="telefono" class="telefono" style="width: 202px;">
+			<p style="text-align: center; width: 355px" >
+				<input type="button" class="btn btn-success" value="Depositar monto" style="width: 132px; height: 53px;" onclick= "agregarGif()">
+			</p>	
+			<div id="gif" style="text-align: center; width: 351px" ></div>
+			<p style="text-align: center; width: 358px" >
+				<a href="Bank-iTo.jsp"> <input type="button" class="btn btn-info" value="Volver" style="width: 132px; height: 53px;"></a>
+				<input type="submit" class="btn btn-warning" value="Terminar depósito" style="width: 169px; height: 53px;">				
 			</p>
-			<p>
-				<label for="correo" style="width: 144px;">Correo Electrónico:</label> 
-				<input name="correo" type="email" id="correo" class="correo" style="width: 203px; height: 24px">
-			</p>					
-			<p>
-				<label for="montoInicial" style="width: 143px;">Monto Inicial:</label>
-				<input name="montoInicial" type="number" id="montoInicial" class="carnet" style="width: 204px;">
-			</p>
-			<p style="text-align: center;" >
-				<a href="login.jsp"> <input type="button" class="btn btn-info" value="Volver" style="width: 132px; height: 53px;"></a>
-				<input type="submit" class="btn btn-warning" value="Depositar" style="width: 132px; height: 53px;">				
-			</p>		
 		</form>
 	</fieldset>
+	<script type="text/javascript">
+		function agregarGif()
+        {
+         	var div = document.getElementById("gif"); 
+         	//Agregar botones por lugar       
+         	var img = document.createElement("img");  
+         	img.setAttribute("src", "http://i.picasion.com/pic88/a6965183185b1d88458c65e46f24f594.gif");
+            img.setAttribute("width", "150");
+            img.setAttribute("height", "75");
+            img.setAttribute("border", "0");
+            div.appendChild(img);
+		}
+	</script>
 </body>
 </html>

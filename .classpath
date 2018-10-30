@@ -6,19 +6,19 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/danyc/Documents/Instaladores/Desarrollador/Punto Jar/javax.servlet-3.0.0.v201112011016.jar"/>
-	<classpathentry kind="lib" path="C:/Users/danyc/Desktop/Progras/Progra Diseño/LauraCarvajalDianaZuniga/javax.mail.jar"/>
-	<classpathentry kind="lib" path="C:/Users/danyc/Documents/Instaladores/Desarrollador/Punto Jar/db2jcc4.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6">
-		<attributes>
-			<attribute name="owner.project.facets" value="java"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/danyc/Documents/GitHub/Bankito/WebContent/WEB-INF/lib/db2jcc4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danyc/Documents/GitHub/Bankito/WebContent/WEB-INF/lib/javax.mail.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danyc/Documents/GitHub/Bankito/WebContent/WEB-INF/lib/javax.servlet-3.0.0.v201112011016.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

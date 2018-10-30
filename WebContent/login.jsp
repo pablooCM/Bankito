@@ -13,12 +13,12 @@ html
 	text-align: center;
 }
 body {
-	margin: 23px;
+	margin: 20px;
 	max-width: 800px;
 	padding: 20px;
 	background: url('img/bankito.png');	
     background-repeat: no-repeat;
-    background-size: 440px 570px;
+    background-size: 430px 550px;	
 	
 }
 
@@ -71,7 +71,7 @@ body {
 </head>
 <body style="width: 472px; height: 573px; ">
 	<fieldset style=" text-align: left; width: 365px; height: 252px">
-		<legend>Iniciar Sesión:</legend>
+		<legend style="width: 313px; ">Iniciar Sesión:</legend>
 		<form action="SERVLET" method="post" style="width: 365px; height: 225px">
 			<p style="height: 30px; width: 342px">
 				<label for="correo" style="width: 153px;">Correo Electrónico:</label>

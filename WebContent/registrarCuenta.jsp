@@ -19,7 +19,7 @@ body {
 	padding: 20px;
 	background: url('img/bankito.png');	
     background-repeat: no-repeat;
-    background-size: 430px 600px;	
+    background-size: 430px 550px;	
 	
 }
 
@@ -69,7 +69,7 @@ body {
 </head>
 <body style="width: 485px; height: 555px; ">
 	<fieldset style=" text-align: left; width: 381px; height: 394px">
-	<legend style="width: 383px; ">Registrar Cuenta:</legend>
+	<legend style="width: 287px; ">Registrar Cuenta:</legend>
 	<form action="SERVLET" method="post" style="width: 375px; height: 339px">
 		<p style="width: 369px; height: 37px">
 			<label for="pin" style="width: 143px;">Pin:</label>
@@ -91,7 +91,7 @@ body {
 			<label for="montoInicial" style="width: 143px;">Monto Inicial:</label> 
 			<input name="montoInicial" type="number" id="montoInicial" class="monto" style="width: 204px;">		
 		</p>			
-		<p style="text-align: center;" >
+		<p style="text-align: center; width: 358px" >
 			<a href="login.jsp"> <input type="button" class="btn btn-info" value="Volver" style="width: 132px; height: 53px;"></a>
 			<input type="submit" class="btn btn-warning" value="Registrar" style="width: 132px; height: 53px;">
 		</p>

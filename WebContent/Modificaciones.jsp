@@ -91,7 +91,7 @@ body {
 		<a href="Bank-iTo.jsp" class="active" style="font-family: Arial, Helvetica, sans-serif;">Bank-iTo</a>
 		<a href="cambiarPin.jsp" style="font-family: Arial, Helvetica, sans-serif;">Cambiar Pin</a>
 		<a href="cambiarCorreo.jsp" style="font-family: Arial, Helvetica, sans-serif;">Cambiar Correo Electrónico. </a>
-		<a href="depositoColones.jsp" style="font-family: Arial, Helvetica, sans-serif;">Cambiar Teléfono. </a>
+		<a href="cambiarTelefono.jsp" style="font-family: Arial, Helvetica, sans-serif;">Cambiar Teléfono. </a>
 	</center>
 </body>
 </html>

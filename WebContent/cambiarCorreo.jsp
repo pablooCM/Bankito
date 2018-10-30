@@ -70,7 +70,7 @@ body {
 </head>
 <body style="width: 472px; height: 780px; ">
 	<fieldset style="text-align: left; width: 381px; height: 394px">
-		<legend style="width: 340px; ">Cambiar Pin:</legend>
+		<legend style="width: 340px; ">Cambiar Correo Electrónico:</legend>
 		<form action="SERVLET" method="post" style="width: 375px; height: 231px">
 			<p style="width: 369px; height: 37px">
 				<label for="cuenta" style="width: 143px;">Número de cuenta:</label>

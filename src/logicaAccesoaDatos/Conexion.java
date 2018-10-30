@@ -5,33 +5,33 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Conexion {
-		private static Conexion instancia= new Conexion();
-		private Connection con;
+	private static Conexion instancia= new Conexion();
+	private Connection con;
+	
+	private Conexion() {
+		String url = "jdbc:db2://dashdb-txn-sbox-yp-dal09-03.services.dal.bluemix.net:50000/BLUDB";
+		String user = "tpr80283";
+		String password = "8xs0@c8mqgwczm84";  
 		
-		private Conexion() {
-			String url = "jdbc:db2://dashdb-txn-sbox-yp-dal09-03.services.dal.bluemix.net:50001/BLUDB:sslConnection=true;";
-			String user = "tpr80283";
-			String password = "8xs0@c8mqgwczm84";  
-			Statement statement;
-			
-			try
+		Statement statement;	
+			try 
 			{
 				Class.forName("com.ibm.db2.jcc.DB2Driver");
 				// Create the connection using the IBM Data Server Driver for JDBC and SQLJ
-				this.con = DriverManager.getConnection (url, user, password);
+				this.con = DriverManager.getConnection (url, user, password);     
 				// Commit changes manually
-				this.con.setAutoCommit(false);
-			}
+				this.con.setAutoCommit(true);
+			} 
 			catch (ClassNotFoundException e)
-			{
+		    {
 				System.err.println("Could not load JDBC driver");
 				System.out.println("Exception: " + e);
 				e.printStackTrace();
 			}
-			catch(SQLException ex)
+			catch(SQLException ex)                                                     
 			{
 				System.err.println("SQLException information");
-				while(ex!=null)
+				while(ex!=null) 
 				{
 					System.err.println ("Error msg: " + ex.getMessage());
 					System.err.println ("SQLSTATE: " + ex.getSQLState());
@@ -42,23 +42,17 @@ public class Conexion {
 			}
 		}
 
-		public static Conexion getInstance()
-		{
-			if (instancia!=null) 
-			{
-				return instancia;
-			}
-			else 
-			{
-				instancia=new Conexion();	
-				return instancia;
-			}
-			
-		}
-		
-		public Connection getConnection() 
-		{
-			return this.con;
-		}
+	public static Conexion getInstance(){
+		if (instancia!=null) {
+		return instancia;
 	}
-
+		else {
+		instancia=new Conexion();	
+		return instancia;
+		}
+		}
+	public Connection getConnection() {
+		return this.con;
+		
+	}
+}

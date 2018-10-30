@@ -10,6 +10,6 @@ import dto.DTOCuenta;
  */
 public class RegistroCuenta {
 	public static void registrarCuenta(DTOCuenta pDatosCuenta) {
-		
+		//TODO
 	}
 }

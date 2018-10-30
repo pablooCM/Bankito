@@ -59,6 +59,7 @@ public class TipoCambio {
       
       //Retorna el valor del tag
       return xml.getValue(VALUE_TAG);
+      
     } catch (Exception e) {
       System.out.println("Error al obtener el valor del BCCR.");
       return "0";

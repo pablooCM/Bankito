@@ -24,10 +24,11 @@ public class DepositoCambioMoneda implements IRegistro{
 	}
 	
 	private void setTipoCambio(double pTipoCambio) {
-		
+		//TODO
 	}
 	
 	private double convertidorDolaresaColones(int pMontoDolores) {
+		//TODO
 		return 0;
 	}
 

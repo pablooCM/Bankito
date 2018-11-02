@@ -2,13 +2,8 @@ package logicaAccesoaDatos;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Connection;
 import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Date;
-
 
 
 public class BaseDatos {
@@ -17,23 +12,25 @@ public class BaseDatos {
 	public BaseDatos() {
 		
 	}
-	public void insertarCuenta(String pin,String estatus, Date fechaCreacion, double saldo) throws SQLException {
-	String query="insert into cuenta(pin, estatus,fechaCreacion,saldo) values('"+pin+"','"+estatus+"','"+fechaCreacion+","+saldo+")";	
+	public void insertarCuenta(String nombreDuenno, String correo, String telefono, String password, String pin,String estatus, Date fechaCreacion, double saldo) throws SQLException {
+	String query="insert into cuenta(pin, estatus,fechaCreacion,saldo) values('"+pin+"','"+estatus+"','"+fechaCreacion+"',"+saldo+")";
 	EjecutarQuery(query);
+	
+	if(selectIdDueno(nombreDuenno)==0)
+	{
+		insertarDuenno(nombreDuenno, correo, telefono, password);
 	}
-	public void insertarDuenno(String nombre, String correo, String telefono, String password)  {
-	try {
+	
+	int numCuenta = selectIdCuenta(pin,estatus,fechaCreacion,saldo);
+	int idDuenno = selectIdDueno(nombreDuenno);
+	
+	insertarDuennoCuenta(numCuenta,idDuenno);
+	}
+	
+	private void insertarDuenno(String nombre, String correo, String telefono, String password) throws SQLException  {
 		String query="insert into duenno(nombre,correo,telefono, password) values('"+nombre+"','"+correo+"','"+telefono+"','"+password+"')";	
-		Statement stmt;
-		
-			stmt = con.getConnection().createStatement();
-		System.out.println(query);
-		stmt.executeUpdate(query);
-		stmt.close();
-		
-	} catch (SQLException e) {
-		System.out.println("El usuario ya existe");
-	}}
+		EjecutarQuery(query);
+	}
 	public void insertarDeposito(int numero, double monto) throws SQLException {
 		String query="insert into deposito(numeroCuenta,monto) values("+numero+","+monto+")";	
 		EjecutarQuery(query);
@@ -54,10 +51,12 @@ public class BaseDatos {
 		String query="insert into transferencia(numeroCuenta, monto,numeroCuentaDestino) values("+numero+","+monto+","+numeroD+")";
 		EjecutarQuery(query);
 	}
-	public void insertarDuennoCuenta(int numero, int duenno) throws SQLException {
+	
+	private void insertarDuennoCuenta(int numero, int duenno) throws SQLException {
 		String query="insert into duenno_Cuenta(id_Cuenta,id_Duenno) values("+numero+","+duenno+")";
 		EjecutarQuery(query);
 	}
+	
 	private void eliminarCodigo() throws SQLException {
 		String query="delete from codigoVerificacion";
 		EjecutarQuery(query);
@@ -81,10 +80,46 @@ public class BaseDatos {
 			     " WHERE numeroCuenta="+numero+"";
 		EjecutarQuery(query);
 	}
-	public void selectIdDueno(String nombre) throws SQLException {
-		String select="Select id_Duenno from duenno where nombre='"+nombre+"'";
-		EjecutarSelect(select);
+
+	//Esta función sólo se utiliza al crear la cuenta.
+	private int selectIdCuenta(String pin,String estatus, Date fechaCreacion, double saldo) throws SQLException {
+		String select="Select NUMEROCUENTA from CUENTA where PIN='"+pin+"' and ESTATUS='"+estatus
+						+"' and FECHACREACION='"+fechaCreacion
+						+"' and SALDO='"+saldo+"'";
+		ResultSet rs = EjecutarSelect(select);
+		// Print all of the employee numbers to standard output device
+		while (rs.next())
+		{
+			int correoR = Integer.parseInt(rs.getString(1));
+			return correoR;
+		}
+		return 0;
 	}
+	
+	public int selectIdDueno(String nombre) throws SQLException {
+		String select="Select id_Duenno from duenno where nombre='"+nombre+"'";
+		ResultSet rs = EjecutarSelect(select);
+		// Print all of the employee numbers to standard output device
+		while (rs.next())
+		{
+			int id = Integer.parseInt(rs.getString(1));
+			return id;
+		}
+		return 0;
+	}
+	
+	public String selectContrasennaDueno(String nombre) throws SQLException {
+		String select="Select PASSWORD from duenno where nombre='"+nombre+"'";
+		ResultSet rs = EjecutarSelect(select);
+		// Print all of the employee numbers to standard output device
+		while (rs.next())
+		{
+			String pass = rs.getString(1);
+			return pass;
+		}
+		return null;
+	}
+	
 	public void selectCorreo(int numero) throws SQLException {
 		String select="Select correo from cuenta join duenno_Cuenta on numeroCuenta=id_Cuenta join duenno on duenno_Cuenta.id_Duenno=duenno.id_duenno where numeroCuenta="+numero;
 		EjecutarSelect(select);
@@ -101,11 +136,26 @@ public class BaseDatos {
 		String select="Select * from codigoVerificacion";
 		EjecutarSelect(select);
 	}
+	
 	public ResultSet selectHistorial() throws SQLException {
 		String select="Select * from Historial";
 		ResultSet rs=EjecutarSelect(select);
 		return rs;
 	}
+	
+
+	public String selectLogin(String correo, String contrasenna) throws SQLException {
+		String select="Select CORREO,PASSWORD from DUENNO where CORREO='"+correo+"' and PASSWORD='"+contrasenna+"'";
+		ResultSet rs = EjecutarSelect(select);
+		// Print all of the employee numbers to standard output device
+		while (rs.next())
+		{
+			String correoR = rs.getString(1);
+			return correoR;
+		}
+		return null;
+	}
+	
 	public void EjecutarQuery(String query) throws SQLException {
 		Statement stmt= con.getConnection().createStatement();
 		System.out.println(query);

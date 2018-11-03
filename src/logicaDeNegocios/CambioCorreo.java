@@ -4,20 +4,18 @@ import logicaAccesoaDatos.BaseDatos;
 
 
 public class CambioCorreo implements IActualizacion{
-	private int numeroCuenta;
-	private String pin;
-	private String telefono;
+	private String correoAnterior;
+	private String nuevoCorreo;
 	 
-	public CambioCorreo(int pNumeroCuenta, String pPin, String pTelefono) {
-		numeroCuenta=pNumeroCuenta;
-		pin=pPin;
-		telefono=pTelefono;
+	public CambioCorreo(String pCorreoAnterior, String pNuevoCorreo) {
+		correoAnterior=pCorreoAnterior;
+		nuevoCorreo=pNuevoCorreo;
 	}
 
 	@Override
-	public void actualizarBaseDatos() {
-		// TODO Auto-generated method stub
-		
+	public void actualizarBaseDatos() throws SQLException {
+		BaseDatos bs= new BaseDatos();
+		bs.actualizarCorreo(correoAnterior, nuevoCorreo);
 	}
 }
 

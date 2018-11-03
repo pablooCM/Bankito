@@ -13,7 +13,7 @@ import logicaAccesoaDatos.BaseDatos;
  *
  */
 public class RegistroCuenta {	
-	public void registrarCuenta(DTOCuenta pDatosCuenta) throws SQLException {
+	public  static void registrarCuenta(DTOCuenta pDatosCuenta) throws SQLException {
 	BaseDatos bs=new BaseDatos();
 	bs.insertarCuenta(pDatosCuenta);
 				

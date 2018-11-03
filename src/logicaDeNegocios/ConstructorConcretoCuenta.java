@@ -12,9 +12,11 @@ public class ConstructorConcretoCuenta implements IConstructorCuenta{
 	}
 	
 	@Override
-	public Cuenta construirDepositoCambioMoneda(int pNumeroCuenta, int pMonto) {
-		// TODO Auto-generated method stub
-		return null;
+	public Cuenta construirDepositoCambioMoneda(int pNumeroCuenta, int pMonto, double pComision) {
+        IRegistro nuevoRegistro = new DepositoCambioMoneda(pNumeroCuenta, pMonto, pComision);
+        Cuenta cuenta = new Cuenta();
+        cuenta.setRegistro(nuevoRegistro);
+        return cuenta;
 	}
 	
 	@Override
@@ -26,8 +28,8 @@ public class ConstructorConcretoCuenta implements IConstructorCuenta{
 	}
 	
 	@Override
-	public Cuenta construirRetiroCambioMoneda(int pNumeroCuenta, String pPin, int pMonto) {
-		IRegistro nuevoRegistro = new RetiroCambioMoneda(pNumeroCuenta, pPin, pMonto);
+	public Cuenta construirRetiroCambioMoneda(int pNumeroCuenta, String pPin, int pMonto, double pComision) {
+		IRegistro nuevoRegistro = new RetiroCambioMoneda(pNumeroCuenta, pPin, pMonto, pComision);
 		Cuenta cuenta = new Cuenta();
 		cuenta.setRegistro(nuevoRegistro);
 		return cuenta;
@@ -75,9 +77,9 @@ public class ConstructorConcretoCuenta implements IConstructorCuenta{
 	}
 
 	@Override
-	public Cuenta construirCambioCorreo(int pNumeroCuenta, String pPin, String pCorreo) {
+	public Cuenta construirCambioCorreo(String pCorreoActual, String pNuevoCorreo) {
 
-        IActualizacion cambioRegistro = new CambioCorreo(pNumeroCuenta, pPin, pCorreo);
+        IActualizacion cambioRegistro = new CambioCorreo(pCorreoActual,pNuevoCorreo);
         Cuenta cuenta = new Cuenta();
         cuenta.setActualizacion(cambioRegistro);
         return cuenta;

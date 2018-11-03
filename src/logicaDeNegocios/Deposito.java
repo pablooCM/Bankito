@@ -19,10 +19,10 @@ public class Deposito implements IRegistro {
 	private double monto;
 	private double comision;
 	
-	public Deposito(int pNumeroCuenta, double pMonto,double comision) {
-		this.numeroCuenta=pNumeroCuenta;
-		this.monto=pMonto;
-		this.comision=comision;
+	public Deposito(int pNumeroCuenta, double pMonto,double pComision) {
+		numeroCuenta=pNumeroCuenta;
+		monto=pMonto;
+		comision=pComision;
 	}
 	@Override
 	public void registrarEnBaseDatos() throws SQLException {

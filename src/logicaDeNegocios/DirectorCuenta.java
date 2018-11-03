@@ -30,8 +30,8 @@ public class DirectorCuenta {
 		return constructor.construirRetiroColones(pNumeroCuenta, pPin, pMonto,pComision);
 	}
 	
-	public Cuenta getRetiroCambioMoneda(int pNumeroCuenta, String pPin, int pMonto) {
-		return constructor.construirRetiroCambioMoneda(pNumeroCuenta, pPin, pMonto);
+	public Cuenta getRetiroCambioMoneda(int pNumeroCuenta, String pPin, int pMonto, double pComision) {
+		return constructor.construirRetiroCambioMoneda(pNumeroCuenta, pPin, pMonto, pComision);
 	}
 	
 	public Cuenta getTransferencia(int pNumeroCuentaOrigen, String pPin, int pMonto, int pCuentaDestino) {
@@ -46,14 +46,13 @@ public class DirectorCuenta {
 		return constructor.construirConsultaSaldoMonedaExtranjera(pNumeroCuenta, pPin);
 	}
 	
-
 	
 	public Cuenta getCambioTelefono(int pNumeroCuenta, String pPin, String pTelefono) {
 		return constructor.construirCambioTelefono(pNumeroCuenta, pPin, pTelefono);
 	}
 	
-	public Cuenta getCambioCorreo(int pNumeroCuenta, String pPin, String pCorreo) {
-		return constructor.construirCambioCorreo(pNumeroCuenta, pPin, pCorreo);
+	public Cuenta getCambioCorreo(String pCorreoActual, String pNuevoCorreo) {
+		return constructor.construirCambioCorreo(pCorreoActual, pNuevoCorreo);
 	}
 	
 }

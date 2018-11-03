@@ -1,4 +1,4 @@
-package funcionesAcomodar;
+package logicaDeNegocios;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

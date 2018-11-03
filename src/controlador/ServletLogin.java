@@ -46,29 +46,28 @@ public class ServletLogin extends HttpServlet
 		
 		BaseDatos con = new BaseDatos();
 		String user = null;
+		String nombreDuenno = null;
+		
+		PrintWriter out = response.getWriter();
+		
 		try 
 		{
 			user = con.selectLogin(correo, contrasenna);
+			nombreDuenno = con.selectNombreDuenno(correo);
+			request.getSession().setAttribute("user", user);           
 		} 
 		catch (SQLException e) 
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		if (user != null )
 		{
-			request.getSession().setAttribute("user", user);            
-		    response.sendRedirect("Bank-iTo.jsp");
-		}
+			out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('°Bienvenido "+nombreDuenno+"!'); window.location='Bank-iTo.jsp' \"></body></html>");
+		} 
 		else
 		{
-			PrintWriter out = response.getWriter();
-			out.print("<script type= 'text/javascript'>");
-			out.print("alert('Verifique que los datos ingresados correspondan con alg√∫n usuario previamente registrado');");
-			out.print("location='login.jsp';");
-			out.print("</script>");
-			response.sendRedirect("login.jsp");
+			out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Verifique que los datos ingresados correspondan con alg˙n usuario asociado con alguna cuenta previamente registrada.'); window.location='login.jsp' \"></body></html>");
 		}
 	}
 

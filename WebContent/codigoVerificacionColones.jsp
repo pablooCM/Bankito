@@ -71,7 +71,7 @@ body {
 <body style="width: 472px; height: 520px; ">
 	<fieldset style="text-align: left; width: 381px; height: 541px">
 		<legend style="width: 296px; ">Realizar depósito en colones:</legend>
-		<form action="SERVLET" method="post" style="width: 375px; height: 339px">
+		<form action="ServletEnviarMensaje" method="post" style="width: 375px; height: 305px">
 			<p style="width: 369px; height: 37px">
 				<label for="cuenta" style="width: 143px;">Número de cuenta:</label>
 				<input name="cuenta" type="text" id="cuenta" class="cuenta" style="width: 202px;">
@@ -80,17 +80,14 @@ body {
 				<label for="pin" style="width: 143px;">Pin:</label>
 				<input name="pin" type="text" id="pin" class="pin" style="width: 202px;">
 			</p>	
+			<input name="tipo" type="text" id="tipo" class="tipo" value="colones" style="text-align:center; width: 353px;">
 			<div id="campo" style="text-align: center; width: 351px" >
-			</div>
-			 
-			<p style="text-align: center; width: 355px" >
-				<input id= "buttonCod" type="button" class="btn btn-success" value="Enviar SMS con código de verificación." style="width: 300px; height: 53px;" onclick= "agregarCampo()">
-			</p>
+			</div>			
 			<br>
 			<br>
 			<div style="text-align: center; width: 358px" >
 				<a href="Bank-iTo.jsp"> <input type="button" class="btn btn-info" value="Volver" style="width: 132px; height: 53px;"></a>
-				<input type="submit" class="btn btn-warning" value="Validar código." style="width: 169px; height: 53px;">				
+				<input id= "buttonCod" type="submit" class="btn btn-success" value="Enviar SMS con código de verificación." style="width: 300px; height: 53px;" onclick= "agregarCampo()">				
 			</div>
 		</form>
 	</fieldset>

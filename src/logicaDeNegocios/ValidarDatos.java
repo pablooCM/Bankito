@@ -14,7 +14,6 @@ public class ValidarDatos implements Validable {
 		Matcher matcher = pattern.matcher(correo);
 		if (matcher.matches())
 		{
-			System.out.println("true correo");
 			return true;
 		}
 		else

@@ -7,10 +7,11 @@ import java.sql.Statement;
 
 
 public class BaseDatos {
-	Conexion con= Conexion.getInstance();
+	Conexion con;
 	
-	public BaseDatos() {
-		
+	public BaseDatos() 
+	{
+		this.con = Conexion.getInstance();		
 	}
 	public void insertarCuenta(String nombreDuenno, String correo, String telefono, String password, String pin,String estatus, Date fechaCreacion, double saldo) throws SQLException {
 	String query="insert into cuenta(pin, estatus,fechaCreacion,saldo) values('"+pin+"','"+estatus+"','"+fechaCreacion+"',"+saldo+")";
@@ -44,6 +45,8 @@ public class BaseDatos {
 		EjecutarQuery(query);
 	}
 	public void insertarCodigoVerificacion(String codigo) throws SQLException {
+		eliminarCodigo();
+		
 		String query="insert into codigoVerificacion(codigoVerficiacion) values('"+codigo+"')";
 		EjecutarQuery(query);
 	}
@@ -96,6 +99,30 @@ public class BaseDatos {
 		return 0;
 	}
 	
+	public int selectCuenta(String cuenta, String pin) throws SQLException {
+		String select="Select NUMEROCUENTA from cuenta where NUMEROCUENTA='"+cuenta+"' and PIN='"+pin+"'";
+		ResultSet rs = EjecutarSelect(select);
+		// Print all of the employee numbers to standard output device
+		while (rs.next())
+		{
+			int id = Integer.parseInt(rs.getString(1));
+			return id;
+		}
+		return 0;
+	}
+	
+	public String selectPin(String cuenta) throws SQLException {
+		String select="Select PIN from cuenta where NUMEROCUENTA='"+cuenta+"'";
+		ResultSet rs = EjecutarSelect(select);
+		// Print all of the employee numbers to standard output device
+		while (rs.next())
+		{
+			String pin = rs.getString(1);
+			return pin;
+		}
+		return null;
+	}
+	
 	public int selectIdDueno(String nombre) throws SQLException {
 		String select="Select id_Duenno from duenno where nombre='"+nombre+"'";
 		ResultSet rs = EjecutarSelect(select);
@@ -124,17 +151,32 @@ public class BaseDatos {
 		String select="Select correo from cuenta join duenno_Cuenta on numeroCuenta=id_Cuenta join duenno on duenno_Cuenta.id_Duenno=duenno.id_duenno where numeroCuenta="+numero;
 		EjecutarSelect(select);
 	}
-	public void selectTelefono(int numero) throws SQLException {
-		String select="Select telefono from cuenta join duenno_Cuenta on numeroCuenta=id_Cuenta join duenno on duenno_Cuenta.id_Duenno=duenno.id_duenno where numeroCuenta="+numero;
-		EjecutarSelect(select);
+	
+	public String selectTelefono(String correo) throws SQLException {
+		String select="Select telefono from duenno where correo= '"+correo+"'";
+		ResultSet rs = EjecutarSelect(select);
+		while (rs.next())
+		{
+			String telefono = rs.getString(1);
+			return telefono;
+		}
+		return null;
 	}
+	
 	public void selectPin(int numero) throws SQLException {
 		String select="Select pin from cuenta where numeroCuenta="+numero;
 		EjecutarSelect(select);
 	}
-	public void selectCodigo() throws SQLException {
+	
+	public String selectCodigo() throws SQLException {
 		String select="Select * from codigoVerificacion";
-		EjecutarSelect(select);
+		ResultSet rs = EjecutarSelect(select);
+		while (rs.next())
+		{
+			String codigo = rs.getString(1);
+			return codigo;
+		}
+		return null;
 	}
 	
 	public ResultSet selectHistorial() throws SQLException {
@@ -144,6 +186,19 @@ public class BaseDatos {
 	}
 	
 
+	public String selectNombreDuenno(String correo) throws SQLException {
+		String select="Select NOMBRE from DUENNO where CORREO='"+correo+"'";
+		ResultSet rs = EjecutarSelect(select);
+		// Print all of the employee numbers to standard output device
+		while (rs.next())
+		{
+			String nombre = rs.getString(1);
+			return nombre;
+		}
+		return null;
+	}
+	
+	
 	public String selectLogin(String correo, String contrasenna) throws SQLException {
 		String select="Select CORREO,PASSWORD from DUENNO where CORREO='"+correo+"' and PASSWORD='"+contrasenna+"'";
 		ResultSet rs = EjecutarSelect(select);
@@ -158,7 +213,6 @@ public class BaseDatos {
 	
 	public void EjecutarQuery(String query) throws SQLException {
 		Statement stmt= con.getConnection().createStatement();
-		System.out.println(query);
 		stmt.executeUpdate(query);
 		stmt.close();
 	}

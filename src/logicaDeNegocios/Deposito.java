@@ -17,15 +17,17 @@ public class Deposito implements IRegistro {
 	 */
 	private int numeroCuenta;
 	private double monto;
+	private double comision;
 	
-	public Deposito(int pNumeroCuenta, double pMonto) {
-		numeroCuenta=pNumeroCuenta;
-		monto=pMonto;
+	public Deposito(int pNumeroCuenta, double pMonto,double comision) {
+		this.numeroCuenta=pNumeroCuenta;
+		this.monto=pMonto;
+		this.comision=comision;
 	}
 	@Override
 	public void registrarEnBaseDatos() throws SQLException {
 		BaseDatos nObjeto = new BaseDatos();
-		nObjeto.insertarDeposito(numeroCuenta, monto);
+		nObjeto.insertarDeposito(numeroCuenta, monto, comision);
 
 	}
 

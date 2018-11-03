@@ -90,8 +90,8 @@ public class ServletCrearCuenta extends HttpServlet {
 		        String pinEncriptado = rsa.Encrypt(pin);
 		        
 		        System.out.println("Crea:"+pinEncriptado);
-		        
-				con.insertarCuenta(nombre, correo, telefono, contrasenna, pinEncriptado, "activa", sqlDate, Double.parseDouble(montoInicial));
+		       
+				//con.insertarCuenta(nombre, correo, telefono, contrasenna, pinEncriptado, "activa", sqlDate, Double.parseDouble(montoInicial));
 				
 				String pass = con.selectContrasennaDueno(nombre);
 				

@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
 import java.sql.Statement;
+import java.util.ArrayList;
+
 import dto.DTOCuenta;
 
 
@@ -95,7 +97,18 @@ public class BaseDatos {
 		}
 		return 0;
 	}
-	
+
+	public double selectSaldoCuenta(int numcuenta) throws SQLException {
+		String saldo="select saldo from cuenta where numeroCuenta="+numcuenta+";";
+		ResultSet rs=EjecutarSelect(saldo);
+		while(rs.next()) {
+			double monto=rs.getDouble(1);
+			return monto;
+			
+		}
+		return 0;
+		
+	}
 	public int selectCuenta(String cuenta, String pin) throws SQLException {
 		String select="Select NUMEROCUENTA from cuenta where NUMEROCUENTA='"+cuenta+"' and PIN='"+pin+"'";
 		ResultSet rs = EjecutarSelect(select);

@@ -38,7 +38,7 @@ public class Cuenta {
 		registro.registrarEnBaseDatos();
 	}
 	
-	public ArrayList<DTOCuenta> consultar(){
+	public double consultar() throws SQLException{
 		return consulta.consultarBaseDatos();
 	}
 	public void setConsulta(IConsulta pConsulta){

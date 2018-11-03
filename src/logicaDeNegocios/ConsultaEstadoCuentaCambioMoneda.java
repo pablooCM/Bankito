@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import dto.DTOCuenta;
 
-public class ConsultaEstadoCuentaCambioMoneda implements IConsulta{
+public class ConsultaEstadoCuentaCambioMoneda {
 	private int numeroCuenta;
 	private String pin;
 	private double tipoCambio;
@@ -13,19 +13,6 @@ public class ConsultaEstadoCuentaCambioMoneda implements IConsulta{
 		numeroCuenta=pNumeroCuenta;
 		pin=pPin;
 	}
-	@Override
-	public ArrayList<DTOCuenta> consultarBaseDatos() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
-	private void setTipoCambio(double pTipoCambio) {
-		// TODO
-	}
-	
-	private double convertidorColonesaDolares(double pMonto) {
-		// TODO
-		return 0;
-	}
 
 }

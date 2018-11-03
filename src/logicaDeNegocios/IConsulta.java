@@ -1,9 +1,9 @@
 package logicaDeNegocios;
 
-import java.util.ArrayList;
+import java.sql.SQLException;
 
 import dto.DTOCuenta;
 
 public interface IConsulta {
-	public abstract ArrayList<DTOCuenta> consultarBaseDatos();
+	public abstract double consultarBaseDatos() throws SQLException;
 }

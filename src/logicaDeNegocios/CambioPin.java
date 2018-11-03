@@ -7,15 +7,17 @@ package logicaDeNegocios;
  * @author PabloCM
  *
  */
-public class RegistroPin implements IRegistro{
+public class CambioPin implements IActualizacion{
 	private int numeroCuenta;
 	private String pinCuenta;
-	
-	public RegistroPin(int pNumeroCuenta, String pPinCuenta) {
+	public CambioPin(int pNumeroCuenta, String pPinCuenta) {
 		numeroCuenta= pNumeroCuenta;
 		pinCuenta=pPinCuenta;
 	}
-	public void registrarEnBaseDatos() {
+
+
+	@Override
+	public void actualizarBaseDatos() {
 		// TODO Auto-generated method stub
 		
 	}

@@ -17,8 +17,8 @@ public class DirectorCuenta {
 		constructor = pConstructor;
 	}
 	
-	public Cuenta getRegistroPin(int pNumeroCuenta, String pPin) {
-		return constructor.construirRegistroPin(pNumeroCuenta, pPin);
+	public Cuenta getCambioPin(int pNumeroCuenta, String pPin) {
+		return constructor.construirCambioPin(pNumeroCuenta, pPin);
 	}
 	
 	public Cuenta getDeposito(int pNumeroCuenta, int pMonto) {

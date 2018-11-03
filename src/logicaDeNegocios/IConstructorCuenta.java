@@ -4,7 +4,7 @@ import dto.DTOCuenta;
 
 public interface IConstructorCuenta {
 	
-	public abstract Cuenta construirRegistroPin(int pNumeroCuenta, String pPin);
+	public abstract Cuenta construirCambioPin(int pNumeroCuenta, String pPin);
 	public abstract Cuenta construirDeposito(int pNumeroCuenta, int pMonto);
 	public abstract Cuenta construirDepositoCambioMoneda(int pNumeroCuenta, int pMonto);
 	public abstract Cuenta construirRetiroColones(int pNumeroCuenta,String pPin, int pMonto);

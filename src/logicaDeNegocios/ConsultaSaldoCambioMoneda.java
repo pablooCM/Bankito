@@ -19,13 +19,6 @@ public class ConsultaSaldoCambioMoneda implements IConsulta{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	private void setTipoCambio(double pTipoCambio) {
-		// TODO
-	}
-	
-	private double convertidorColonesaDolares(double pMonto) {
-		// TODO
-		return 0;
-	}
+
 
 }

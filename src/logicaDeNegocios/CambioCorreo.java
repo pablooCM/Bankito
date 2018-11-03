@@ -1,6 +1,6 @@
 package logicaDeNegocios;
 
-public class CambioCorreo implements IRegistro{
+public class CambioCorreo implements IActualizacion{
 	private int numeroCuenta;
 	private String pin;
 	private String telefono;
@@ -11,11 +11,13 @@ public class CambioCorreo implements IRegistro{
 		telefono=pTelefono;
 		 
 	}
+
 	@Override
-	public void registrarEnBaseDatos() {
+	public void actualizarBaseDatos() {
 		// TODO Auto-generated method stub
 		
 	}
+
 	
 
 }

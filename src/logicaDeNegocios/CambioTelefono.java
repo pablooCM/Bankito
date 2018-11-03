@@ -7,7 +7,7 @@ package logicaDeNegocios;
  * @author PabloCM
  *
  */
-public class CambioTelefono implements IRegistro{
+public class CambioTelefono implements IActualizacion{
 	private int numeroCuenta;
 	private String pin;
 	private String telefono;
@@ -17,11 +17,13 @@ public class CambioTelefono implements IRegistro{
 		pin= pPin;
 		telefono=pTelefono;
 	}
+
 	@Override
-	public void registrarEnBaseDatos() {
+	public void actualizarBaseDatos() {
 		// TODO Auto-generated method stub
 		
 	}
+
 	
 	
 }

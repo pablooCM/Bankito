@@ -3,7 +3,6 @@ package logicaAccesoaDatos;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class Conexion {
 	private static Conexion instancia= new Conexion();
@@ -14,7 +13,6 @@ public class Conexion {
 		String user = "tpr80283";
 		String password = "8xs0@c8mqgwczm84";  
 		
-		Statement statement;	
 			try 
 			{
 				Class.forName("com.ibm.db2.jcc.DB2Driver");

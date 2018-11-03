@@ -8,14 +8,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import org.eventixLauraCarvajalDianaZuniga.bl.Evento;
-import org.eventixLauraCarvajalDianaZuniga.bl.Usuario;
-
-/**
- * 
- * @author danyc
- *
- */
+/*
 public class EnviarMail
 {
 	// Propiedades de la conexión
@@ -98,4 +91,4 @@ public class EnviarMail
     		return false;
 		}
     }
-}
+*/

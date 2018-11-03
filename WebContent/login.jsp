@@ -72,14 +72,14 @@ body {
 <body style="width: 472px; height: 573px; ">
 	<fieldset style=" text-align: left; width: 365px; height: 252px">
 		<legend style="width: 313px; ">Iniciar Sesión:</legend>
-		<form action="SERVLET" method="post" style="width: 365px; height: 225px">
+		<form action="ServletLogin" method="post" style="width: 365px; height: 225px">
 			<p style="height: 30px; width: 342px">
 				<label for="correo" style="width: 153px;">Correo Electrónico:</label>
 				<input name="correo" type="email" id="correo" class="correo" style="width: 173px;">
 			</p> 				
 			<p style="width: 348px; height: 37px">
 				<label for="contrasenna" style="width: 153px;">Contraseña:</label>
-				<input name="contrasenna" type="text" id="contrasenna" class="contrasenna" style="width: 175px;"> 				
+				<input name="contrasenna" type="password" id="contrasenna" class="contrasenna" style="width: 175px;"> 				
 			</p>
 			<p style="text-align: center;" >
 				<input type="submit" class="btn btn-success" value="Iniciar Sesión" style="width: 132px; height: 53px;">

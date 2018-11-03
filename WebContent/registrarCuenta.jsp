@@ -70,7 +70,7 @@ body {
 <body style="width: 485px; height: 555px; ">
 	<fieldset style=" text-align: left; width: 381px; height: 394px">
 	<legend style="width: 287px; ">Registrar Cuenta:</legend>
-	<form action="SERVLET" method="post" style="width: 375px; height: 339px">
+	<form action="ServletCrearCuenta" method="post" style="width: 375px; height: 339px">
 		<p style="width: 369px; height: 37px">
 			<label for="pin" style="width: 143px;">Pin:</label>
 			<input name="pin" type="text" id="pin" class="pin" style="width: 202px;" value="El pin debe ser alfanumérico">

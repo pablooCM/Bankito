@@ -93,6 +93,7 @@ body {
 		<a href="consultarSaldoDolares.jsp" style="font-family: Arial, Helvetica, sans-serif;">Consultar saldo actual en dólares. </a>
 		<a href="consultarEstadoColones.jsp" style="font-family: Arial, Helvetica, sans-serif;">Consultar estado de cuenta en colones. </a>
 		<a href="consultarEstadoDolares.jsp" style="font-family: Arial, Helvetica, sans-serif;">Consultar estado de cuenta en dólares. </a>
+		<a href="consultarGraficos.jsp" style="font-family: Arial, Helvetica, sans-serif;">Consultar reportes de mi cuenta. </a>
 	</center>
 </body>
 </html>

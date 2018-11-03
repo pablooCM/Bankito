@@ -9,8 +9,8 @@ import com.ibm.watson.developer_cloud.speech_to_text.v1.model.SpeechResults;
 
 public class ConvertidorVozaTexto implements IVoz_Texto{
 	private SpeechToText servicioVozATexto;
-	private final static String NOMBREUSUARIO = "4e4fabc2-d41a-4b8b-bad5-cf3f46cc02c0";
-	private final static String CONTRASENA = "woytt2WbtYks";
+	private final static String NOMBREUSUARIO = "af23cd0a-a8eb-4385-9e5d-bdbcf0125a5e";
+	private final static String CONTRASENA = "I5b7JAhVkfZ0";
 	/**
 	 * Constructor de la clase.
 	 */

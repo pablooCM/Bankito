@@ -1,8 +1,10 @@
 package logicaDeNegocios;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import dto.DTOCuenta;
+import logicaAccesoaDatos.BaseDatos;
 
 public class ConsultaSaldo implements IConsulta{
 	private int numeroCuenta;
@@ -14,9 +16,10 @@ public class ConsultaSaldo implements IConsulta{
 	}
 
 	@Override
-	public ArrayList<DTOCuenta> consultarBaseDatos() {
-		// TODO Auto-generated method stub
-		return null;
+	public double consultarBaseDatos() throws SQLException {
+		BaseDatos bs= new BaseDatos();
+		double saldo =  bs.selectSaldoCuenta(numeroCuenta);
+		return saldo;
 	}
 
 }

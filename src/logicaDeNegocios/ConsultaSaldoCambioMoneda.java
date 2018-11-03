@@ -1,5 +1,6 @@
 package logicaDeNegocios;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import dto.DTOCuenta;
@@ -15,10 +16,16 @@ public class ConsultaSaldoCambioMoneda implements IConsulta{
 	}
 
 	@Override
-	public ArrayList<DTOCuenta> consultarBaseDatos() {
+	public double consultarBaseDatos() throws SQLException {
 		// TODO Auto-generated method stub
+<<<<<<< HEAD
+		return 0;
+	}
+=======
 		return null;
 	}
 
+>>>>>>> dce4c48dba9db3030ac50cde684ced7ee93f2072
 
+	
 }

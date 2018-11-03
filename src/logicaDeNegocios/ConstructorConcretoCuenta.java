@@ -22,9 +22,6 @@ public class ConstructorConcretoCuenta implements IConstructorCuenta{
         cuenta.setRegistro(nuevoRegistro);
         return cuenta;
 	}
-
-
-
 	@Override
 	public Cuenta construirRetiroColones(int pNumeroCuenta, String pPin, double pMonto, double pComision) {
 		IRegistro nuevoRegistro = new RetiroColones(pNumeroCuenta, pPin, pMonto, pComision);
@@ -51,23 +48,7 @@ public class ConstructorConcretoCuenta implements IConstructorCuenta{
 
 	@Override
 	public Cuenta construirConsultaSaldoMonedaExtranjera(int pNumeroCuenta, String pPin) {
-		IConsulta nuevaConsulta =new ConsultaSaldoCambioMoneda(pNumeroCuenta, pPin);
-		Cuenta cuenta = new Cuenta();
-		cuenta.setConsulta(nuevaConsulta);
-		return cuenta;
-	}
-
-	@Override
-	public Cuenta construirConsultaEstadoCuenta(int pNumeroCuenta, String pPin) {
-		IConsulta nuevaConsulta =new ConsultaEstadoCuenta(pNumeroCuenta, pPin);
-		Cuenta cuenta = new Cuenta();
-		cuenta.setConsulta(nuevaConsulta);
-		return cuenta;
-	}
-
-	@Override
-	public Cuenta construirConsultaEstadoCUentaMonedaExtranjera(int pNumeroCuenta, String pPin) {
-		IConsulta nuevaConsulta =new ConsultaEstadoCuentaCambioMoneda(pNumeroCuenta, pPin);
+		IConsulta nuevaConsulta = new ConsultaSaldoCambioMoneda(pNumeroCuenta, pPin);
 		Cuenta cuenta = new Cuenta();
 		cuenta.setConsulta(nuevaConsulta);
 		return cuenta;
@@ -96,14 +77,6 @@ public class ConstructorConcretoCuenta implements IConstructorCuenta{
 >>>>>>> a73a6277ac80913d0060656af480b545ae39d351
 	}
 
-	@Override
-	public Cuenta construirConsultaDatosCuenta(DTOCuenta pDatosCuenta) {
-		IConsulta  nuevaConsulta = new ConsultaDatosCuenta(pDatosCuenta);
-		Cuenta cuenta = new Cuenta();
-		cuenta.setConsulta(nuevaConsulta);
-		return cuenta;
-
-	}
 
 	@Override
 	public Cuenta construirRetiroCambioMoneda(int pNumeroCuenta, String pPin, int pMonto) {

@@ -46,13 +46,7 @@ public class DirectorCuenta {
 		return constructor.construirConsultaSaldoMonedaExtranjera(pNumeroCuenta, pPin);
 	}
 	
-	public Cuenta getConsultaEstadoCuenta(int pNumeroCuenta, String pPin) {
-		return constructor.construirConsultaEstadoCuenta(pNumeroCuenta, pPin);
-	}
-	
-	public Cuenta getConsultaEstadoCuentaMonedaExtranjera(int pNumeroCuenta, String pPin) {
-		return constructor.construirConsultaEstadoCUentaMonedaExtranjera(pNumeroCuenta, pPin);
-	}
+
 	
 	public Cuenta getCambioTelefono(int pNumeroCuenta, String pPin, String pTelefono) {
 		return constructor.construirCambioTelefono(pNumeroCuenta, pPin, pTelefono);
@@ -61,9 +55,5 @@ public class DirectorCuenta {
 	public Cuenta getCambioCorreo(int pNumeroCuenta, String pPin, String pCorreo) {
 		return constructor.construirCambioCorreo(pNumeroCuenta, pPin, pCorreo);
 	}
-	public Cuenta getConsultaDatosCuenta(DTOCuenta pDatosCuenta) {
-		return constructor.construirConsultaDatosCuenta(pDatosCuenta);
-		
-	}
-
+	
 }

@@ -32,12 +32,12 @@ public class BaseDatos {
 		String query="insert into duenno(nombre,correo,telefono, password) values('"+nombre+"','"+correo+"','"+telefono+"','"+password+"')";	
 		EjecutarQuery(query);
 	}
-	public void insertarDeposito(int numero, double monto) throws SQLException {
-		String query="insert into deposito(numeroCuenta,monto) values("+numero+","+monto+")";	
+	public void insertarDeposito(int numero, double monto, double comision ) throws SQLException {
+		String query="insert into deposito(numeroCuenta,monto) values("+numero+","+monto+","+comision+")";	
 		EjecutarQuery(query);
 	}
-	public void insertarRetiro(int numero, double monto) throws SQLException {
-		String query="insert into retiro(numeroCuenta,monto) values("+numero+","+monto+")";	
+	public void insertarRetiro(int numero, double monto,double comision) throws SQLException {
+		String query="insert into retiro(numeroCuenta,monto, comision) values("+numero+","+monto+comision+")";	
 		EjecutarQuery(query);
 	}
 	public void insertarCodigoVerificacion(String codigo) throws SQLException {
@@ -62,7 +62,7 @@ public class BaseDatos {
 	}
 	public void actualizarCorreo(String correo, String nombre) throws SQLException{
 		String query="	UPDATE duenno SET correo ='"+correo+
-			     "' WHERE nombre='"+nombre+"'";
+			     "' WHERE correo='"+correo+"'";
 		EjecutarQuery(query);
 	}
 	public void actualizarTelefono(String nombre, String correo, String telefono) throws SQLException {

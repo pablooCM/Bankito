@@ -16,24 +16,18 @@ public class ConstructorConcretoCuenta implements IConstructorCuenta{
 	}
 
 	@Override
-	public Cuenta construirDeposito(int pNumeroCuenta, int pMonto) {
-        IRegistro nuevoRegistro = new Deposito(pNumeroCuenta, pMonto);
+	public Cuenta construirDeposito(int pNumeroCuenta, double pMonto, double pComision) {
+        IRegistro nuevoRegistro = new Deposito(pNumeroCuenta, pMonto, pComision);
         Cuenta cuenta = new Cuenta();
         cuenta.setRegistro(nuevoRegistro);
         return cuenta;
 	}
 
-	@Override
-	public Cuenta construirDepositoCambioMoneda(int pNumeroCuenta, int pMonto) {
-		IRegistro nuevoRegistro = new DepositoCambioMoneda(pNumeroCuenta, pMonto);
-		Cuenta cuenta = new Cuenta();
-		cuenta.setRegistro(nuevoRegistro);
-		return cuenta;
-	}
+
 
 	@Override
-	public Cuenta construirRetiroColones(int pNumeroCuenta, String pPin, int pMonto) {
-		IRegistro nuevoRegistro = new RetiroColones(pNumeroCuenta, pPin, pMonto);
+	public Cuenta construirRetiroColones(int pNumeroCuenta, String pPin, double pMonto, double pComision) {
+		IRegistro nuevoRegistro = new RetiroColones(pNumeroCuenta, pPin, pMonto, pComision);
 		Cuenta cuenta = new Cuenta();
 		cuenta.setRegistro(nuevoRegistro);
 		return cuenta;
@@ -89,7 +83,7 @@ public class ConstructorConcretoCuenta implements IConstructorCuenta{
 
 	@Override
 	public Cuenta construirCambioCorreo(int pNumeroCuenta, String pPin, String pCorreo) {
-		IRegistro nuevoRegistro = new CambioCorreo(pNumeroCuenta, pPin, pCorreo);
+		IRegistro nuevoRegistro = new CambioCorreo(pCorreo);
 		Cuenta cuenta = new Cuenta();
 		cuenta.setRegistro(nuevoRegistro);
 		return cuenta;

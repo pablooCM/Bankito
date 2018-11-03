@@ -1,19 +1,20 @@
 package logicaDeNegocios;
 
+import java.sql.SQLException;
+
+import logicaAccesoaDatos.BaseDatos;
+
 public class CambioCorreo implements IRegistro{
-	private int numeroCuenta;
-	private String pin;
-	private String telefono;
-	 
-	public CambioCorreo(int pNumeroCuenta, String pPin, String pTelefono) {
-		numeroCuenta=pNumeroCuenta;
-		pin=pPin;
-		telefono=pTelefono;
-		 
+
+	private String correo; 
+	private String correoO;
+	public CambioCorreo(String correo) {
+		this.correo=correo;
 	}
 	@Override
-	public void registrarEnBaseDatos() {
-		// TODO Auto-generated method stub
+	public void registrarEnBaseDatos() throws SQLException {
+		BaseDatos bs= new BaseDatos();
+		bs.actualizarCorreo(correo, correoO);
 		
 	}
 	

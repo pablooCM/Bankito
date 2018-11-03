@@ -21,16 +21,13 @@ public class DirectorCuenta {
 		return constructor.construirRegistroPin(pNumeroCuenta, pPin);
 	}
 	
-	public Cuenta getDeposito(int pNumeroCuenta, int pMonto) {
-		return constructor.construirDeposito(pNumeroCuenta, pMonto);
+	public Cuenta getDeposito(int pNumeroCuenta, double pMonto, double comision) {
+		return constructor.construirDeposito(pNumeroCuenta, pMonto,comision);
 	}
 	
-	public Cuenta getDepositoCambioMoneda(int pNumeroCuenta, int pMonto) {
-		return constructor.construirDepositoCambioMoneda(pNumeroCuenta, pMonto);
-	}
 	
-	public Cuenta getRetiroColones(int pNumeroCuenta, String pPin, int pMonto) {
-		return constructor.construirRetiroColones(pNumeroCuenta, pPin, pMonto);
+	public Cuenta getRetiroColones(int pNumeroCuenta, String pPin, double pMonto, double pComision) {
+		return constructor.construirRetiroColones(pNumeroCuenta, pPin, pMonto,pComision);
 	}
 	
 	public Cuenta getRetiroCambioMoneda(int pNumeroCuenta, String pPin, int pMonto) {

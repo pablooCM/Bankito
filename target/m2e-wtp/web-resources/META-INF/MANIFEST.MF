@@ -1,10 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: PabloCM
 Build-Jdk: 10.0.2
-=======
-Built-By: dayav
-Build-Jdk: 1.8.0_191
->>>>>>> b0d13bcfbea8053827fdec9a90837ae519237180
 Created-By: Maven Integration for Eclipse
 

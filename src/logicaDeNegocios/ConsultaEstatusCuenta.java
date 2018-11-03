@@ -11,8 +11,8 @@ public class ConsultaEstatusCuenta {
 	}
 	
 	public String getEstatusCuenta(DTOCuenta pDatosCuenta) {
-		estatus = pDatosCuenta.getEstatus();
-		return estatus;
+		//TODO
+		return ".";
 	}
 
 }

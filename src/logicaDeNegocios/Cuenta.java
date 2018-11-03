@@ -39,7 +39,7 @@ public class Cuenta {
 		registro.registrarEnBaseDatos();
 	}
 	
-	public double consultar() throws SQLException{
+	public Object consultar() throws SQLException{
 		return consulta.consultarBaseDatos();
 	}
 	

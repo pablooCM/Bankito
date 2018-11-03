@@ -11,9 +11,10 @@ public interface IConstructorCuenta {
 	public abstract Cuenta construirTransferencia(int pNumeroCuentaOrigen, String pPin, int pMonto, int pCuentaDestino);
 	public abstract Cuenta construirConsultaSaldo(int pNumeroCuenta, String pPin);
 	public abstract Cuenta construirConsultaSaldoMonedaExtranjera(int pNumeroCuenta, String pPin);
-	public abstract Cuenta construirCambioTelefono(int pNumeroCuenta, String pPin, String pTelefono);
-	Cuenta construirCambioCorreo(String pCorreoActual, String pNuevoCorreo);
-	public abstract Cuenta construirCambioPin(int pNumeroCuenta, String pPin);
+	public abstract Cuenta construirCambioCorreo(String pCorreoActual, String pNuevoCorreo);
+	public abstract Cuenta construirCambioTelefono(String pNombre, String correo, String pTelefono);
+	public abstract Cuenta construirCambioPin(int pNumeroCuenta, String pinCuenta);
+	
 	
 	
 

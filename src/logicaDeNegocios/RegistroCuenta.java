@@ -6,7 +6,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 
 import dto.DTOCuenta;
-import logicaAccesoaDatos.BaseDatos;
+import logicaAccesoaDatos.BaseDatosN;
 
 /**
  * @author PabloCM
@@ -14,7 +14,7 @@ import logicaAccesoaDatos.BaseDatos;
  */
 public class RegistroCuenta {	
 	public  static void registrarCuenta(DTOCuenta pDatosCuenta) throws SQLException {
-	BaseDatos bs=new BaseDatos();
+	BaseDatosN bs=new BaseDatosN();
 	bs.insertarCuenta(pDatosCuenta);
 				
 	}

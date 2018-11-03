@@ -24,12 +24,12 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.Text;
 
-import logicaAccesoaDatos.BaseDatos;
+import logicaAccesoaDatos.BaseDatosN;
 
 public class XML {
 	public XML() throws SQLException {
 		
-		BaseDatos bs = null;
+		BaseDatosN bs = null;
         String nombre_archivo = "geekyxml";
         ArrayList key = new ArrayList();
         ArrayList value = new ArrayList();

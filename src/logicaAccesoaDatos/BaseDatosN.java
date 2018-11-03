@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import dto.DTOCuenta;
 
 
-public class BaseDatos {
+public class BaseDatosN {
 	Conexion con;
 	
-	public BaseDatos() 
+	public BaseDatosN() 
 	{
 		this.con = Conexion.getInstance();		
 	}
@@ -120,6 +120,17 @@ public class BaseDatos {
 		}
 		return 0;
 	}
+	public String selectEstatus(int cuenta) throws SQLException {
+		String select="Select estatus from cuenta where NUMEROCUENTA='"+cuenta;
+		ResultSet rs = EjecutarSelect(select);
+		// Print all of the employee numbers to standard output device
+		while (rs.next())
+		{
+			String estatus = rs.getString(1);
+			return estatus;
+		}
+		return null;
+	}
 	
 	public String selectPin(String cuenta) throws SQLException {
 		String select="Select PIN from cuenta where NUMEROCUENTA='"+cuenta+"'";
@@ -219,6 +230,28 @@ public class BaseDatos {
 			return correoR;
 		}
 		return null;
+	}
+	public double selectMontoRetiros(int numeroCuenta) throws SQLException{
+		String select="select sum(monto) as montos_retiros from retiro where numeroCuenta="+numeroCuenta;
+		ResultSet rs=EjecutarSelect(select);
+		while(rs.next()) {
+			double monto=rs.getDouble(1);
+			return monto;
+		}
+		
+		return 0;
+		
+	}
+	public double selectMontoDebitos(int numeroCuenta) throws SQLException{
+		String select="select sum(monto) as montos_depositados from deposito where numeroCuenta="+numeroCuenta;
+		ResultSet rs=EjecutarSelect(select);
+		while(rs.next()) {
+			double monto=rs.getDouble(1);
+			return monto;
+		}
+		
+		return 0;
+		
 	}
 	
 	public void EjecutarQuery(String query) throws SQLException {

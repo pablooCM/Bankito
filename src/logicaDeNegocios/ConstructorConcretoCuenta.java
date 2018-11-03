@@ -60,8 +60,8 @@ public class ConstructorConcretoCuenta implements IConstructorCuenta{
 	}
 
 	@Override
-	public Cuenta construirCambioPin(int pNumeroCuenta, String pPin) {
-        IActualizacion cambioRegistro = new CambioPin(pNumeroCuenta, pPin);
+	public Cuenta construirCambioPin(int pNumeroCuenta, String pinCuenta) {
+        IActualizacion cambioRegistro = new CambioPin(pNumeroCuenta, pinCuenta);
         Cuenta cuenta = new Cuenta();
         cuenta.setActualizacion(cambioRegistro);
         return cuenta;
@@ -69,8 +69,8 @@ public class ConstructorConcretoCuenta implements IConstructorCuenta{
 
 
 	@Override
-	public Cuenta construirCambioTelefono(int pNumeroCuenta, String pPin, String pTelefono) {
-        IActualizacion cambioRegistro = new CambioTelefono(pNumeroCuenta, pPin, pTelefono);
+	public Cuenta construirCambioTelefono(String pNombre, String correo, String pTelefono) {
+        IActualizacion cambioRegistro = new CambioTelefono(pNombre, correo, pTelefono);
         Cuenta cuenta = new Cuenta();
         cuenta.setActualizacion(cambioRegistro);
         return cuenta;

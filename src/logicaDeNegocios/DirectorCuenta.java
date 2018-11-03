@@ -47,8 +47,8 @@ public class DirectorCuenta {
 	}
 	
 	
-	public Cuenta getCambioTelefono(int pNumeroCuenta, String pPin, String pTelefono) {
-		return constructor.construirCambioTelefono(pNumeroCuenta, pPin, pTelefono);
+	public Cuenta getCambioTelefono(String pNombre, String pCorreo, String pTelefono) {
+		return constructor.construirCambioTelefono(pNombre, pCorreo, pTelefono);
 	}
 	
 	public Cuenta getCambioCorreo(String pCorreoActual, String pNuevoCorreo) {

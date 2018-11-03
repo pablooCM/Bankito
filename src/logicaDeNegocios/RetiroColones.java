@@ -5,7 +5,7 @@ package logicaDeNegocios;
 
 import java.sql.SQLException;
 
-import logicaAccesoaDatos.BaseDatos;
+import logicaAccesoaDatos.BaseDatosN;
 
 /**
  * @author PabloCM
@@ -27,7 +27,7 @@ public class RetiroColones implements IRegistro{
 
 	@Override
 	public void registrarEnBaseDatos() throws SQLException {
-		BaseDatos bs=new BaseDatos();
+		BaseDatosN bs=new BaseDatosN();
 		bs.insertarRetiro(this.numeroCuenta,this.monto,this.comision);
 		
 	}

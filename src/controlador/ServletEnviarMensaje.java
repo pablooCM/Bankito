@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import logicaAccesoaDatos.BaseDatos;
+import logicaAccesoaDatos.BaseDatosN;
 import logicaIntegracion.CodigoVerificacion;
 import logicaIntegrcion.EnviarMensaje;
 
@@ -51,7 +51,7 @@ public class ServletEnviarMensaje extends HttpServlet {
 			CodigoVerificacion random = new CodigoVerificacion();
 			String codigo = random.crearCodigoRandom();
 			System.out.println(codigo);
-			BaseDatos con = new BaseDatos();
+			BaseDatosN con = new BaseDatosN();
 			
 			String correo = request.getSession().getAttribute("user").toString();
 			String telefono = con.selectTelefono(correo);

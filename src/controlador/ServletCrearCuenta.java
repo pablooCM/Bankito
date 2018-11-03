@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import logicaAccesoaDatos.BaseDatos;
+import logicaAccesoaDatos.BaseDatosN;
 import logicaDeNegocios.RSA;
 import logicaDeNegocios.ValidarDatos;
 import logicaIntegracion.CodigoVerificacion;
@@ -64,7 +64,7 @@ public class ServletCrearCuenta extends HttpServlet {
 		Date date = new Date();
 		java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 		
-		BaseDatos con = new BaseDatos();
+		BaseDatosN con = new BaseDatosN();
 		
 		ValidarDatos validar = new ValidarDatos();
 		

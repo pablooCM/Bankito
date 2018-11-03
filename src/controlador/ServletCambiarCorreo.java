@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import logicaAccesoaDatos.BaseDatos;
+import logicaAccesoaDatos.BaseDatosN;
 import logicaDeNegocios.ValidarDatos;
 import logicaIntegracion.CodigoVerificacion;
 import logicaIntegracion.EnviarMail;

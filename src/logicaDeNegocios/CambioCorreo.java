@@ -1,6 +1,6 @@
 package logicaDeNegocios;
 import java.sql.SQLException;
-import logicaAccesoaDatos.BaseDatos;
+import logicaAccesoaDatos.BaseDatosN;
 
 
 public class CambioCorreo implements IActualizacion{
@@ -14,7 +14,7 @@ public class CambioCorreo implements IActualizacion{
 
 	@Override
 	public void actualizarBaseDatos() throws SQLException {
-		BaseDatos bs= new BaseDatos();
+		BaseDatosN bs= new BaseDatosN();
 		bs.actualizarCorreo(correoAnterior, nuevoCorreo);
 	}
 }

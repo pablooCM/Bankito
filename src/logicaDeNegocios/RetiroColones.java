@@ -3,6 +3,10 @@
  */
 package logicaDeNegocios;
 
+import java.sql.SQLException;
+
+import logicaAccesoaDatos.BaseDatos;
+
 /**
  * @author PabloCM
  *
@@ -20,8 +24,9 @@ public class RetiroColones implements IRegistro{
 	}
 
 	@Override
-	public void registrarEnBaseDatos() {
-		// TODO Auto-generated method stub
+	public void registrarEnBaseDatos() throws SQLException {
+		BaseDatos bs=new BaseDatos();
+		bs.insertarRetiro(numeroCuenta,monto);
 		
 	}
 

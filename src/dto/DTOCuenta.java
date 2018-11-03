@@ -3,7 +3,7 @@
  */
 package dto;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * @author PabloCM

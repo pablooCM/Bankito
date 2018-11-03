@@ -74,8 +74,8 @@ body {
 		<form action="SERVLET" method="post" style="width: 375px; height: 339px">			
 			<p>
 				<label for="monto" style="width: 143px;">Monto a retirar:</label> 
-				<input name="monto" type="number" id="monto" class="monto" style="width: 136px;">		
-				colones.
+				<input name="monto" type="number" id="monto" class="monto" style="width: 110px;">		
+				<label id="tipo" for="monto" style="width: 67px;">colones.</label> 
 			</p>
 			<p style="text-align: center; width: 358px" >
 				<a href="codigoVerificacion.jsp"> <input type="button" class="btn btn-info" value="Volver" style="width: 132px; height: 53px;"></a>

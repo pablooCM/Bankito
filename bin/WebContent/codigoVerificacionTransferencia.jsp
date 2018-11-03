@@ -79,7 +79,7 @@ body {
 			<p style="width: 369px; height: 37px">
 				<label for="pin" style="width: 143px;">Pin:</label>
 				<input name="pin" type="text" id="pin" class="pin" style="width: 202px;">
-			</p>	
+			</p>				
 			<div id="campo" style="text-align: center; width: 351px" >
 			</div>
 			 

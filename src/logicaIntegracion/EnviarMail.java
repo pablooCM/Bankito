@@ -26,16 +26,13 @@ public class EnviarMail
 	private Transport t;
 	
 	private static EnviarMail mail; 
-	private EnviarMail(String user, String password)
+	private EnviarMail()
 	{
 		this.props.setProperty("mail.smtp.host", "smtp.gmail.com");
 		this.props.setProperty("mail.smtp.starttls.enable", "true");
 		this.props.setProperty("mail.smtp.port", "587");
 		this.props.setProperty("mail.smtp.auth", "true");
-		
-		EnviarMail.user = user;
-		EnviarMail.password = password;
-		
+
 		// Preparamos la sesion
     	this.session = Session.getDefaultInstance(props);
     	
@@ -52,30 +49,33 @@ public class EnviarMail
 		}
 	}
 	
-	public static EnviarMail getMail(String user, String password)
+	public static void setDatos(String user, String password)
+	{
+		EnviarMail.user = user;
+		EnviarMail.password = password;
+	}
+	
+	public static EnviarMail getMail()
 	{
 		if (mail == null)
 		{
-			mail = new EnviarMail(user, password);
+			mail = new EnviarMail();
 			return mail;
 		}
 		else
 		{
-			EnviarMail.user = user;
-			EnviarMail.password = password;
 			return mail;
 		}
 	}
-    public boolean EnviarMail(String emisor, String receptor, int cuenta, double monto, String moneda, String accion)
+    public boolean EnviarMail(String receptor,String mensaje,String accion, String cuenta)
     {
     	try
     	{
-	    	this.message.setFrom(new InternetAddress(emisor));
+	    	this.message.setFrom(new InternetAddress(EnviarMail.user));
 	    	this.message.addRecipient(Message.RecipientType.TO, new InternetAddress(receptor));	    
 	    	
-	    	this.message.setSubject(accion.toUpperCase() + " DE SU CUENTA: " + String.valueOf(cuenta));
-	    	this.message.setText("Estimado usuario, BANK-iTo informa un " + accion.toLowerCase() 
-	    					   + " a su cuenta, por un monto de " + String.valueOf(monto) + " " + moneda.toLowerCase()+". Gracias.");
+	    	this.message.setSubject(accion.toUpperCase() + " DE SU CUENTA: " + cuenta);
+	    	this.message.setText(mensaje);
 
 	    	this.t.connect(EnviarMail.user, EnviarMail.password);
 	    	// Lo enviamos.	    

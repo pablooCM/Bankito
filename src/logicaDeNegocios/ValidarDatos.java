@@ -34,5 +34,18 @@ public class ValidarDatos implements Validable {
 			return false;
 		}
 	}
+	
+	@Override
+	public boolean validarPin(String pin) 
+	{
+		if (pin.length()==7)
+		{
+			return true;		
+		}
+		else
+		{
+			return false;
+		}
+	}
 
 }

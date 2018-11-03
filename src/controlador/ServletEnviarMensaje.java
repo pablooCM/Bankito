@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import logicaAccesoaDatos.BaseDatos;
 import logicaIntegracion.CodigoVerificacion;
-import logicaIntegrcion.EnviarMensaje;
-
 /**
  * Servlet implementation class ServletEnviarMensaje
  */
@@ -45,9 +43,6 @@ public class ServletEnviarMensaje extends HttpServlet {
 		
 		try 
 		{
-			
-			EnviarMensaje enviar = new EnviarMensaje();
-			
 			CodigoVerificacion random = new CodigoVerificacion();
 			String codigo = random.crearCodigoRandom();
 			System.out.println(codigo);
@@ -60,7 +55,7 @@ public class ServletEnviarMensaje extends HttpServlet {
 			{
 				System.out.println(telefono);
 				con.insertarCodigoVerificacion(codigo);
-				enviar.enviarCodigo(codigo, telefono);
+				//enviar.enviarCodigo(codigo, telefono);
 				
 
 				PrintWriter out = response.getWriter();
@@ -136,7 +131,7 @@ public class ServletEnviarMensaje extends HttpServlet {
 						"</head>\r\n" + 
 						"<body style=\"width: 472px; height: 520px; \">\r\n" + 
 						"	<fieldset style=\"text-align: left; width: 381px; height: 541px\">\r\n" + 
-						"		<legend style=\"width: 296px; \">Realizar depósito en colones:</legend>\r\n" + 
+						"		<legend style=\"width: 296px; \">Realizar retiro:</legend>\r\n" + 
 						"		<form action=\"ServletVerificarCodigo\" method=\"post\" style=\"width: 375px; height: 305px\">\r\n" + 
 						"			<p style=\"width: 369px; height: 37px\">\r\n" + 
 						"				<label for=\"cuenta\" style=\"width: 143px;\">Número de cuenta:</label>\r\n" + 

@@ -1,4 +1,4 @@
-package logicaIntegrcion;
+package logicaIntegracion;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
@@ -14,9 +14,9 @@ public class EnviarMensaje
 	public EnviarMensaje() 
 	{
 		this.api = "https://api.labsmobile.com/json/send";
-		this.user = "dvindas@estudiantec.cr"; 
+		this.user = "pcorrales@estudiantec.cr";// "dvindas@estudiantec.cr"; 
 		//pcorrales@estudiantec.cr  cp22zw87
-		this.password = "YtL10SJYJcjCXtS27hqVIZwK2xF93S5Q";
+		this.password = "cp22zw87"; //"YtL10SJYJcjCXtS27hqVIZwK2xF93S5Q";
 	}
 	
 	public void enviarCodigo(String mensaje, String destinatario)
@@ -27,7 +27,7 @@ public class EnviarMensaje
 					.header("Content-Type", "application/json")
 					.basicAuth(this.user,this.password)
 					.header("Cache-Control", "no-cache")
-					.body("{\"message\":\"Su código de verificación es: "+mensaje+"\", \"tpoa\":\"Sender\",\"recipient\":[{\"msisdn\":\""+destinatario+"\"}]}")
+					.body("{\"message\":\"Bank-iTo informa que su código de verificación es: "+mensaje+"\", \"tpoa\":\"Sender\",\"recipient\":[{\"msisdn\":\""+destinatario+"\"}]}")
 					.asString();
 		} catch (UnirestException e) 
 		{

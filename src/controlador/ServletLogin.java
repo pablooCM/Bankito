@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import logicaAccesoaDatos.BaseDatos;
+import logicaIntegracion.EnviarMail;
 
 /**
  * Servlet implementation class ServletLogin
@@ -54,7 +55,9 @@ public class ServletLogin extends HttpServlet
 		{
 			user = con.selectLogin(correo, contrasenna);
 			nombreDuenno = con.selectNombreDuenno(correo);
-			request.getSession().setAttribute("user", user);           
+			request.getSession().setAttribute("user", user);   
+			EnviarMail mail = EnviarMail.getMail();
+			EnviarMail.setDatos("bank.ito.crtec@gmail.com", "bankito123");
 		} 
 		catch (SQLException e) 
 		{

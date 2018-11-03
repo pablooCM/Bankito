@@ -1,42 +1,24 @@
 <!DOCTYPE html>
-<html style="width: 558px; height: 182px">
+<html style="width: 644px; height: 993px; ">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"
+	media="all">
+
+<title>Bank-iTo</title>
+
 <style>
-.vertical-menu {
-	width: 200px;
-}
-
-.vertical-menu a {
-	background-color: #f1f1f;
-	color: black;
-	display: block;
-	padding: 12px;
-	text-decoration: none;
-}
-
-.vertical-menu a:hover {
-	background-color: #ccc;
-}
-
-.vertical-menu a.active {
-	background-color: #4CAF50;
-	color: white;
-}
-
 html
 {
 	text-align: center;
 }
 body {
-	margin: 30px;
+	margin: 20px;
 	max-width: 800px;
 	padding: 20px;
 	background: url('img/bankito.png');	
     background-repeat: no-repeat;
     background-size: 430px 550px;	
-    background-position: static;
 	
 }
 
@@ -82,15 +64,28 @@ body {
 	float: left;
 	color: #999;
 }
+
 </style>
 
-<title>Bank-iTo</title>
 </head>
-<body style="width: 409px; height: 376px; ">
-	<center class="vertical-menu" style="width: 321px; height: 238px; visibility: visible; top: auto; left: auto; bottom: auto; position: absolute; right: auto">
-		<a href="Bank-iTo.jsp" class="active" style="font-family: Arial, Helvetica, sans-serif;">Bank-iTo</a>
-		<a href="codigoVerificacionColones.jsp" style="font-family: Arial, Helvetica, sans-serif;">Retiro en colones</a>
-		<a href="codigoVerificacionDolares.jsp" style="font-family: Arial, Helvetica, sans-serif;">Retiro en dólares</a>		
-	</center>
+<body style="width: 472px; height: 520px; ">
+	<fieldset style="text-align: left; width: 381px; height: 541px">
+		<legend style="width: 296px; ">Realizar retiro:</legend>
+		<form action="ServletRetiro" method="post" style="width: 375px; height: 339px">			
+			<p style="width: 369px; height: 37px">
+				<label for="cuenta" style="width: 143px;">Número de cuenta:</label>
+				<input value="" name="cuenta" type="text" id="cuenta" class="cuenta" style="width: 202px;">
+			</p> 	
+			<p>
+				<label for="monto" style="width: 143px;">Monto a retirar:</label> 
+				<input name="monto" type="number" id="monto" class="monto" style="width: 110px;">		
+				<input id="tipo" value="colones" for="monto" style="width: 67px;"> 
+			</p>
+			<p style="text-align: center; width: 358px" >
+				<a href="codigoVerificacionRetiro.jsp"> <input type="button" class="btn btn-info" value="Volver" style="width: 132px; height: 53px;"></a>
+				<input type="submit" class="btn btn-warning" value="Validar retiro" style="width: 169px; height: 53px;">				
+			</p>
+		</form>
+	</fieldset>
 </body>
 </html>

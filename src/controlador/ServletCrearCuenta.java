@@ -71,7 +71,7 @@ public class ServletCrearCuenta extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 		
-		if (validar.validarCorreoElectronico(correo)==true && validar.validarTelefono(telefono)==true)
+		if (validar.validarCorreoElectronico(correo)==true && validar.validarTelefono(telefono)==true && validar.validarPin(pin))
 		{
 			try 
 			{
@@ -94,8 +94,9 @@ public class ServletCrearCuenta extends HttpServlet {
 				con.insertarCuenta(nombre, correo, telefono, contrasenna, pinEncriptado, "activa", sqlDate, Double.parseDouble(montoInicial));
 				
 				String pass = con.selectContrasennaDueno(nombre);
+				String cuenta = Integer.toString(con.selectIdCuenta(pinEncriptado, "activa", sqlDate, Double.parseDouble(montoInicial)));
 				
-				out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Su contraseña para iniciar sesión con el correo "+correo+", es "+pass+".'); window.location='login.jsp' \"></body></html>");
+				out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Se creo la cuenta: "+cuenta+". Su contraseña para iniciar sesión con el correo "+correo+", es "+pass+".'); window.location='login.jsp' \"></body></html>");
 			} 
 			catch (Exception e) 
 			{

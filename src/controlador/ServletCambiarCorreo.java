@@ -56,7 +56,7 @@ public class ServletCambiarCorreo extends HttpServlet {
 		{
 			try 
 			{
-				EnviarMail mail = EnviarMail.getMail(correo, contrasenna);
+				EnviarMail.setDatos(correo, contrasenna);
 				PrintWriter out = response.getWriter();
 				out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('La cuenta para enviar notificaciones será "+correo+".'); window.location='Bank-iTo.jsp' \"></body></html>");
 			} 

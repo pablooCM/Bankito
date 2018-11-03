@@ -80,6 +80,7 @@ body {
 				<label for="pin" style="width: 143px;">Pin:</label>
 				<input name="pin" type="text" id="pin" class="pin" style="width: 202px;">
 			</p>	
+			<input name="tipo" type="text" id="tipo" class="tipo" value="colones" style="text-align:center; width: 353px;">
 			<div id="campo" style="text-align: center; width: 351px" >
 			</div>
 			 

@@ -31,8 +31,6 @@ html
 }
 body {
 	margin: 30px;
-	max-width: 800px;
-	padding: 20px;
 	background: url('img/bankito.png');	
     background-repeat: no-repeat;
     background-size: 430px 550px;	
@@ -86,7 +84,12 @@ body {
 
 <title>Bank-iTo</title>
 </head>
-<body style="width: 409px; height: 376px; ">
+<body style="width: 409px; height: 376px; text-align: center;">
+	<nav style="width: 305px; height: 28px; position: relative; top: auto;  text-align: right;">
+		<a href="cambiarCorreoNotificaciones.jsp">
+			<img alt="" data-type="image"  src="img/settings.png"" style="width: 22px; height: 20px;"> 
+		</a>
+	</nav>
 	<center class="vertical-menu" style="width: 321px; height: 238px; visibility: visible; top: auto; left: auto; bottom: auto; position: absolute; right: auto">
 		<a href="Bank-iTo.jsp" class="active" style="font-family: Arial, Helvetica, sans-serif;">Bank-iTo</a>
 		<a href="Transacciones.jsp" style="font-family: Arial, Helvetica, sans-serif;">Transacciones</a>		

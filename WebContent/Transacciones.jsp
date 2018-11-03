@@ -89,7 +89,7 @@ body {
 <body style="width: 409px; height: 376px; ">
 	<center class="vertical-menu" style="width: 321px; height: 238px; visibility: visible; top: auto; left: auto; bottom: auto; position: absolute; right: auto">
 		<a href="Bank-iTo.jsp" class="active" style="font-family: Arial, Helvetica, sans-serif;">Bank-iTo</a>
-		<a href="Retiros.jsp" style="font-family: Arial, Helvetica, sans-serif;">Retiros</a>
+		<a href="codigoVerificacionRetiro.jsp" style="font-family: Arial, Helvetica, sans-serif;">Retiros</a>
 		<a href="Depositos.jsp" style="font-family: Arial, Helvetica, sans-serif;">Depósitos</a>
 		<a href="codigoVerificacionTransferencia.jsp" style="font-family: Arial, Helvetica, sans-serif;">Transferencia</a>
 	</center>

@@ -36,9 +36,34 @@ public class BaseDatos {
 		String query="insert into deposito(numeroCuenta,monto) values("+numero+","+monto+")";	
 		EjecutarQuery(query);
 	}
-	public void insertarRetiro(int numero, double monto) throws SQLException {
-		String query="insert into retiro(numeroCuenta,monto) values("+numero+","+monto+")";	
-		EjecutarQuery(query);
+	
+	public boolean insertarRetiro(int numero, double monto, double comision) throws SQLException {
+		double saldo = getSaldo(numero);
+		double total = monto+(monto*comision);
+		System.out.println(saldo+">"+total);
+		if(saldo>=total)
+		{
+			String query="insert into retiro(numeroCuenta,monto,comision) values("+numero+","+monto+","+comision+")";
+			System.out.println(query);
+			EjecutarQuery(query);
+			
+			actualizarSaldo(numero, saldo-total);
+			return true;
+		}			
+		return false;
+	}
+	
+	public double getSaldo(int cuenta) throws SQLException
+	{
+		String select="Select saldo from cuenta where numeroCuenta= "+cuenta;
+		ResultSet rs = EjecutarSelect(select);
+		// Print all of the employee numbers to standard output device
+		while (rs.next())
+		{
+			double saldo = Double.parseDouble(rs.getString(1));
+			return saldo;
+		}
+		return 0;
 	}
 	public void insertarCodigoVerificacion(String codigo) throws SQLException {
 		eliminarCodigo();
@@ -74,14 +99,15 @@ public class BaseDatos {
 			     "' WHERE numeroCuenta="+numeroCuenta+"";
 		EjecutarQuery(query);
 	}
-	public void actualizarSaldo(int numero, double saldo) throws SQLException {
+	
+	private void actualizarSaldo(int numero, double saldo) throws SQLException {
 		String query="	UPDATE cuenta SET saldo ="+saldo+
 			     " WHERE numeroCuenta="+numero+"";
 		EjecutarQuery(query);
 	}
 
 	//Esta funci�n s�lo se utiliza al crear la cuenta.
-	private int selectIdCuenta(String pin,String estatus, Date fechaCreacion, double saldo) throws SQLException {
+	public int selectIdCuenta(String pin,String estatus, Date fechaCreacion, double saldo) throws SQLException {
 		String select="Select NUMEROCUENTA from CUENTA where PIN='"+pin+"' and ESTATUS='"+estatus
 						+"' and FECHACREACION='"+fechaCreacion
 						+"' and SALDO='"+saldo+"'";

@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
 import java.sql.Statement;
+import dto.DTOCuenta;
 
 
 public class BaseDatos {
@@ -13,17 +14,17 @@ public class BaseDatos {
 	{
 		this.con = Conexion.getInstance();		
 	}
-	public void insertarCuenta(String nombreDuenno, String correo, String telefono, String password, String pin,String estatus, Date fechaCreacion, double saldo) throws SQLException {
-	String query="insert into cuenta(pin, estatus,fechaCreacion,saldo) values('"+pin+"','"+estatus+"','"+fechaCreacion+"',"+saldo+")";
+	public void insertarCuenta(DTOCuenta pDatosCuenta) throws SQLException {
+	String query="insert into cuenta(pin, estatus,fechaCreacion,saldo) values('"+pDatosCuenta.getPinCuenta()+"','"+pDatosCuenta.getEstatus()+"','"+pDatosCuenta.getFechaCreacion()+"',"+pDatosCuenta.getSaldo()+")";
 	EjecutarQuery(query);
 	
-	if(selectIdDueno(nombreDuenno)==0)
+	if(selectIdDueno(pDatosCuenta.getDuenio())==0)
 	{
-		insertarDuenno(nombreDuenno, correo, telefono, password);
+		insertarDuenno(pDatosCuenta.getDuenio(), pDatosCuenta.getCorreo(), pDatosCuenta.getTelefono(), pDatosCuenta.getPinCuenta());
 	}
 	
-	int numCuenta = selectIdCuenta(pin,estatus,fechaCreacion,saldo);
-	int idDuenno = selectIdDueno(nombreDuenno);
+	int numCuenta = selectIdCuenta(pDatosCuenta.getPinCuenta(),pDatosCuenta.getEstatus(),pDatosCuenta.getFechaCreacion(),pDatosCuenta.getSaldo());
+	int idDuenno = selectIdDueno(pDatosCuenta.getDuenio());
 	
 	insertarDuennoCuenta(numCuenta,idDuenno);
 	}

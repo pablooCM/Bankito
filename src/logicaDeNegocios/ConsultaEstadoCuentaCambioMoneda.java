@@ -13,6 +13,14 @@ public class ConsultaEstadoCuentaCambioMoneda {
 		numeroCuenta=pNumeroCuenta;
 		pin=pPin;
 	}
+<<<<<<< HEAD
+=======
+	@Override
+	public ArrayList<DTOCuenta> consultarBaseDatos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+>>>>>>> dce4c48dba9db3030ac50cde684ced7ee93f2072
 	
 
 }

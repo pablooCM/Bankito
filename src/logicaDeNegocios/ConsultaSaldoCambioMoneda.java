@@ -18,8 +18,14 @@ public class ConsultaSaldoCambioMoneda implements IConsulta{
 	@Override
 	public double consultarBaseDatos() throws SQLException {
 		// TODO Auto-generated method stub
+<<<<<<< HEAD
 		return 0;
 	}
+=======
+		return null;
+	}
+
+>>>>>>> dce4c48dba9db3030ac50cde684ced7ee93f2072
 
 	
 }

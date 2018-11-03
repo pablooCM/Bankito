@@ -20,6 +20,7 @@ public class Cuenta {
 	
 	private IConsulta consulta;
 	private IRegistro registro;
+	private IActualizacion actualizacion;
 	
 	public Cuenta(DTOCuenta pDatosCuenta) {
 		numeroCuenta = pDatosCuenta.getNumeroCuenta();
@@ -41,12 +42,19 @@ public class Cuenta {
 	public double consultar() throws SQLException{
 		return consulta.consultarBaseDatos();
 	}
+	
+	public void actualizar() throws SQLException{
+		actualizacion.actualizarBaseDatos();
+	}
 	public void setConsulta(IConsulta pConsulta){
 		consulta= pConsulta;
 	}
 	
 	public void setRegistro(IRegistro pRegistro) {
 		registro = pRegistro;
+	}
+	public void setActualizacion(IActualizacion pActualizacion) {
+		actualizacion=pActualizacion;
 	}
 
 }

@@ -8,10 +8,10 @@ public class ConstructorConcretoCuenta implements IConstructorCuenta{
 
 
 	@Override
-	public Cuenta construirRegistroPin(int pNumeroCuenta, String pPin) {
-        IRegistro nuevoRegistro = new RegistroPin(pNumeroCuenta, pPin);
+	public Cuenta construirCambioPin(int pNumeroCuenta, String pPin) {
+        IActualizacion cambioRegistro = new CambioPin(pNumeroCuenta, pPin);
         Cuenta cuenta = new Cuenta();
-        cuenta.setRegistro(nuevoRegistro);
+        cuenta.setActualizacion(cambioRegistro);
         return cuenta;
 	}
 
@@ -56,18 +56,25 @@ public class ConstructorConcretoCuenta implements IConstructorCuenta{
 
 	@Override
 	public Cuenta construirCambioTelefono(int pNumeroCuenta, String pPin, String pTelefono) {
-		IRegistro nuevoRegistro = new CambioTelefono(pNumeroCuenta, pPin, pTelefono);
-		Cuenta cuenta = new Cuenta();
-		cuenta.setRegistro(nuevoRegistro);
-		return cuenta;
+        IActualizacion cambioRegistro = new CambioTelefono(pNumeroCuenta, pPin, pTelefono);
+        Cuenta cuenta = new Cuenta();
+        cuenta.setActualizacion(cambioRegistro);
+        return cuenta;
 	}
 
 	@Override
 	public Cuenta construirCambioCorreo(int pNumeroCuenta, String pPin, String pCorreo) {
+<<<<<<< HEAD
+        IActualizacion cambioRegistro = new CambioCorreo(pNumeroCuenta, pPin, pCorreo);
+        Cuenta cuenta = new Cuenta();
+        cuenta.setActualizacion(cambioRegistro);
+        return cuenta;
+=======
 		IRegistro nuevoRegistro = new CambioCorreo(pCorreo);
 		Cuenta cuenta = new Cuenta();
 		cuenta.setRegistro(nuevoRegistro);
 		return cuenta;
+>>>>>>> a73a6277ac80913d0060656af480b545ae39d351
 	}
 
 

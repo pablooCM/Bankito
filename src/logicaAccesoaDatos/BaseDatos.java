@@ -35,10 +35,6 @@ public class BaseDatos {
 		String query="insert into deposito(numeroCuenta,monto) values("+numero+","+monto+")";	
 		EjecutarQuery(query);
 	}
-	public void insertarDepositoCambioMoneda(int numero,double montoD, double montoC, double tipoC) throws SQLException {
-		String query="insert into depositoCambioMoneda(numeroCuenta, montoDolares,montoColones,tipoCambio) values("+numero+","+montoD+","+montoC+","+tipoC+")";
-		EjecutarQuery(query);
-	}
 	public void insertarRetiro(int numero, double monto) throws SQLException {
 		String query="insert into retiro(numeroCuenta,monto) values("+numero+","+monto+")";	
 		EjecutarQuery(query);
@@ -81,7 +77,7 @@ public class BaseDatos {
 		EjecutarQuery(query);
 	}
 
-	//Esta función sólo se utiliza al crear la cuenta.
+	//Esta funciï¿½n sï¿½lo se utiliza al crear la cuenta.
 	private int selectIdCuenta(String pin,String estatus, Date fechaCreacion, double saldo) throws SQLException {
 		String select="Select NUMEROCUENTA from CUENTA where PIN='"+pin+"' and ESTATUS='"+estatus
 						+"' and FECHACREACION='"+fechaCreacion

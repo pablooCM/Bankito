@@ -1,5 +1,6 @@
 package logicaDeNegocios;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -33,7 +34,7 @@ public class Cuenta {
 	}
 	public Cuenta() {}
 	
-	public void registrar() {
+	public void registrar() throws SQLException {
 		registro.registrarEnBaseDatos();
 	}
 	

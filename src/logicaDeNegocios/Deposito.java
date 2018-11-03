@@ -2,6 +2,9 @@
  * 
  */
 package logicaDeNegocios;
+import java.sql.SQLException;
+
+import logicaAccesoaDatos.BaseDatos;
 
 /**
  * @author PabloCM
@@ -20,8 +23,9 @@ public class Deposito implements IRegistro {
 		monto=pMonto;
 	}
 	@Override
-	public void registrarEnBaseDatos() {
-		// TODO Auto-generated method stub
+	public void registrarEnBaseDatos() throws SQLException {
+		BaseDatos nObjeto = new BaseDatos();
+		nObjeto.insertarDeposito(numeroCuenta, monto);
 
 	}
 

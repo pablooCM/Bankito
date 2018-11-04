@@ -5,7 +5,7 @@ package logicaDeNegocios;
 
 import java.sql.SQLException;
 
-import logicaAccesoaDatos.BaseDatosN;
+import logicaAccesoaDatos.BaseDatos;
 
 /**
  * @author PabloCM
@@ -25,10 +25,9 @@ public class Transferencia implements IRegistro{
 	}
 
 	@Override
-	public Object registrarEnBaseDatos() throws SQLException {
-		BaseDatosN nObjeto = new BaseDatosN();
+	public void registrarEnBaseDatos() throws SQLException {
+		BaseDatos nObjeto = new BaseDatos();
 		nObjeto.insertarTransferencia(numeroCuentaOrigen, monto, numeroCuentaDestino);
-		return nObjeto;
 		
 	}
 

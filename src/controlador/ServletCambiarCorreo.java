@@ -9,15 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-<<<<<<< HEAD
 import logicaAccesoaDatos.BaseDatos;
 import logicaDeNegocios.MD5;
-=======
-import logicaAccesoaDatos.BaseDatosN;
-import logicaDeNegocios.ValidarDatos;
-import logicaIntegracion.CodigoVerificacion;
-import logicaIntegracion.EnviarMail;
->>>>>>> 98eb02b7e420d8b3972fbe0b5223f32e65001354
 
 /**
  * Servlet implementation class ServletCambiarCorreo

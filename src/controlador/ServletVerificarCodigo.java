@@ -9,13 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-<<<<<<< HEAD
 import logicaAccesoaDatos.BaseDatos;
 import logicaDeNegocios.MD5;
-=======
-import logicaAccesoaDatos.BaseDatosN;
-import logicaDeNegocios.RSA;
->>>>>>> 98eb02b7e420d8b3972fbe0b5223f32e65001354
 
 /**
  * Servlet implementation class ServletVerificarCodigo
@@ -50,7 +45,7 @@ public class ServletVerificarCodigo extends HttpServlet {
 		String tipo= request.getParameter("tipo").toString().toLowerCase();
 		String pin= request.getParameter("pin").toString();
 		
-		BaseDatosN con = new BaseDatosN();
+		BaseDatos con = new BaseDatos();
 		String codigo_v = null;
 		
 		PrintWriter out = response.getWriter();	

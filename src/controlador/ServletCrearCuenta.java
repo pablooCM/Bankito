@@ -11,15 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-<<<<<<< HEAD
 import dto.DTOCuenta;
 import logicaAccesoaDatos.BaseDatos;
 import logicaDeNegocios.MD5;
 import logicaDeNegocios.RegistroCuenta;
-=======
-import logicaAccesoaDatos.BaseDatosN;
-import logicaDeNegocios.RSA;
->>>>>>> 98eb02b7e420d8b3972fbe0b5223f32e65001354
 import logicaDeNegocios.ValidarDatos;
 import logicaIntegracion.CodigoVerificacion;
 
@@ -63,7 +58,7 @@ public class ServletCrearCuenta extends HttpServlet {
 		Date date = new Date();
 		java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 		
-		BaseDatosN con = new BaseDatosN();
+		BaseDatos con = new BaseDatos();
 		
 		ValidarDatos validar = new ValidarDatos();
 		
@@ -77,12 +72,7 @@ public class ServletCrearCuenta extends HttpServlet {
 				String pinEncriptado = MD5.Encriptar(pin);
 		        
 		        System.out.println("Crea:"+pinEncriptado);
-<<<<<<< HEAD
 		        DTOCuenta dtoCuenta = new DTOCuenta(0, "", correo, telefono, "activa", Double.parseDouble(montoInicial), sqlDate, pinEncriptado);
-=======
-		       
-				//con.insertarCuenta(nombre, correo, telefono, contrasenna, pinEncriptado, "activa", sqlDate, Double.parseDouble(montoInicial));
->>>>>>> 98eb02b7e420d8b3972fbe0b5223f32e65001354
 				
 		        RegistroCuenta.registrarCuenta(dtoCuenta, contrasenna);
 				String pass = con.selectContrasennaDueno(nombre);

@@ -4,12 +4,9 @@
 package logicaDeNegocios;
 import java.sql.SQLException;
 
-import logicaAccesoaDatos.BaseDatos;
+import logicaAccesoaDatos.BaseDatosN;
 
-/**
- * @author PabloCM
- *
- */
+
 public class Deposito implements IRegistro {
 
 	/* (non-Javadoc)
@@ -25,9 +22,16 @@ public class Deposito implements IRegistro {
 		comision=pComision;
 	}
 	@Override
+<<<<<<< HEAD
 	public void registrarEnBaseDatos() throws SQLException {
 		BaseDatos nObjeto = new BaseDatos();
 		nObjeto.insertarDeposito(numeroCuenta, monto, comision);
+=======
+	public Object registrarEnBaseDatos() throws SQLException {
+		BaseDatosN nObjeto = new BaseDatosN();
+		nObjeto.insertarDeposito(numeroCuenta, monto, comision);
+		return nObjeto;
+>>>>>>> 98eb02b7e420d8b3972fbe0b5223f32e65001354
 
 	}
 

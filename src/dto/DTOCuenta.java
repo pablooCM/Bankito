@@ -3,7 +3,7 @@
  */
 package dto;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * @author PabloCM
@@ -18,16 +18,26 @@ public class DTOCuenta {
 	private double saldo;
 	private Date fechaCreacion;
 	private String pinCuenta;
+	private String password;
 	
-	public DTOCuenta(int pNumeroCuenta, String pDuenio, String pCorreo, String pTelefono, String pEstatus, double pSaldo, Date pFechaCreacion, String pPinCuenta) {
+	public DTOCuenta(int pNumeroCuenta, String pDuenio, String pCorreo, String pTelefono, String pEstatus, double pSaldo, Date pFechaCreacion, String pPinCuenta, String password) {
 		numeroCuenta=pNumeroCuenta;
-		duenio=pDuenio;
-		correo=pCorreo;
-		telefono=pTelefono;
-		estatus=pEstatus;
-		saldo=pSaldo;
-		fechaCreacion=pFechaCreacion;
-		pinCuenta=pPinCuenta;
+		this.duenio=pDuenio;
+		this.correo=pCorreo;
+		this.telefono=pTelefono;
+		this.estatus=pEstatus;
+		this.saldo=pSaldo;
+		this.fechaCreacion=pFechaCreacion;
+		this.pinCuenta=pPinCuenta;
+		this.password=password;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public int getNumeroCuenta() {

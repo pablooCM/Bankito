@@ -4,27 +4,43 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import dto.DTOCuenta;
+<<<<<<< HEAD:src/logicaAccesoaDatos/BaseDatos.java
+
+=======
+>>>>>>> 98eb02b7e420d8b3972fbe0b5223f32e65001354:src/logicaAccesoaDatos/BaseDatosN.java
 
 
-public class BaseDatos {
+public class BaseDatosN {
 	Conexion con;
 	
-	public BaseDatos() 
+	public BaseDatosN() 
 	{
 		this.con = Conexion.getInstance();		
 	}
+<<<<<<< HEAD:src/logicaAccesoaDatos/BaseDatos.java
 	public void insertarCuenta(DTOCuenta pDatosCuenta, String contrasenna) throws SQLException {
+=======
+	public void insertarCuenta(DTOCuenta pDatosCuenta) throws SQLException {
+>>>>>>> 98eb02b7e420d8b3972fbe0b5223f32e65001354:src/logicaAccesoaDatos/BaseDatosN.java
 	String query="insert into cuenta(pin, estatus,fechaCreacion,saldo) values('"+pDatosCuenta.getPinCuenta()+"','"+pDatosCuenta.getEstatus()+"','"+pDatosCuenta.getFechaCreacion()+"',"+pDatosCuenta.getSaldo()+")";
 	EjecutarQuery(query);
 	
 	if(selectIdDueno(pDatosCuenta.getDuenio())==0)
 	{
+<<<<<<< HEAD:src/logicaAccesoaDatos/BaseDatos.java
 		insertarDuenno(pDatosCuenta.getDuenio(), pDatosCuenta.getCorreo(), pDatosCuenta.getTelefono(), contrasenna);
 	}
 	
 	int numCuenta = selectIdCuenta(pDatosCuenta.getPinCuenta(),pDatosCuenta.getEstatus(),(Date) pDatosCuenta.getFechaCreacion(),pDatosCuenta.getSaldo());
+=======
+		insertarDuenno(pDatosCuenta.getDuenio(), pDatosCuenta.getCorreo(), pDatosCuenta.getTelefono(), pDatosCuenta.getPinCuenta());
+	}
+	
+	int numCuenta = selectIdCuenta(pDatosCuenta.getPinCuenta(),pDatosCuenta.getEstatus(),pDatosCuenta.getFechaCreacion(),pDatosCuenta.getSaldo());
+>>>>>>> 98eb02b7e420d8b3972fbe0b5223f32e65001354:src/logicaAccesoaDatos/BaseDatosN.java
 	int idDuenno = selectIdDueno(pDatosCuenta.getDuenio());
 	
 	insertarDuennoCuenta(numCuenta,idDuenno);
@@ -34,15 +50,21 @@ public class BaseDatos {
 		String query="insert into duenno(nombre,correo,telefono, password) values('"+nombre+"','"+correo+"','"+telefono+"','"+password+"')";	
 		EjecutarQuery(query);
 	}
+<<<<<<< HEAD:src/logicaAccesoaDatos/BaseDatos.java
 	public boolean insertarDeposito(int numero, double monto, double comision ) throws SQLException {
 		double saldo = selectSaldoCuenta(numero);
 		double total = monto+comision;
 		String query="insert into deposito(numeroCuenta,monto,comision) values("+numero+","+total+","+comision+")";	
+=======
+	public void insertarDeposito(int numero, double monto, double comision ) throws SQLException {
+		String query="insert into deposito(numeroCuenta,monto) values("+numero+","+monto+","+comision+")";	
+>>>>>>> 98eb02b7e420d8b3972fbe0b5223f32e65001354:src/logicaAccesoaDatos/BaseDatosN.java
 		EjecutarQuery(query);
 		
 		actualizarSaldo(numero, saldo+monto-comision);
 		return true;
 	}
+<<<<<<< HEAD:src/logicaAccesoaDatos/BaseDatos.java
 	public boolean insertarRetiro(int numero, double monto,double comision) throws SQLException {
 		double saldo = selectSaldoCuenta(numero);
 		double total = monto+comision;
@@ -57,6 +79,11 @@ public class BaseDatos {
 			return true;
 		}			
 		return false;
+=======
+	public void insertarRetiro(int numero, double monto,double comision) throws SQLException {
+		String query="insert into retiro(numeroCuenta,monto, comision) values("+numero+","+monto+comision+")";	
+		EjecutarQuery(query);
+>>>>>>> 98eb02b7e420d8b3972fbe0b5223f32e65001354:src/logicaAccesoaDatos/BaseDatosN.java
 	}
 	public void insertarCodigoVerificacion(String codigo) throws SQLException {
 		eliminarCodigo();
@@ -92,10 +119,16 @@ public class BaseDatos {
 		String query="delete from codigoVerificacion";
 		EjecutarQuery(query);
 	}
+<<<<<<< HEAD:src/logicaAccesoaDatos/BaseDatos.java
 	
 	public void actualizarCorreo(String correoN, String correoA) throws SQLException{
 		String query="	UPDATE duenno SET correo ='"+correoN+
 			     "' WHERE correo='"+correoA+"'";
+=======
+	public void actualizarCorreo(String correo, String nombre) throws SQLException{
+		String query="	UPDATE duenno SET correo ='"+correo+
+			     "' WHERE correo='"+correo+"'";
+>>>>>>> 98eb02b7e420d8b3972fbe0b5223f32e65001354:src/logicaAccesoaDatos/BaseDatosN.java
 		EjecutarQuery(query);
 	}
 

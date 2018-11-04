@@ -10,8 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+<<<<<<< HEAD
 import logicaAccesoaDatos.BaseDatos;
 import logicaIntegracion.EnviarMail;
+=======
+import logicaAccesoaDatos.BaseDatosN;
+>>>>>>> 98eb02b7e420d8b3972fbe0b5223f32e65001354
 
 /**
  * Servlet implementation class ServletLogin
@@ -45,7 +49,7 @@ public class ServletLogin extends HttpServlet
 		String correo = request.getParameter("correo").toString();
 		String contrasenna= request.getParameter("contrasenna").toString();
 		
-		BaseDatos con = new BaseDatos();
+		BaseDatosN con = new BaseDatosN();
 		String user = null;
 		String nombreDuenno = null;
 		

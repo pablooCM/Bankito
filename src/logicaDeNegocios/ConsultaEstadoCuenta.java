@@ -2,9 +2,8 @@ package logicaDeNegocios;
 
 import java.util.ArrayList;
 
-import dto.DTOCuenta;
 
-public class ConsultaEstadoCuenta implements IConsulta{
+public class ConsultaEstadoCuenta{
 	private int numeroCuenta;
 	private String pin;
 	
@@ -13,11 +12,8 @@ public class ConsultaEstadoCuenta implements IConsulta{
 		pin = pPin;
 		
 	}
+	//TODO
 
-	@Override
-	public ArrayList<DTOCuenta> consultarBaseDatos() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 }

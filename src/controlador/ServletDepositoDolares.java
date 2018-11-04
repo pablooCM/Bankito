@@ -10,20 +10,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import funcionesAcomodar.TipoCambio;
 import logicaAccesoaDatos.BaseDatos;
 import logicaIntegracion.EnviarMail;
 
 /**
- * Servlet implementation class ServletRetiro
+ * Servlet implementation class ServletDepositoDolares
  */
-@WebServlet("/ServletRetiro")
-public class ServletRetiro extends HttpServlet {
+@WebServlet("/ServletDepositoDolares")
+public class ServletDepositoDolares extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletRetiro() {
+    public ServletDepositoDolares() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,28 +36,38 @@ public class ServletRetiro extends HttpServlet {
         String cuenta = request.getParameter("cuenta").toString();
         String correo = request.getSession().getAttribute("user").toString();
         
-		double monto = Double.parseDouble(request.getParameter("monto").toString());
+		double montoDolares = Double.parseDouble(request.getParameter("monto").toString());
 		
+		
+		TipoCambio servicioTipoCambio = new TipoCambio();
+		double compra = servicioTipoCambio.getCompra();
+		double montoColones = montoDolares*compra;
+				
 		BaseDatos con = new BaseDatos();
 		
 		PrintWriter out = response.getWriter();
 		try 
 		{
-			double comision = (monto*0.02);
-			boolean valor = con.insertarRetiro(Integer.parseInt(cuenta), monto, comision);
+			double comision = (montoColones*0.02);
+			boolean valor = con.insertarDeposito(Integer.parseInt(cuenta), montoColones, comision);
 			
 			if(valor==true)
 			{
-				String mensaje = "Estimado usuario, se han retirado correctamente "+monto+" colones. [El monto real retirado de su cuenta "+cuenta+" fue de "+(monto+comision)+" colones][El monto cobrado por concepto de comisión fue de "+ comision +" colones, que fueron rebajados automáticamente de su saldo actual]";
+				String mensaje = "Estimado usuario, se han recibido correctamente"+ montoDolares +" dólares. " + 
+						"[Según el BCCR, el tipo de cambio de compra del dólar de hoy es:"+compra+"] " + 
+						"[El monto equivalente en colones es"+ montoColones +"]" + 
+						"[El monto real depositado a su cuenta"+ cuenta +"es de "+ (montoColones-comision) +" colones] " + 
+						"[El monto cobrado por concepto de comisión fue de "+comision+" colones, que " + 
+						"fueron rebajados automáticamente de su saldo actual]";
 				
 				EnviarMail mail = EnviarMail.getMail();
-				if(mail.EnviarCorreo(correo, mensaje,"retiro",cuenta)==true)
+				if(mail.EnviarCorreo(correo, mensaje,"depósito",cuenta)==true)
 				{
 					out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('"+mensaje+"'); window.location='Bank-iTo.jsp'\"></body></html>");	
 				} 
 				else
 				{
-					out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Verifique que la cuenta para enviar notificaciones posee permisos por google para aplicaciones externas.'); window.location='Bank-iTo.jsp'\"></body></html>");
+					System.out.println("error email");
 				}
 				
 			}

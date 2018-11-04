@@ -70,7 +70,7 @@ body {
 </head>
 <body style="width: 472px; height: 520px; ">
 	<fieldset style="text-align: left; width: 381px; height: 541px">
-		<legend style="width: 296px; ">Realizar depósito en colones:</legend>
+		<legend style="width: 296px; ">Realizar retiro:</legend>
 		<form action="ServletEnviarMensaje" method="post" style="width: 375px; height: 305px">
 			<p style="width: 369px; height: 37px">
 				<label for="cuenta" style="width: 143px;">Número de cuenta:</label>
@@ -87,7 +87,7 @@ body {
 			<br>
 			<div style="text-align: center; width: 358px" >
 				<a href="Bank-iTo.jsp"> <input type="button" class="btn btn-info" value="Volver" style="width: 132px; height: 53px;"></a>
-				<input id= "buttonCod" type="submit" class="btn btn-success" value="Enviar SMS con código de verificación." style="width: 300px; height: 53px;" onclick= "agregarCampo()">				
+				<input id= "buttonCod" type="submit" class="btn btn-success" value="Enviar SMS con código de verificación." style="width: 300px; height: 53px;">				
 			</div>
 		</form>
 	</fieldset>

@@ -56,8 +56,8 @@ public class ServletLogin extends HttpServlet
 			user = con.selectLogin(correo, contrasenna);
 			nombreDuenno = con.selectNombreDuenno(correo);
 			request.getSession().setAttribute("user", user);   
-			EnviarMail mail = EnviarMail.getMail();
-			EnviarMail.setDatos("bank.ito.crtec@gmail.com", "bankito123");
+			EnviarMail.getMail();
+			
 		} 
 		catch (SQLException e) 
 		{

@@ -14,28 +14,37 @@ import logicaAccesoaDatos.BaseDatos;
 import logicaIntegracion.EnviarMail;
 
 /**
- * Servlet implementation class ServletRetiro
+ * Servlet implementation class ServletTransferencia
  */
-@WebServlet("/ServletRetiro")
-public class ServletRetiro extends HttpServlet {
+@WebServlet("/ServletTransferencia")
+public class ServletTransferencia extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletRetiro() {
+    public ServletTransferencia() {
         super();
         // TODO Auto-generated constructor stub
     }
 
 	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
-        String cuenta = request.getParameter("cuenta").toString();
-        String correo = request.getSession().getAttribute("user").toString();
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String cuenta = request.getParameter("cuenta").toString();
+        String correo = request.getSession().getAttribute("user").toString();        
+        String cuentaAcreditar = request.getParameter("cuentaA").toString();
         
-		double monto = Double.parseDouble(request.getParameter("monto").toString());
+		double monto = Double.parseDouble(request.getParameter("montoTransferir").toString());
 		
 		BaseDatos con = new BaseDatos();
 		
@@ -43,14 +52,17 @@ public class ServletRetiro extends HttpServlet {
 		try 
 		{
 			double comision = (monto*0.02);
-			boolean valor = con.insertarRetiro(Integer.parseInt(cuenta), monto, comision);
+			boolean valor = con.insertarTransferencia(Integer.parseInt(cuenta), monto, Integer.parseInt(cuentaAcreditar));
 			
+			String correoAcreditar = con.selectCorreo(Integer.parseInt(cuentaAcreditar));
 			if(valor==true)
 			{
-				String mensaje = "Estimado usuario, se han retirado correctamente "+monto+" colones. [El monto real retirado de su cuenta "+cuenta+" fue de "+(monto+comision)+" colones][El monto cobrado por concepto de comisión fue de "+ comision +" colones, que fueron rebajados automáticamente de su saldo actual]";
+				String mensaje = "Estimado usuario, la transferencia de fondos se ejecutó satisfactoriamente. " + 
+						"El monto retirado de la cuenta origen: "+cuenta+" y depositado en la cuenta destino: "+cuentaAcreditar+" es "+monto+"colones." + 
+						"[El monto cobrado por concepto de comisión a la cuenta origen fue de "+comision+" colones, que fueron rebajados automáticamente de su saldo actual]";
 				
 				EnviarMail mail = EnviarMail.getMail();
-				if(mail.EnviarCorreo(correo, mensaje,"retiro",cuenta)==true)
+				if(mail.EnviarCorreo(correo, mensaje,"retiro",cuenta)==true && mail.EnviarCorreo(correoAcreditar, mensaje,"deposito",cuenta)==true)
 				{
 					out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('"+mensaje+"'); window.location='Bank-iTo.jsp'\"></body></html>");	
 				} 
@@ -70,5 +82,4 @@ public class ServletRetiro extends HttpServlet {
 			out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Ocurrió un problema al realizar su retiro.'); window.location='Bank-iTo.jsp'\"></body></html>");
 		}
 	}
-
 }

@@ -2,8 +2,6 @@ package controlador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,9 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import logicaAccesoaDatos.BaseDatos;
-import logicaDeNegocios.ValidarDatos;
-import logicaIntegracion.CodigoVerificacion;
-import logicaIntegracion.EnviarMail;
+import logicaDeNegocios.MD5;
 
 /**
  * Servlet implementation class ServletCambiarCorreo
@@ -26,9 +22,6 @@ public class ServletCambiarCorreo extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-	/**
-     * @see HttpServlet#HttpServlet()
-     */
     public ServletCambiarCorreo() {
         super();
         // TODO Auto-generated constructor stub
@@ -37,41 +30,53 @@ public class ServletCambiarCorreo extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-	{
-    	doPost(request, response);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
-    
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-	{
-		String correo = request.getParameter("correo").toString();
-		String contrasenna = request.getParameter("password").toString();
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String cuenta = request.getParameter("cuenta").toString();
+		String pin= request.getParameter("pin").toString();
+		String correoNuevo = request.getParameter("correo").toString();
 		
-		ValidarDatos validar = new ValidarDatos();
-		
-		if (validar.validarCorreoElectronico(correo))
+		BaseDatos con = new BaseDatos();
+
+		PrintWriter out = response.getWriter();	
+
+		try 
 		{
-			try 
+			if(con.selectEstatus(Integer.parseInt(cuenta)).equals("activa"))
 			{
-				EnviarMail.setDatos(correo, contrasenna);
-				PrintWriter out = response.getWriter();
-				out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('La cuenta para enviar notificaciones será "+correo+".'); window.location='Bank-iTo.jsp' \"></body></html>");
-			} 
-			catch (NumberFormatException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} 
-		}
-		else
+				try 
+				{			        
+					String pinEncriptado = MD5.Encriptar(pin);
+			         
+			        System.out.println("Verifica:"+pinEncriptado);
+					
+					int cuenta_consult = con.selectCuenta(cuenta, pinEncriptado);
+			        
+					if(cuenta_consult != 0)
+					{			
+						String correoAnterior = con.selectCorreo(Integer.parseInt(cuenta)); 
+						con.actualizarCorreo(correoNuevo, correoAnterior);
+						request.getSession().setAttribute("user", correoNuevo);
+						out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('El correo: "+correoAnterior+" ahora es: "+correoNuevo+"'); window.location='codigoVerificacionDolares.jsp'\"></body></html>");
+					}
+				}
+				catch (Exception e) 
+				{
+					e.printStackTrace();
+				}
+			}
+		} 
+		catch (Exception e) 
 		{
-			PrintWriter out = response.getWriter();
-			out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('El email no es correcto.\nError a la hora de actualizar la cuenta par enviar notificaciones.'); window.location='Bank-iTo.jsp' \"></body></html>");
-		}
-		
-		
+			out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('La cuenta "+cuenta+" no existe.'); window.location='codigoVerificacionDolares.jsp'\"></body></html>");
+		} 
 	}
 
 }

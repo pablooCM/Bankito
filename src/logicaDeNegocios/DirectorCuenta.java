@@ -17,28 +17,26 @@ public class DirectorCuenta {
 		constructor = pConstructor;
 	}
 	
-	public Cuenta getRegistroPin(int pNumeroCuenta, String pPin) {
-		return constructor.construirRegistroPin(pNumeroCuenta, pPin);
+	
+	public Cuenta getDeposito(int pNumeroCuenta, double pMonto, double comision) {
+		return constructor.construirDeposito(pNumeroCuenta, pMonto,comision);
 	}
 	
-	public Cuenta getDeposito(int pNumeroCuenta, int pMonto) {
-		return constructor.construirDeposito(pNumeroCuenta, pMonto);
+	
+	public Cuenta getRetiroColones(int pNumeroCuenta, String pPin, double pMonto, double pComision) {
+		return constructor.construirRetiroColones(pNumeroCuenta, pPin, pMonto,pComision);
 	}
 	
-	public Cuenta getDepositoCambioMoneda(int pNumeroCuenta, int pMonto) {
-		return constructor.construirDepositoCambioMoneda(pNumeroCuenta, pMonto);
-	}
-	
-	public Cuenta getRetiroColones(int pNumeroCuenta, String pPin, int pMonto) {
-		return constructor.construirRetiroColones(pNumeroCuenta, pPin, pMonto);
-	}
-	
-	public Cuenta getRetiroCambioMoneda(int pNumeroCuenta, String pPin, int pMonto) {
-		return constructor.construirRetiroCambioMoneda(pNumeroCuenta, pPin, pMonto);
+	public Cuenta getRetiroCambioMoneda(int pNumeroCuenta, String pPin, int pMonto, double pComision) {
+		return constructor.construirRetiroCambioMoneda(pNumeroCuenta, pPin, pMonto, pComision);
 	}
 	
 	public Cuenta getTransferencia(int pNumeroCuentaOrigen, String pPin, int pMonto, int pCuentaDestino) {
 		return constructor.construirTransferencia(pNumeroCuentaOrigen, pPin, pMonto, pCuentaDestino);
+	}
+	
+	public Cuenta getConsultaCantidadDebitosRetiros(int pNumeroCuenta) {
+		return constructor.construirCantidadDebitosRetiros(pNumeroCuenta);
 	}
 	
 	public Cuenta getConsultaSaldo(int pNumeroCuenta, String pPin) {
@@ -49,24 +47,44 @@ public class DirectorCuenta {
 		return constructor.construirConsultaSaldoMonedaExtranjera(pNumeroCuenta, pPin);
 	}
 	
-	public Cuenta getConsultaEstadoCuenta(int pNumeroCuenta, String pPin) {
-		return constructor.construirConsultaEstadoCuenta(pNumeroCuenta, pPin);
+	public Cuenta getConsultaCantidadDebitos(int pNumeroCuenta) {
+		return constructor.construirConsultaCantidadDebitos(pNumeroCuenta);
 	}
 	
-	public Cuenta getConsultaEstadoCuentaMonedaExtranjera(int pNumeroCuenta, String pPin) {
-		return constructor.construirConsultaEstadoCUentaMonedaExtranjera(pNumeroCuenta, pPin);
+	public Cuenta getConsultaCantidadRetiros(int pNumeroCuenta) {
+		return constructor.construirConsultaCantidadRetiros(pNumeroCuenta);
 	}
 	
-	public Cuenta getCambioTelefono(int pNumeroCuenta, String pPin, String pTelefono) {
-		return constructor.construirCambioTelefono(pNumeroCuenta, pPin, pTelefono);
+	public Cuenta getConsultaComisionDebito(int pNumeroCuenta) {
+		return constructor.construirConsultaComisionDebito(pNumeroCuenta);
 	}
 	
-	public Cuenta getCambioCorreo(int pNumeroCuenta, String pPin, String pCorreo) {
-		return constructor.construirCambioCorreo(pNumeroCuenta, pPin, pCorreo);
+	public Cuenta getConsultaComisionRetiros(int pNumeroCuenta) {
+		return constructor.construirConsultaComisionRetiros(pNumeroCuenta);
 	}
-	public Cuenta getConsultaDatosCuenta(DTOCuenta pDatosCuenta) {
-		return constructor.construirConsultaDatosCuenta(pDatosCuenta);
-		
+	
+	public Cuenta getConsultaComisionTotal(int pNumeroCuenta) {
+		return constructor.construirConsultaComisionTotal(pNumeroCuenta);
 	}
-
+	
+	public Cuenta getConsultaMontoDebitos(int pNumeroCuenta, String pPin) {
+		return constructor.construirConsultaMontoDebitos(pNumeroCuenta, pPin);
+	}
+	
+	public Cuenta getConsultaMontoRetiros(int pNumeroCuenta, String pPin) {
+		return constructor.construirConsultaMontoRetiros(pNumeroCuenta, pPin);
+	}
+	
+	public Cuenta getCambioPin(int pNumeroCuenta, String pPin) {
+		return constructor.construirCambioPin(pNumeroCuenta, pPin);
+	}
+	
+	public Cuenta getCambioTelefono(String pNombre, String pCorreo, String pTelefono) {
+		return constructor.construirCambioTelefono(pNombre, pCorreo, pTelefono);
+	}
+	
+	public Cuenta getCambioCorreo(String pCorreoActual, String pNuevoCorreo) {
+		return constructor.construirCambioCorreo(pCorreoActual, pNuevoCorreo);
+	}
+	
 }

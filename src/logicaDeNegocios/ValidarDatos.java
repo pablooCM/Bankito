@@ -34,11 +34,11 @@ public class ValidarDatos implements Validable {
 			return false;
 		}
 	}
+
 	
-	@Override
 	public boolean validarPin(String pin) 
 	{
-		if (pin.length()==7)
+		if (pin.length()==6)
 		{
 			return true;		
 		}

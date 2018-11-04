@@ -71,7 +71,7 @@ body {
 <body style="width: 472px; height: 780px; ">
 	<fieldset style="text-align: left; width: 381px; height: 394px">
 		<legend style="width: 340px; ">Cambiar Correo Electrónico para notificaciones:</legend>
-		<form action="ServletCambiarCorreo" method="post" style="width: 375px; height: 231px">					
+		<form action="ServletCambiarCorreoNotificacione" method="post" style="width: 375px; height: 231px">					
 			<p>
 				<label for="correo" style="width: 144px;">Correo Electrónico:</label>
 				<input name="correo" type="email" id="correo" class="correo" style="width: 203px; height: 24px">

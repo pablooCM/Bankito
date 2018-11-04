@@ -6,9 +6,9 @@ public class RetiroCambioMoneda implements IRegistro{
 	private String pin;
 	private int montoDolares;
 	private double montoColones;
-	private double tipoCambio;
+	private double comision;
 	
-	public RetiroCambioMoneda(int pNumeroCuenta, String pPin, double pMonto) {
+	public RetiroCambioMoneda(int pNumeroCuenta, String pPin, double pMonto, double pComision) {
 		numeroCuenta=pNumeroCuenta;
 		pin=pPin;
 		montoColones=pMonto;

@@ -1,24 +1,22 @@
 package logicaDeNegocios;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 
-import dto.DTOCuenta;
 import logicaAccesoaDatos.BaseDatos;
 
-public class ConsultaSaldo implements IConsulta{
+public class CantidadDebitosRetiros implements IConsulta {
 	private int numeroCuenta;
-	private String pin;
+
 	
-	public ConsultaSaldo(int pNumeroCuenta, String pPin) {
+	public CantidadDebitosRetiros(int pNumeroCuenta) {
 		numeroCuenta= pNumeroCuenta;
-		pin= pPin;
+
 	}
 
 	@Override
 	public Object consultarBaseDatos() throws SQLException {
 		BaseDatos bs= new BaseDatos();
-		double saldo =  bs.selectSaldoCuenta(numeroCuenta);
+		int saldo =  bs.selectTotales(numeroCuenta);
 		return saldo;
 	}
 

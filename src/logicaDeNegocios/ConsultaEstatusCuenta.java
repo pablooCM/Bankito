@@ -1,6 +1,9 @@
 package logicaDeNegocios;
 
+import java.sql.SQLException;
+
 import dto.DTOCuenta;
+import logicaAccesoaDatos.BaseDatos;
 
 public class ConsultaEstatusCuenta {
 	private int numeroCuenta;
@@ -10,8 +13,9 @@ public class ConsultaEstatusCuenta {
 		numeroCuenta=pNumeroCuenta;
 	}
 	
-	public String getEstatusCuenta(DTOCuenta pDatosCuenta) {
-		estatus = pDatosCuenta.getEstatus();
+	public String getEstatusCuenta(DTOCuenta pDatosCuenta) throws SQLException {
+		BaseDatos bs= new BaseDatos();
+		String estatus =  bs.selectEstatus(numeroCuenta);
 		return estatus;
 	}
 

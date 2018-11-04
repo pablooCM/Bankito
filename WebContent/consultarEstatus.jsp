@@ -69,40 +69,18 @@ body {
 
 </head>
 <body style="width: 472px; height: 520px; ">
-	<fieldset style="text-align: left; width: 381px; height: 541px">
-		<legend style="width: 296px; ">Realizar depósito:</legend>
-		<form action="ServletDeposito" method="post" style="width: 375px; height: 339px">
+	<fieldset style="text-align: left; width: 381px; height: 357px">
+		<legend style="width: 296px; ">Consultar estatus cuenta:</legend>
+		<form action="ServletEstatus" method="post" style="width: 375px; height: 136px">
 			<p style="width: 369px; height: 37px">
 				<label for="cuenta" style="width: 143px;">Número de cuenta:</label>
 				<input name="cuenta" type="text" id="cuenta" class="cuenta" style="width: 202px;">
-			</p> 	
-			<p>
-				<label for="monto" style="width: 143px;">Monto a depositar:</label> 
-				<input name="monto" type="number" id="monto" class="monto" style="width: 136px;">		
-				colones.
-			</p>
-			<p style="text-align: center; width: 355px" >
-				<input type="button" class="btn btn-success" value="Depositar monto" style="width: 132px; height: 53px;" onclick= "agregarGif()">
-			</p>	
-			<div id="gif" style="text-align: center; width: 351px" ></div>
-			<p style="text-align: center; width: 358px" >
+			</p> 		
+			<div style="text-align: center; width: 358px" >
 				<a href="Bank-iTo.jsp"> <input type="button" class="btn btn-info" value="Volver" style="width: 132px; height: 53px;"></a>
-				<input type="submit" class="btn btn-warning" value="Terminar depósito" style="width: 169px; height: 53px;">				
-			</p>
+				<input type="submit" class="btn btn-warning" value="Consultar." style="width: 169px; height: 53px;">				
+			</div>
 		</form>
 	</fieldset>
-	<script type="text/javascript">
-		function agregarGif()
-        {
-         	var div = document.getElementById("gif"); 
-         	//Agregar botones por lugar       
-         	var img = document.createElement("img");  
-         	img.setAttribute("src", "http://i.picasion.com/pic88/a6965183185b1d88458c65e46f24f594.gif");
-            img.setAttribute("width", "150");
-            img.setAttribute("height", "75");
-            img.setAttribute("border", "0");
-            div.appendChild(img);
-		}
-	</script>
 </body>
 </html>

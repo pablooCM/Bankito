@@ -3,25 +3,32 @@
  */
 package logicaDeNegocios;
 
+import java.sql.SQLException;
+
+import logicaAccesoaDatos.BaseDatos;
+
 /**
  * @author PabloCM
  *
  */
-public class CambioTelefono implements IRegistro{
-	private int numeroCuenta;
-	private String pin;
+public class CambioTelefono implements IActualizacion{
+	private String nombre;
+	private String correo;
 	private String telefono;
 	
-	public CambioTelefono(int pNumeroCuenta, String pPin, String pTelefono) {
-		numeroCuenta=pNumeroCuenta;
-		pin= pPin;
-		telefono=pTelefono;
+	public CambioTelefono(String pnombre, String pcorreo, String pTelefono) {
+		this.nombre=pnombre;
+		this.correo= pcorreo;
+		this.telefono=pTelefono;
+	
 	}
+
 	@Override
-	public void registrarEnBaseDatos() {
-		// TODO Auto-generated method stub
-		
+	public void actualizarBaseDatos() throws SQLException {
+		BaseDatos bs= new BaseDatos();
+		bs.actualizarTelefono(nombre, correo, telefono);
 	}
+
 	
 	
 }

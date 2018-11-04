@@ -69,7 +69,7 @@ body {
 </head>
 <body style="width: 485px; height: 555px; ">
 	<fieldset style=" text-align: left; width: 381px; height: 394px">
-		<legend style="width: 287px; ">Registrar Cuenta:</legend>
+		<legend style="width: 287px; ">Transferencia:</legend>
 		<form action="SERVLET" method="post" style="width: 375px; height: 339px">
 			<p>
 				<label for="montoTransferir" style="width: 143px;">Monto a transferir:</label>  

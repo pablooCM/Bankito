@@ -1,44 +1,38 @@
 package logicaDeNegocios;
 
-import dto.DTOCuenta;
-
 public class ConstructorConcretoCuenta implements IConstructorCuenta{
-
-
-
-
 	@Override
-	public Cuenta construirRegistroPin(int pNumeroCuenta, String pPin) {
-        IRegistro nuevoRegistro = new RegistroPin(pNumeroCuenta, pPin);
+	public Cuenta construirDeposito(int pNumeroCuenta, double pMonto, double pComision) {
+        IRegistro nuevoRegistro = new Deposito(pNumeroCuenta, pMonto, pComision);
         Cuenta cuenta = new Cuenta();
         cuenta.setRegistro(nuevoRegistro);
         return cuenta;
 	}
-
+	
 	@Override
-	public Cuenta construirDeposito(int pNumeroCuenta, int pMonto) {
-        IRegistro nuevoRegistro = new Deposito(pNumeroCuenta, pMonto);
+	public Cuenta construirDepositoCambioMoneda(int pNumeroCuenta, int pMonto, double pComision) {
+        IRegistro nuevoRegistro = new DepositoCambioMoneda(pNumeroCuenta, pMonto, pComision);
         Cuenta cuenta = new Cuenta();
         cuenta.setRegistro(nuevoRegistro);
         return cuenta;
 	}
-
+	
 	@Override
-	public Cuenta construirDepositoCambioMoneda(int pNumeroCuenta, int pMonto) {
-		IRegistro nuevoRegistro = new DepositoCambioMoneda(pNumeroCuenta, pMonto);
+	public Cuenta construirRetiroColones(int pNumeroCuenta, String pPin, double pMonto, double pComision) {
+		IRegistro nuevoRegistro = new RetiroColones(pNumeroCuenta, pPin, pMonto, pComision);
 		Cuenta cuenta = new Cuenta();
 		cuenta.setRegistro(nuevoRegistro);
 		return cuenta;
 	}
-
+	
 	@Override
-	public Cuenta construirRetiroColones(int pNumeroCuenta, String pPin, int pMonto) {
-		IRegistro nuevoRegistro = new RetiroColones(pNumeroCuenta, pPin, pMonto);
+	public Cuenta construirRetiroCambioMoneda(int pNumeroCuenta, String pPin, int pMonto, double pComision) {
+		IRegistro nuevoRegistro = new RetiroCambioMoneda(pNumeroCuenta, pPin, pMonto, pComision);
 		Cuenta cuenta = new Cuenta();
 		cuenta.setRegistro(nuevoRegistro);
 		return cuenta;
 	}
-
+	
 	@Override
 	public Cuenta construirTransferencia(int pNumeroCuentaOrigen, String pPin, int pMonto, int pCuentaDestino) {
 		IRegistro nuevoRegistro = new Transferencia(pNumeroCuentaOrigen, pPin, pMonto, pCuentaDestino);
@@ -46,7 +40,15 @@ public class ConstructorConcretoCuenta implements IConstructorCuenta{
 		cuenta.setRegistro(nuevoRegistro);
 		return cuenta;
 	}
-
+	
+	@Override
+	public Cuenta construirCantidadDebitosRetiros(int pNumeroCuenta) {
+		IConsulta nuevaConsulta = new CantidadDebitosRetiros(pNumeroCuenta);
+		Cuenta cuenta = new Cuenta();
+		cuenta.setConsulta(nuevaConsulta);
+		return cuenta;
+	}
+	
 	@Override
 	public Cuenta construirConsultaSaldo(int pNumeroCuenta, String pPin) {
 		IConsulta nuevaConsulta = new ConsultaSaldo(pNumeroCuenta, pPin);
@@ -54,63 +56,104 @@ public class ConstructorConcretoCuenta implements IConstructorCuenta{
 		cuenta.setConsulta(nuevaConsulta);
 		return cuenta;
 	}
-
+	
 	@Override
 	public Cuenta construirConsultaSaldoMonedaExtranjera(int pNumeroCuenta, String pPin) {
-		IConsulta nuevaConsulta =new ConsultaSaldoCambioMoneda(pNumeroCuenta, pPin);
+		IConsulta nuevaConsulta = new ConsultaSaldoCambioMoneda(pNumeroCuenta, pPin);
+		Cuenta cuenta = new Cuenta();
+		cuenta.setConsulta(nuevaConsulta);
+		return cuenta;
+	}
+	
+	@Override
+	public Cuenta construirConsultaCantidadDebitos(int pNumeroCuenta) {
+		IConsulta nuevaConsulta = new ConsultaCantidadDebitos(pNumeroCuenta);
 		Cuenta cuenta = new Cuenta();
 		cuenta.setConsulta(nuevaConsulta);
 		return cuenta;
 	}
 
 	@Override
-	public Cuenta construirConsultaEstadoCuenta(int pNumeroCuenta, String pPin) {
-		IConsulta nuevaConsulta =new ConsultaEstadoCuenta(pNumeroCuenta, pPin);
+	public Cuenta construirConsultaCantidadRetiros(int pNumeroCuenta) {
+		IConsulta nuevaConsulta = new ConsultaCantidadRetiros(pNumeroCuenta);
 		Cuenta cuenta = new Cuenta();
 		cuenta.setConsulta(nuevaConsulta);
 		return cuenta;
 	}
 
 	@Override
-	public Cuenta construirConsultaEstadoCUentaMonedaExtranjera(int pNumeroCuenta, String pPin) {
-		IConsulta nuevaConsulta =new ConsultaEstadoCuentaCambioMoneda(pNumeroCuenta, pPin);
+	public Cuenta construirConsultaComisionDebito(int pNumeroCuenta) {
+		IConsulta nuevaConsulta = new ConsultaComisionDebito(pNumeroCuenta);
 		Cuenta cuenta = new Cuenta();
 		cuenta.setConsulta(nuevaConsulta);
 		return cuenta;
 	}
 
 	@Override
-	public Cuenta construirCambioTelefono(int pNumeroCuenta, String pPin, String pTelefono) {
-		IRegistro nuevoRegistro = new CambioTelefono(pNumeroCuenta, pPin, pTelefono);
-		Cuenta cuenta = new Cuenta();
-		cuenta.setRegistro(nuevoRegistro);
-		return cuenta;
-	}
-
-	@Override
-	public Cuenta construirCambioCorreo(int pNumeroCuenta, String pPin, String pCorreo) {
-		IRegistro nuevoRegistro = new CambioCorreo(pNumeroCuenta, pPin, pCorreo);
-		Cuenta cuenta = new Cuenta();
-		cuenta.setRegistro(nuevoRegistro);
-		return cuenta;
-	}
-
-	@Override
-	public Cuenta construirConsultaDatosCuenta(DTOCuenta pDatosCuenta) {
-		IConsulta  nuevaConsulta = new ConsultaDatosCuenta(pDatosCuenta);
+	public Cuenta construirConsultaComisionRetiros(int pNumeroCuenta) {
+		IConsulta nuevaConsulta = new ConsultaComisionRetiros(pNumeroCuenta);
 		Cuenta cuenta = new Cuenta();
 		cuenta.setConsulta(nuevaConsulta);
 		return cuenta;
-
 	}
 
 	@Override
-	public Cuenta construirRetiroCambioMoneda(int pNumeroCuenta, String pPin, int pMonto) {
-		IRegistro nuevoRegistro = new RetiroCambioMoneda(pNumeroCuenta, pPin, pMonto);
+	public Cuenta construirConsultaComisionTotal(int pNumeroCuenta) {
+		IConsulta nuevaConsulta = new ConsultaComisionTotal(pNumeroCuenta);
 		Cuenta cuenta = new Cuenta();
-		cuenta.setRegistro(nuevoRegistro);
+		cuenta.setConsulta(nuevaConsulta);
 		return cuenta;
 	}
+
+	@Override
+	public Cuenta construirConsultaMontoDebitos(int pNumeroCuenta, String pPin) {
+		IConsulta nuevaConsulta = new ConsultaMontoDebitos(pNumeroCuenta, pPin);
+		Cuenta cuenta = new Cuenta();
+		cuenta.setConsulta(nuevaConsulta);
+		return cuenta;
+	}
+
+	@Override
+	public Cuenta construirConsultaMontoRetiros(int pNumeroCuenta, String pPin) {
+		IConsulta nuevaConsulta = new ConsultaMontoRetiros(pNumeroCuenta, pPin);
+		Cuenta cuenta = new Cuenta();
+		cuenta.setConsulta(nuevaConsulta);
+		return cuenta;
+	}
+
+	@Override
+	public Cuenta construirCambioPin(int pNumeroCuenta, String pinCuenta) {
+        IActualizacion cambioRegistro = new CambioPin(pNumeroCuenta, pinCuenta);
+        Cuenta cuenta = new Cuenta();
+        cuenta.setActualizacion(cambioRegistro);
+        return cuenta;
+	}
+
+
+	@Override
+	public Cuenta construirCambioTelefono(String pNombre, String correo, String pTelefono) {
+        IActualizacion cambioRegistro = new CambioTelefono(pNombre, correo, pTelefono);
+        Cuenta cuenta = new Cuenta();
+        cuenta.setActualizacion(cambioRegistro);
+        return cuenta;
+	}
+
+	@Override
+	public Cuenta construirCambioCorreo(String pCorreoActual, String pNuevoCorreo) {
+
+        IActualizacion cambioRegistro = new CambioCorreo(pCorreoActual,pNuevoCorreo);
+        Cuenta cuenta = new Cuenta();
+        cuenta.setActualizacion(cambioRegistro);
+        return cuenta;
+	}
+
+
+
+
+
+
+
+
 
 
 

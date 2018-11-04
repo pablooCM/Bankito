@@ -11,9 +11,9 @@ public class DepositoCambioMoneda implements IRegistro{
 	private int numeroCuenta;
 	private int montoDolares;
 	private double montoColones;
-	private double tipoCambio;
+	private double comision;
 	
-	public DepositoCambioMoneda(int pNumeroCuenta, double pMonto){
+	public DepositoCambioMoneda(int pNumeroCuenta, double pMonto, double comision){
 		numeroCuenta=pNumeroCuenta;
 		montoColones=pMonto;
 	}
@@ -23,13 +23,5 @@ public class DepositoCambioMoneda implements IRegistro{
 		
 	}
 	
-	private void setTipoCambio(double pTipoCambio) {
-		//TODO
-	}
-	
-	private double convertidorDolaresaColones(int pMontoDolores) {
-		//TODO
-		return 0;
-	}
 
 }

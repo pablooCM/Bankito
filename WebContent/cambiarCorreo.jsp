@@ -8,7 +8,7 @@
 <title>Bank-iTo</title>
 
 <style>
-html
+ html
 {
 	text-align: center;
 }

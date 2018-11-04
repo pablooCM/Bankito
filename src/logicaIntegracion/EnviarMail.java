@@ -35,10 +35,7 @@ public class EnviarMail
 
 		// Preparamos la sesion
     	this.session = Session.getDefaultInstance(props);
-    	
-    	// Construimos el mensaje
-    	this.message = new MimeMessage(session);
-    	
+    	EnviarMail.setDatos("bank.ito.crtec@gmail.com", "bankito123");
     	try 
     	{
 			this.t = this.session.getTransport("smtp");
@@ -67,17 +64,23 @@ public class EnviarMail
 			return mail;
 		}
 	}
-    public boolean EnviarMail(String receptor,String mensaje,String accion, String cuenta)
+    public boolean EnviarCorreo(String receptor,String mensaje,String accion, String cuenta)
     {
     	try
     	{
+
+        	// Construimos el mensaje
+        	this.message = new MimeMessage(session);
+        	
 	    	this.message.setFrom(new InternetAddress(EnviarMail.user));
 	    	this.message.addRecipient(Message.RecipientType.TO, new InternetAddress(receptor));	    
 	    	
 	    	this.message.setSubject(accion.toUpperCase() + " DE SU CUENTA: " + cuenta);
 	    	this.message.setText(mensaje);
-
-	    	this.t.connect(EnviarMail.user, EnviarMail.password);
+	    	
+	    	System.out.println(EnviarMail.user +"  "+EnviarMail.password);
+	    	this.t.connect("smtp.gmail.com", EnviarMail.user, EnviarMail.password);
+	    	
 	    	// Lo enviamos.	    
 	    	this.t.sendMessage(message, message.getAllRecipients());
 	    	
@@ -87,7 +90,6 @@ public class EnviarMail
     	}
     	catch( MessagingException e)
     	{
-			e.printStackTrace();
     		return false;
 		}
     }

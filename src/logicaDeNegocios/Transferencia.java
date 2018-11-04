@@ -25,9 +25,10 @@ public class Transferencia implements IRegistro{
 	}
 
 	@Override
-	public void registrarEnBaseDatos() throws SQLException {
+	public Object registrarEnBaseDatos() throws SQLException {
 		BaseDatosN nObjeto = new BaseDatosN();
 		nObjeto.insertarTransferencia(numeroCuentaOrigen, monto, numeroCuentaDestino);
+		return nObjeto;
 		
 	}
 

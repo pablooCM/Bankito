@@ -6,10 +6,7 @@ import java.sql.SQLException;
 
 import logicaAccesoaDatos.BaseDatosN;
 
-/**
- * @author PabloCM
- *
- */
+
 public class Deposito implements IRegistro {
 
 	/* (non-Javadoc)
@@ -25,9 +22,10 @@ public class Deposito implements IRegistro {
 		comision=pComision;
 	}
 	@Override
-	public void registrarEnBaseDatos() throws SQLException {
+	public Object registrarEnBaseDatos() throws SQLException {
 		BaseDatosN nObjeto = new BaseDatosN();
 		nObjeto.insertarDeposito(numeroCuenta, monto, comision);
+		return nObjeto;
 
 	}
 

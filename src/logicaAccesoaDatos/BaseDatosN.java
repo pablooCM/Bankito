@@ -58,6 +58,15 @@ public class BaseDatosN {
 		String query="insert into duenno_Cuenta(id_Cuenta,id_Duenno) values("+numero+","+duenno+")";
 		EjecutarQuery(query);
 	}
+	public void insertarIntentosPin() throws SQLException {
+		String query="insert into IntentosCodigo(intentos) values(0)";
+		EjecutarQuery(query);
+	}
+	public void insertarIntentosCodigos() throws SQLException{
+		String query="insert into IntentosPin(intentos) values(0)";
+		EjecutarQuery(query);
+		
+	} 
 	
 	private void eliminarCodigo() throws SQLException {
 		String query="delete from codigoVerificacion";
@@ -80,6 +89,14 @@ public class BaseDatosN {
 	public void actualizarSaldo(int numero, double saldo) throws SQLException {
 		String query="	UPDATE cuenta SET saldo ="+saldo+
 			     " WHERE numeroCuenta="+numero+"";
+		EjecutarQuery(query);
+	}
+	public void actualizarIntentoPin(int numero) throws SQLException {
+		String query="	UPDATE IntentosPin SET intentos ="+numero;
+		EjecutarQuery(query);
+	}
+	public void actualizarIntentosCodigo(int numero) throws SQLException {
+		String query="	UPDATE IntentosCodigo SET intentos ="+numero;
 		EjecutarQuery(query);
 	}
 
@@ -251,6 +268,62 @@ public class BaseDatosN {
 		}
 		
 		return 0;
+		
+	}
+	public int selectCantidadRetiros(int numeroCuenta) throws SQLException{
+		String select="select count(numeroCuenta) as montos_retiros from retiro where numeroCuenta="+numeroCuenta;
+		ResultSet rs=EjecutarSelect(select);
+		while(rs.next()) {
+			int monto=rs.getInt(1);
+			return monto;
+		}
+		
+		return 0;
+		
+	}
+	public int selectCantidadDebitos(int numeroCuenta) throws SQLException{
+		String select="select count(numeroCuenta) as montos_depositados from deposito where numeroCuenta="+numeroCuenta;
+		ResultSet rs=EjecutarSelect(select);
+		while(rs.next()) {
+			int monto=rs.getInt(1);
+			return monto;
+		}
+		
+		return 0;}
+		public double selectComisionRetiros(int numeroCuenta) throws SQLException{
+			String select="select sum(comisiones) as monto_comisiones from retiro where numeroCuenta="+numeroCuenta;
+			ResultSet rs=EjecutarSelect(select);
+			while(rs.next()) {
+				double monto=rs.getDouble(1);
+				return monto;
+			}
+			
+			return 0;
+			
+		}
+		public double selectComisionDebitos(int numeroCuenta) throws SQLException{
+			String select="select sum(comisiones) as monto_comisiones from deposito where numeroCuenta="+numeroCuenta;
+			ResultSet rs=EjecutarSelect(select);
+			while(rs.next()) {
+				double monto=rs.getDouble(1);
+				return monto;
+			}
+			
+			return 0;
+		
+	}
+		public double selectComisionesTotales(int numeroCuenta) throws SQLException {
+		double comisionR=selectComisionRetiros(numeroCuenta);
+		double comisionD=selectComisionDebitos(numeroCuenta);
+		double comisionT= comisionR+comisionD;
+		return comisionT;
+			
+		}
+	public int selectTotales(int numeroCuenta) throws SQLException{
+		int cantRetiros=selectCantidadRetiros(numeroCuenta);
+		int cantDebitos= selectCantidadDebitos(numeroCuenta);
+		int total=cantRetiros+cantDebitos;
+		return total;
 		
 	}
 	

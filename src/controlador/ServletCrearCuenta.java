@@ -72,11 +72,11 @@ public class ServletCrearCuenta extends HttpServlet {
 				String pinEncriptado = MD5.Encriptar(pin);
 		        
 		        System.out.println("Crea:"+pinEncriptado);
-		        DTOCuenta dtoCuenta = new DTOCuenta(0, "", correo, telefono, "activa", Double.parseDouble(montoInicial), sqlDate, pinEncriptado);
+		        DTOCuenta dtoCuenta = new DTOCuenta(0, nombre, correo, telefono, "activa", Double.parseDouble(montoInicial), sqlDate, pinEncriptado);
 				
 		        RegistroCuenta.registrarCuenta(dtoCuenta, contrasenna);
 				String pass = con.selectContrasennaDueno(nombre);
-				String cuenta = Integer.toString(con.selectIdCuenta(pin, "activa", sqlDate, Double.parseDouble(montoInicial)));
+				String cuenta = Integer.toString(con.selectIdCuenta(pinEncriptado, "activa", sqlDate, Double.parseDouble(montoInicial)));
 				
 				out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Se creo la cuenta: "+cuenta+". Su contraseña para iniciar sesión con el correo "+correo+", es "+pass+".'); window.location='login.jsp' \"></body></html>");
 			} 

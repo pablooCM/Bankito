@@ -10,21 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import logicaAccesoaDatos.BaseDatos;
-import logicaDeNegocios.CambioCorreo;
+import logicaDeNegocios.CambioTelefono;
 import logicaDeNegocios.MD5;
 import logicaDeNegocios.ValidarDatos;
 
 /**
- * Servlet implementation class ServletCambiarCorreo
+ * Servlet implementation class ServletCambioTelefono
  */
-@WebServlet("/ServletCambiarCorreo")
-public class ServletCambiarCorreo extends HttpServlet {
+@WebServlet("/ServletCambioTelefono")
+public class ServletCambioTelefono extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletCambiarCorreo() {
+    public ServletCambioTelefono() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,8 +42,8 @@ public class ServletCambiarCorreo extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String cuenta = request.getParameter("cuenta").toString();
-		String pin= request.getParameter("pin").toString();
-		String correoNuevo = request.getParameter("correo").toString();
+		String pin= request.getParameter("pinA").toString();		
+		String telefono= request.getParameter("telefono").toString();
 		
 		BaseDatos con = new BaseDatos();
 
@@ -54,7 +54,7 @@ public class ServletCambiarCorreo extends HttpServlet {
 			if(con.selectEstatus(Integer.parseInt(cuenta)).equals("activa"))
 			{
 				try 
-				{			        
+				{			        			         					
 					String pinEncriptado = MD5.Encriptar(pin);
 			         
 			        System.out.println("Verifica:"+pinEncriptado);
@@ -62,13 +62,15 @@ public class ServletCambiarCorreo extends HttpServlet {
 					int cuenta_consult = con.selectCuenta(cuenta, pinEncriptado);
 			        
 					ValidarDatos validar = new ValidarDatos();
-					if(cuenta_consult != 0 && validar.validarCorreoElectronico(correoNuevo))
-					{			
-						String correoAnterior = con.selectCorreo(Integer.parseInt(cuenta)); 
-						CambioCorreo cambiar = new CambioCorreo(correoAnterior, correoNuevo);
+					if(cuenta_consult != 0 && validar.validarTelefono(telefono))
+					{			 
+						String correo = request.getSession().getAttribute("user").toString();
+						String nombre = con.selectNombreDuenno(correo);
+						CambioTelefono cambiar = new CambioTelefono(nombre, correo, telefono);
 						cambiar.actualizarBaseDatos();
-						request.getSession().setAttribute("user", correoNuevo);
-						out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Estimado usuario, usted ha cambiado la dirección de correo "+correoAnterior+" por "+correoNuevo+"'); window.location='Bank-iTo.jsp'\"></body></html>");
+						
+						String telefonoAntiguo = con.selectTelefono(correo);
+						out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Estimado usuario, usted ha cambiado el número de teléfono "+telefonoAntiguo+" por el número "+telefono+"'); window.location='Bank-iTo.jsp'\"></body></html>");
 					}
 				}
 				catch (Exception e) 

@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import funcionesAcomodar.TipoCambio;
 import logicaAccesoaDatos.BaseDatos;
 import logicaIntegracion.EnviarMail;
+import logicaIntegracion.TipoCambio;
 
 /**
  * Servlet implementation class ServletDepositoDolares

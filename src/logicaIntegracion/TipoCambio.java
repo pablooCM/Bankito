@@ -2,9 +2,6 @@ package logicaIntegracion;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import funcionesAcomodar.GetMethod;
-import funcionesAcomodar.XmlParser;
-
 /**
  * <code>TipoCambio</code> es una clase que se comunica con el WebService del BCCR para obtener
  * el tipo de cambio en tiempo real. Se comunica mediante el protocolo <code>HTTP GET</code>.

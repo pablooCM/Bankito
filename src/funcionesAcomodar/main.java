@@ -18,16 +18,16 @@ public class main {
         System.out.println(servicioTipoCambio.getVenta());
 */
 
-		String hola = MD5.Encriptar("hola");
-		
-		System.out.println(hola);
-		
+		String hola;
 		try {
-			System.out.println(MD5.Desencriptar(hola));
+			hola = MD5.Desencriptar("6uDoKtVC6Mg=");	System.out.println(hola);
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+	
 	
 	}
 }

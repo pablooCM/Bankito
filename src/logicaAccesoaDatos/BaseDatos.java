@@ -24,7 +24,7 @@ public class BaseDatos {
 		insertarDuenno(pDatosCuenta.getDuenio(), pDatosCuenta.getCorreo(), pDatosCuenta.getTelefono(), contrasenna);
 	}
 	
-	int numCuenta = selectIdCuenta(pDatosCuenta.getPinCuenta(),pDatosCuenta.getEstatus(),(Date) pDatosCuenta.getFechaCreacion(),pDatosCuenta.getSaldo());
+	int numCuenta = selectIdCuenta(pDatosCuenta.getPinCuenta(),pDatosCuenta.getEstatus(),pDatosCuenta.getFechaCreacion(),pDatosCuenta.getSaldo());
 	int idDuenno = selectIdDueno(pDatosCuenta.getDuenio());
 	
 	insertarDuennoCuenta(numCuenta,idDuenno);
@@ -133,14 +133,14 @@ public class BaseDatos {
 		// Print all of the employee numbers to standard output device
 		while (rs.next())
 		{
-			int correoR = Integer.parseInt(rs.getString(1));
-			return correoR;
+			int id = Integer.parseInt(rs.getString(1));
+			return id;
 		}
 		return 0;
 	}
 
 	public double selectSaldoCuenta(int numcuenta) throws SQLException {
-		String saldo="select saldo from cuenta where numeroCuenta="+numcuenta+";";
+		String saldo="select saldo from cuenta where numeroCuenta="+numcuenta;
 		ResultSet rs=EjecutarSelect(saldo);
 		while(rs.next()) {
 			double monto=rs.getDouble(1);
@@ -162,7 +162,7 @@ public class BaseDatos {
 		return 0;
 	}
 	public String selectEstatus(int cuenta) throws SQLException {
-		String select="Select estatus from cuenta where NUMEROCUENTA='"+cuenta;
+		String select="Select estatus from cuenta where NUMEROCUENTA="+cuenta;
 		ResultSet rs = EjecutarSelect(select);
 		// Print all of the employee numbers to standard output device
 		while (rs.next())

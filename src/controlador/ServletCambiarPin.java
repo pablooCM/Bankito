@@ -10,21 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import logicaAccesoaDatos.BaseDatos;
-import logicaDeNegocios.CambioCorreo;
+import logicaDeNegocios.CambioPin;
 import logicaDeNegocios.MD5;
 import logicaDeNegocios.ValidarDatos;
 
 /**
- * Servlet implementation class ServletCambiarCorreo
+ * Servlet implementation class ServletCambiarPin
  */
-@WebServlet("/ServletCambiarCorreo")
-public class ServletCambiarCorreo extends HttpServlet {
+@WebServlet("/ServletCambiarPin")
+public class ServletCambiarPin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletCambiarCorreo() {
+    public ServletCambiarPin() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,8 +42,8 @@ public class ServletCambiarCorreo extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String cuenta = request.getParameter("cuenta").toString();
-		String pin= request.getParameter("pin").toString();
-		String correoNuevo = request.getParameter("correo").toString();
+		String pin= request.getParameter("pinA").toString();
+		String pinNuevo= request.getParameter("pin").toString();
 		
 		BaseDatos con = new BaseDatos();
 
@@ -62,13 +62,13 @@ public class ServletCambiarCorreo extends HttpServlet {
 					int cuenta_consult = con.selectCuenta(cuenta, pinEncriptado);
 			        
 					ValidarDatos validar = new ValidarDatos();
-					if(cuenta_consult != 0 && validar.validarCorreoElectronico(correoNuevo))
-					{			
-						String correoAnterior = con.selectCorreo(Integer.parseInt(cuenta)); 
-						CambioCorreo cambiar = new CambioCorreo(correoAnterior, correoNuevo);
+					
+					
+					if(cuenta_consult != 0 && validar.validarPin(pinNuevo))
+					{			 
+						CambioPin cambiar = new CambioPin(Integer.parseInt(cuenta), pinNuevo);
 						cambiar.actualizarBaseDatos();
-						request.getSession().setAttribute("user", correoNuevo);
-						out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Estimado usuario, usted ha cambiado la dirección de correo "+correoAnterior+" por "+correoNuevo+"'); window.location='Bank-iTo.jsp'\"></body></html>");
+						out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Estimado usuario, se ha cambiado satisfactoriamente el PIN de su cuenta "+cuenta+"'); window.location='Bank-iTo.jsp'\"></body></html>");
 					}
 				}
 				catch (Exception e) 

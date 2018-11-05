@@ -62,7 +62,7 @@ public class ServletRetiroDolares extends HttpServlet {
 				} 
 				else
 				{
-					System.out.println("error email");
+					out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Verifique que los datos ingresados sean correctos.'); window.location='Bank-iTo.jsp'\"></body></html>");
 				}
 				
 			}
@@ -72,7 +72,6 @@ public class ServletRetiroDolares extends HttpServlet {
 			}
 		}
 		catch (SQLException e) {
-			e.printStackTrace();
 			out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Ocurrió un problema al realizar su retiro.'); window.location='Bank-iTo.jsp'\"></body></html>");
 		}
 	}

@@ -2,6 +2,7 @@ package controlador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,19 +10,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import logicaDeNegocios.ConsultaEstatusCuenta;
+import logicaIntegracion.TipoCambio;
 
 /**
- * Servlet implementation class ServletEstatus
+ * Servlet implementation class ServletTipoCompra
  */
-@WebServlet("/ServletEstatus")
-public class ServletEstatus extends HttpServlet {
+@WebServlet("/ServletTipoCompra")
+public class ServletTipoCompra extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
-     */
-    public ServletEstatus() {
+    */
+    public ServletTipoCompra() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,19 +39,14 @@ public class ServletEstatus extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String cuenta = request.getParameter("cuenta").toString();
-				
-		PrintWriter out = response.getWriter();
-		try 
-		{
-			ConsultaEstatusCuenta consulta = new ConsultaEstatusCuenta(Integer.parseInt(cuenta));
-			String estatus = consulta.getEstatusCuenta();
-			out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('La cuenta número "+cuenta+" tiene estatus de "+ estatus+".'); window.location='Bank-iTo.jsp'\"></body></html>");
-		}
-		catch (Exception e)
-		{
-			out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('La cuenta número "+cuenta+" no existe.'); window.location='Bank-iTo.jsp'\"></body></html>");
-		}
-	}
+		PrintWriter out = response.getWriter();	
 
+		TipoCambio servicioTipoCambio = new TipoCambio();
+		double compra = servicioTipoCambio.getCompra();
+		
+		Date date = new Date();
+		java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+		
+		out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Tipo de cambio de compra hoy "+sqlDate+", es de "+compra+" colones.'); window.location='Bank-iTo.jsp'\"></body></html>");
+	}
 }

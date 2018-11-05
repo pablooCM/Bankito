@@ -10,21 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import logicaAccesoaDatos.BaseDatos;
-import logicaDeNegocios.CambioCorreo;
+import logicaDeNegocios.ConsultaSaldoCambioMoneda;
 import logicaDeNegocios.MD5;
-import logicaDeNegocios.ValidarDatos;
+import logicaIntegracion.TipoCambio;
 
 /**
- * Servlet implementation class ServletCambiarCorreo
+ * Servlet implementation class ServletSaldoDolares
  */
-@WebServlet("/ServletCambiarCorreo")
-public class ServletCambiarCorreo extends HttpServlet {
+@WebServlet("/ServletSaldoDolares")
+public class ServletSaldoDolares extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
-     */
-    public ServletCambiarCorreo() {
+    */
+    public ServletSaldoDolares() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,15 +43,15 @@ public class ServletCambiarCorreo extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String cuenta = request.getParameter("cuenta").toString();
 		String pin= request.getParameter("pin").toString();
-		String correoNuevo = request.getParameter("correo").toString();
 		
 		BaseDatos con = new BaseDatos();
 
 		PrintWriter out = response.getWriter();	
 
+		int cuentaInt = Integer.parseInt(cuenta);
 		try 
 		{
-			if(con.selectEstatus(Integer.parseInt(cuenta)).equals("activa"))
+			if(con.selectEstatus(cuentaInt).equals("activa"))
 			{
 				try 
 				{			        
@@ -61,14 +61,13 @@ public class ServletCambiarCorreo extends HttpServlet {
 					
 					int cuenta_consult = con.selectCuenta(cuenta, pinEncriptado);
 			        
-					ValidarDatos validar = new ValidarDatos();
-					if(cuenta_consult != 0 && validar.validarCorreoElectronico(correoNuevo))
-					{			
-						String correoAnterior = con.selectCorreo(Integer.parseInt(cuenta)); 
-						CambioCorreo cambiar = new CambioCorreo(correoAnterior, correoNuevo);
-						cambiar.actualizarBaseDatos();
-						request.getSession().setAttribute("user", correoNuevo);
-						out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Estimado usuario, usted ha cambiado la dirección de correo "+correoAnterior+" por "+correoNuevo+"'); window.location='Bank-iTo.jsp'\"></body></html>");
+					if(cuenta_consult != 0)
+					{	
+						ConsultaSaldoCambioMoneda consulta = new ConsultaSaldoCambioMoneda(cuentaInt, pinEncriptado);
+						double saldo = (double) consulta.consultarBaseDatos();
+						TipoCambio cambio = new TipoCambio();
+						double compra = cambio.getCompra();
+						out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Estimado usuario, el saldo actual de su cuenta es "+saldo+" dólares. Para esta conversión se utilizó el tipo de cambio del dólar, precio de compra. [Según el BCCR, el tipo de cambio de compra del dólar de hoy es: "+compra+"]'); window.location='Bank-iTo.jsp'\"></body></html>");
 					}
 					else
 					{

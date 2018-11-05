@@ -71,7 +71,7 @@ body {
 <body style="width: 472px; height: 520px; ">
 	<fieldset style="text-align: left; width: 381px; height: 541px">
 		<legend style="width: 296px; ">Consultar saldo actual en colones:</legend>
-		<form action="SERVLET" method="post" style="width: 375px; height: 339px">
+		<form action="ServletSaldoColones" method="post" style="width: 375px; height: 339px">
 			<p style="width: 369px; height: 37px">
 				<label for="cuenta" style="width: 143px;">Número de cuenta:</label>
 				<input name="cuenta" type="text" id="cuenta" class="cuenta" style="width: 202px;">

@@ -38,7 +38,8 @@ public class ServletEnviarMensaje extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String cuenta = request.getParameter("cuenta").toString();
 		String pin= request.getParameter("pin").toString();
-		
+
+		PrintWriter out = response.getWriter();
 		try 
 		{
 			CodigoVerificacion random = new CodigoVerificacion();
@@ -55,8 +56,6 @@ public class ServletEnviarMensaje extends HttpServlet {
 				con.insertarCodigoVerificacion(codigo);
 				//enviar.enviarCodigo(codigo, telefono);
 				
-
-				PrintWriter out = response.getWriter();
 				out.println("<!DOCTYPE html>\r\n" + 
 						"<html style=\"width: 644px; height: 993px; \">\r\n" + 
 						"<head>\r\n" + 
@@ -154,11 +153,15 @@ public class ServletEnviarMensaje extends HttpServlet {
 						"</body>\r\n" + 
 						"</html>");
 			}
+			else
+			{
+				out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Verifique que los datos ingresados sean correctos.'); window.location='Bank-iTo.jsp'\"></body></html>");
+			}
 		}		
         
 		catch (Exception e)
 		{
-			System.out.println(e);
+			out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Verifique que los datos ingresados sean correctos.'); window.location='Bank-iTo.jsp'\"></body></html>");
 		}
 	}
 

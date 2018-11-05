@@ -87,11 +87,11 @@ body {
 <title>Bank-iTo</title>
 </head>
 <body style="width: 409px; height: 376px; ">
-	<form action="SERVLET" method="post"  class="vertical-menu" style="width: 321px; height: 103px; visibility: visible; top: auto; left: auto; bottom: auto;">
+	<form action="ServletTipoVenta" method="post"  class="vertical-menu" style="width: 321px; height: 103px; visibility: visible; top: auto; left: auto; bottom: auto;">
 		<a href="Bank-iTo.jsp" class="active" style="font-family: Arial, Helvetica, sans-serif;">Bank-iTo</a>
 		<input type="submit" value="Consulta tipo de cambio de venta." style="border: 0; width: 264px; height: 53px;">
 	</form>
-	<form action="SERVLET" method="post" class="vertical-menu" style="width: 321px; height: 48px; visibility: visible; top: auto; left: auto; bottom: auto;">
+	<form action="ServletTipoCompra" method="post" class="vertical-menu" style="width: 321px; height: 48px; visibility: visible; top: auto; left: auto; bottom: auto;">
 		<input type="submit" value="Consulta tipo de cambio de compra." style="border: 0; width: 264px; height: 53px;">
 	</form>
 </body>

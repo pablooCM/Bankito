@@ -1,9 +1,6 @@
 package logicaDeNegocios;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-
-import dto.DTOCuenta;
 import logicaAccesoaDatos.BaseDatos;
 
 public class ConsultaSaldo implements IConsulta{

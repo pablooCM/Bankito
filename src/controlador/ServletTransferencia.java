@@ -78,7 +78,6 @@ public class ServletTransferencia extends HttpServlet {
 			}
 		}
 		catch (SQLException e) {
-			e.printStackTrace();
 			out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Ocurrió un problema al realizar su retiro.'); window.location='Bank-iTo.jsp'\"></body></html>");
 		}
 	}

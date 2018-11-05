@@ -61,7 +61,7 @@ public class ServletLogin extends HttpServlet
 		} 
 		catch (SQLException e) 
 		{
-			e.printStackTrace();
+			out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Verifique que los datos ingresados sean correctos.'); window.location='Bank-iTo.jsp'\"></body></html>");
 		}
 		
 		if (user != null )

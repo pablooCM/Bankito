@@ -82,8 +82,7 @@ public class ServletCrearCuenta extends HttpServlet {
 			} 
 			catch (Exception e) 
 			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Verifique que los datos ingresados sean correctos.'); window.location='Bank-iTo.jsp'\"></body></html>");
 			}
 		}
 		else

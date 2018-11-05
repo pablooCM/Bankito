@@ -66,10 +66,14 @@ public class ServletEstadoCuentaDolares extends HttpServlet {
 						String msg = consulta.consultarBaseDatos();
 						out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('"+msg+"'); window.location='Bank-iTo.jsp'\"></body></html>");
 					}
+					else
+					{
+						out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Verifique que los datos ingresados sean correctos.'); window.location='Bank-iTo.jsp'\"></body></html>");
+					}
 				}
 				catch (Exception e) 
 				{
-					e.printStackTrace();
+					out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Verifique que los datos ingresados sean correctos.'); window.location='Bank-iTo.jsp'\"></body></html>");
 				}
 			}
 			else

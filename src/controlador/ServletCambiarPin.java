@@ -66,14 +66,21 @@ public class ServletCambiarPin extends HttpServlet {
 					
 					if(cuenta_consult != 0 && validar.validarPin(pinNuevo))
 					{			 
-						CambioPin cambiar = new CambioPin(Integer.parseInt(cuenta), pinNuevo);
+						String pinEncriptadoNuevo = MD5.Encriptar(pinNuevo);
+				         
+				        System.out.println("Verifica:"+pinEncriptado);
+						CambioPin cambiar = new CambioPin(Integer.parseInt(cuenta), pinEncriptadoNuevo);
 						cambiar.actualizarBaseDatos();
 						out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Estimado usuario, se ha cambiado satisfactoriamente el PIN de su cuenta "+cuenta+"'); window.location='Bank-iTo.jsp'\"></body></html>");
+					}
+					else
+					{
+						out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Verifique que los datos ingresados sean correctos.'); window.location='Bank-iTo.jsp'\"></body></html>");
 					}
 				}
 				catch (Exception e) 
 				{
-					e.printStackTrace();
+					out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Verifique que los datos ingresados sean correctos.'); window.location='Bank-iTo.jsp'\"></body></html>");
 				}
 			}
 			else

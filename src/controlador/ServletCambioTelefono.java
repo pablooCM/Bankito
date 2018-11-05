@@ -72,10 +72,14 @@ public class ServletCambioTelefono extends HttpServlet {
 						String telefonoAntiguo = con.selectTelefono(correo);
 						out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Estimado usuario, usted ha cambiado el número de teléfono "+telefonoAntiguo+" por el número "+telefono+"'); window.location='Bank-iTo.jsp'\"></body></html>");
 					}
+					else
+					{
+						out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Verifique que los datos ingresados sean correctos.'); window.location='Bank-iTo.jsp'\"></body></html>");
+					}
 				}
 				catch (Exception e) 
 				{
-					e.printStackTrace();
+					out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Verifique que los datos ingresados sean correctos.'); window.location='Bank-iTo.jsp'\"></body></html>");
 				}
 			}
 			else

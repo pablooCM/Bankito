@@ -63,15 +63,33 @@ public class ServletSaldoDolares extends HttpServlet {
 			        
 					if(cuenta_consult != 0)
 					{	
+						con.actualizarIntentoPin(0);
 						ConsultaSaldoCambioMoneda consulta = new ConsultaSaldoCambioMoneda(cuentaInt, pinEncriptado);
 						double saldo = (double) consulta.consultarBaseDatos();
 						TipoCambio cambio = new TipoCambio();
 						double compra = cambio.getCompra();
 						out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Estimado usuario, el saldo actual de su cuenta es "+saldo+" dólares. Para esta conversión se utilizó el tipo de cambio del dólar, precio de compra. [Según el BCCR, el tipo de cambio de compra del dólar de hoy es: "+compra+"]'); window.location='Bank-iTo.jsp'\"></body></html>");
 					}
+
 					else
 					{
-						out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Verifique que los datos ingresados sean correctos.'); window.location='Bank-iTo.jsp'\"></body></html>");
+						System.out.println("Mantenimiento");
+						int intentos = con.selectIntentosPin();
+						if(intentos<3)
+						{
+							con.actualizarIntentoPin(intentos+1);
+							response.sendRedirect("Bank-iTo.jsp");
+						}
+						else if (intentos==3)
+						{
+							con.actualizarIntentoPin(0);
+							con.actualizarEstatusCuenta(Integer.parseInt(cuenta));
+							out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('La cuenta "+cuenta+" se inactivó por equivocarse más de tres veces en el pin.'); window.location='Bank-iTo.jsp'\"></body></html>");
+						}
+						else
+						{
+							out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Raios .__.'); window.location='Bank-iTo.jsp'\"></body></html>");
+						}
 					}
 				}
 				catch (Exception e) 

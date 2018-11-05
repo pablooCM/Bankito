@@ -64,6 +64,7 @@ public class ServletVerificarCodigo extends HttpServlet {
 			        
 					if(cuenta_consult != 0)
 					{
+						con.actualizarIntentoPin(0);
 						codigo_v = con.selectCodigo();
 						if(codigo_v.equals(codigo))
 						{
@@ -356,11 +357,43 @@ public class ServletVerificarCodigo extends HttpServlet {
 						else
 						{
 							System.out.println("Mantenimiento");
+							int intentos = con.selectIntentosCodigo();
+							if(intentos<3)
+							{
+								con.actualizarIntentosCodigo(intentos+1);
+								response.sendRedirect("Bank-iTo.jsp");
+							}
+							else if (intentos==3)
+							{
+								con.actualizarIntentosCodigo(0);
+								con.actualizarEstatusCuenta(Integer.parseInt(cuenta));
+								out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('La cuenta "+cuenta+" se inactivó por equivocarse más de 3 veces en el código de confirmación.'); window.location='Bank-iTo.jsp'\"></body></html>");
+							}
+							else
+							{
+								out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Raios .__.'); window.location='Bank-iTo.jsp'\"></body></html>");
+							}
 						}
 					}
 					else
 					{
-						out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Verifique que los datos ingresados sean correctos.'); window.location='Bank-iTo.jsp'\"></body></html>");
+						System.out.println("Mantenimiento");
+						int intentos = con.selectIntentosPin();
+						if(intentos<3)
+						{
+							con.actualizarIntentoPin(intentos+1);
+							response.sendRedirect("Bank-iTo.jsp");
+						}
+						else if (intentos==3)
+						{
+							con.actualizarIntentoPin(0);
+							con.actualizarEstatusCuenta(Integer.parseInt(cuenta));
+							out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('La cuenta "+cuenta+" se inactivó por equivocarse más de tres veces en el pin.'); window.location='Bank-iTo.jsp'\"></body></html>");
+						}
+						else
+						{
+							out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Raios .__.'); window.location='Bank-iTo.jsp'\"></body></html>");
+						}
 					}
 				}
 				catch (Exception e) 
@@ -370,12 +403,12 @@ public class ServletVerificarCodigo extends HttpServlet {
 			}
 			else
 			{
-				out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('La cuenta "+cuenta+" está inactiva.'); window.location='codigoVerificacionDolares.jsp'\"></body></html>");
+				out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('La cuenta "+cuenta+" está inactiva.'); window.location='Bank-iTo.jsp'\"></body></html>");
 			}
 		} 
 		catch (Exception e) {
 			// TODO Auto-generated catch block
-			out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('La cuenta "+cuenta+" no existe.'); window.location='codigoVerificacionDolares.jsp'\"></body></html>");
+			out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('La cuenta "+cuenta+" no existe.'); window.location='Bank-iTo.jsp'\"></body></html>");
 		} 
 	}
 

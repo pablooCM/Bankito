@@ -62,8 +62,9 @@ public class ServletCambiarCorreo extends HttpServlet {
 					int cuenta_consult = con.selectCuenta(cuenta, pinEncriptado);
 			        
 					ValidarDatos validar = new ValidarDatos();
-					if(cuenta_consult != 0 && validar.validarCorreoElectronico(correoNuevo))
+					if(cuenta_consult != 0 && validar.validarCorreoElectronico(correoNuevo)==true)
 					{			
+						con.actualizarIntentoPin(0);
 						String correoAnterior = con.selectCorreo(Integer.parseInt(cuenta)); 
 						CambioCorreo cambiar = new CambioCorreo(correoAnterior, correoNuevo);
 						cambiar.actualizarBaseDatos();

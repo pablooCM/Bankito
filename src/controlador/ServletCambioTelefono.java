@@ -42,7 +42,7 @@ public class ServletCambioTelefono extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String cuenta = request.getParameter("cuenta").toString();
-		String pin= request.getParameter("pinA").toString();		
+		String pin= request.getParameter("pin").toString();		
 		String telefono= request.getParameter("telefono").toString();
 		
 		BaseDatos con = new BaseDatos();
@@ -62,8 +62,9 @@ public class ServletCambioTelefono extends HttpServlet {
 					int cuenta_consult = con.selectCuenta(cuenta, pinEncriptado);
 			        
 					ValidarDatos validar = new ValidarDatos();
-					if(cuenta_consult != 0 && validar.validarTelefono(telefono))
-					{			 
+					if(cuenta_consult != 0 && validar.validarTelefono(telefono)==true)
+					{		
+						con.actualizarIntentoPin(0);
 						String correo = request.getSession().getAttribute("user").toString();
 						String nombre = con.selectNombreDuenno(correo);
 						CambioTelefono cambiar = new CambioTelefono(nombre, correo, telefono);
@@ -72,9 +73,26 @@ public class ServletCambioTelefono extends HttpServlet {
 						String telefonoAntiguo = con.selectTelefono(correo);
 						out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Estimado usuario, usted ha cambiado el número de teléfono "+telefonoAntiguo+" por el número "+telefono+"'); window.location='Bank-iTo.jsp'\"></body></html>");
 					}
+
 					else
 					{
-						out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Verifique que los datos ingresados sean correctos.'); window.location='Bank-iTo.jsp'\"></body></html>");
+						System.out.println("Mantenimiento");
+						int intentos = con.selectIntentosPin();
+						if(intentos<3)
+						{
+							con.actualizarIntentoPin(intentos+1);
+							response.sendRedirect("Bank-iTo.jsp");
+						}
+						else if (intentos==3)
+						{
+							con.actualizarIntentoPin(0);
+							con.actualizarEstatusCuenta(Integer.parseInt(cuenta));
+							out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('La cuenta "+cuenta+" se inactivó por equivocarse más de tres veces en el pin.'); window.location='Bank-iTo.jsp'\"></body></html>");
+						}
+						else
+						{
+							out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Raios .__.'); window.location='Bank-iTo.jsp'\"></body></html>");
+						}
 					}
 				}
 				catch (Exception e) 

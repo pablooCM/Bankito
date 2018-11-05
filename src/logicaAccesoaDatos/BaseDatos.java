@@ -30,6 +30,8 @@ public class BaseDatos {
 			int idDuenno = selectIdDueno(pDatosCuenta.getDuenio());
 			
 			insertarDuennoCuenta(numCuenta,idDuenno);
+			insertarIntentosCodigos();
+			insertarIntentosPin();
 			return true;
 		}
 		catch (Exception e)
@@ -101,6 +103,11 @@ public class BaseDatos {
 		EjecutarQuery(query);
 	}
 	
+	public void actualizarEstatusCuenta(int cuenta) throws SQLException{
+		String query="	UPDATE cuenta SET estatus ='inactiva' WHERE numeroCuenta="+cuenta;
+		EjecutarQuery(query);
+	}
+	
 	public void actualizarCorreo(String correoN, String correoA) throws SQLException{
 		String query="	UPDATE duenno SET correo ='"+correoN+
 			     "' WHERE correo='"+correoA+"'";
@@ -133,6 +140,30 @@ public class BaseDatos {
 		EjecutarQuery(query);
 	}
 
+	public int selectIntentosCodigo() throws SQLException {
+		String select="select INTENTOS from INTENTOSCODIGO";
+		ResultSet rs = EjecutarSelect(select);
+		// Print all of the employee numbers to standard output device
+		while (rs.next())
+		{
+			int intento = Integer.parseInt(rs.getString(1));
+			return intento;
+		}
+		return 0;
+	}
+	
+	public int selectIntentosPin() throws SQLException {
+		String select="select INTENTOS from INTENTOSPIN";
+		ResultSet rs = EjecutarSelect(select);
+		// Print all of the employee numbers to standard output device
+		while (rs.next())
+		{
+			int intento = Integer.parseInt(rs.getString(1));
+			return intento;
+		}
+		return 0;
+	}
+	
 	public int selectIdCuenta(String pin,String estatus, Date fechaCreacion, double saldo) throws SQLException {
 		String select="Select NUMEROCUENTA from CUENTA where PIN='"+pin+"' and ESTATUS='"+estatus
 						+"' and FECHACREACION='"+fechaCreacion
@@ -321,6 +352,15 @@ public class BaseDatos {
 		return 0;
 		
 	}
+	public int selectCantidadTransferencias(int numeroCuenta) throws SQLException{
+		String select="select count(numeroCuenta) as montos_depositados from transferencia where numeroCuenta="+numeroCuenta;
+		ResultSet rs=EjecutarSelect(select);
+		while(rs.next()) {
+			int monto=rs.getInt(1);
+			return monto;
+		}
+		return 0;
+	}
 	public int selectCantidadDebitos(int numeroCuenta) throws SQLException{
 		String select="select count(numeroCuenta) as montos_depositados from deposito where numeroCuenta="+numeroCuenta;
 		ResultSet rs=EjecutarSelect(select);
@@ -329,7 +369,8 @@ public class BaseDatos {
 			return monto;
 		}
 		
-		return 0;}
+		return 0;
+	}
 		public double selectComisionRetiros(int numeroCuenta) throws SQLException{
 			String select="select sum(comisiones) as monto_comisiones from retiro where numeroCuenta="+numeroCuenta;
 			ResultSet rs=EjecutarSelect(select);

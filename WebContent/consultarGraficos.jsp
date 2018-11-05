@@ -71,11 +71,23 @@ body {
 <body style="width: 472px; height: 780px; ">
 	<fieldset style="text-align: left; width: 381px; height: 394px">
 		<legend style="width: 340px; ">Consultar reportes:</legend>
-		<form action="SERVLET" method="post" style="width: 375px; height: 231px">
+		<form action="ServletGraficos" method="post" style="width: 375px; height: 231px">
 			<p style="width: 369px; height: 37px">
 				<label for="cuenta" style="width: 143px;">Número de cuenta:</label>
 				<input name="cuenta" type="text" id="cuenta" class="cuenta" style="width: 202px;">
 			</p> 
+			<p style="width: 369px; height: 37px">
+				<label for="pin" style="width: 143px;">Pin:</label>
+				<input name="pin" type="text" id="pin" class="pin" style="width: 202px;">
+			</p>
+			<p style="width: 369px; height: 37px">
+				<label for="retiros" style="width: 143px;">Color datos retiros:</label>
+				<input value="green" name="retiros" type="text" id="retiros" class="retiros" style="width: 202px;">
+			</p>
+			<p style="width: 369px; height: 37px">
+				<label for="debitos" style="width: 143px;">Color datos débitos:</label>
+				<input value="blue" name="debitos" type="text" id="debitos" class="debitos" style="width: 202px;">
+			</p>
 			<p style="text-align: center; width: 361px" >
 				<a href="Bank-iTo.jsp"> <input type="button" class="btn btn-info" value="Volver" style="width: 132px; height: 53px;"></a>
 				<input type="submit" class="btn btn-warning" value="Consultar reportes." style="width: 144px; height: 53px;">

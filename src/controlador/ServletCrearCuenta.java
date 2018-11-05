@@ -65,7 +65,7 @@ public class ServletCrearCuenta extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 		
-		if (validar.validarCorreoElectronico(correo)==true && validar.validarTelefono(telefono)==true && validar.validarPin(pin))
+		if (validar.validarCorreoElectronico(correo)==true && validar.validarTelefono(telefono)==true && validar.validarPin(pin)==true)
 		{
 			try 
 			{
@@ -83,11 +83,12 @@ public class ServletCrearCuenta extends HttpServlet {
 			catch (Exception e) 
 			{
 				out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Error al crear su cuenta, inténtelo nuevamente.'); window.location='login.jsp'\"></body></html>");
+				e.printStackTrace();
 			}
 		}
 		else
 		{
-			out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('El email y/o el número de teléfono no es correcto.\nIntente registrar la cuenta de nuevo.'); window.location='login.jsp' \"></body></html>");
+			out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('El email y/o el número de teléfono no es correcto. Intente registrar la cuenta de nuevo.'); window.location='login.jsp' \"></body></html>");
 		}	
 	}
 

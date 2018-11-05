@@ -77,7 +77,7 @@ public class ServletDepositoDolares extends HttpServlet {
 			}
 		}
 		catch (SQLException e) {
-			out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Ocurrió un problema al realizar su retiro.'); window.location='Bank-iTo.jsp'\"></body></html>");
+			out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Ocurrió un problema al realizar su .'); window.location='Bank-iTo.jsp'\"></body></html>");
 		}
 	}
 

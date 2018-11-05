@@ -47,24 +47,22 @@ public class ServletCambiarCorreoNotificacione extends HttpServlet {
 		String contrasenna = request.getParameter("password").toString();
 		
 		ValidarDatos validar = new ValidarDatos();
-		
+
+		PrintWriter out = response.getWriter();
 		if (validar.validarCorreoElectronico(correo))
 		{
 			try 
 			{
 				EnviarMail.setDatos(correo, contrasenna);
-				PrintWriter out = response.getWriter();
 				out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('La cuenta para enviar notificaciones será "+correo+".'); window.location='Bank-iTo.jsp' \"></body></html>");
 			} 
 			catch (NumberFormatException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} 
+				out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('El email no es correcto. Error a la hora de actualizar la cuenta para enviar notificaciones.'); window.location='Bank-iTo.jsp' \"></body></html>");
+			}
 		}
 		else
 		{
-			PrintWriter out = response.getWriter();
-			out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('El email no es correcto.\nError a la hora de actualizar la cuenta par enviar notificaciones.'); window.location='Bank-iTo.jsp' \"></body></html>");
+			out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('El email no es correcto. Error a la hora de actualizar la cuenta para enviar notificaciones.'); window.location='Bank-iTo.jsp' \"></body></html>");
 		}
 		
 		

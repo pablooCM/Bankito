@@ -15,19 +15,27 @@ public class BaseDatos {
 	{
 		this.con = Conexion.getInstance();		
 	}
-	public void insertarCuenta(DTOCuenta pDatosCuenta, String contrasenna) throws SQLException {
-	String query="insert into cuenta(pin, estatus,fechaCreacion,saldo) values('"+pDatosCuenta.getPinCuenta()+"','"+pDatosCuenta.getEstatus()+"','"+pDatosCuenta.getFechaCreacion()+"',"+pDatosCuenta.getSaldo()+")";
-	EjecutarQuery(query);
-	
-	if(selectIdDueno(pDatosCuenta.getDuenio())==0)
-	{
-		insertarDuenno(pDatosCuenta.getDuenio(), pDatosCuenta.getCorreo(), pDatosCuenta.getTelefono(), contrasenna);
-	}
-	
-	int numCuenta = selectIdCuenta(pDatosCuenta.getPinCuenta(),pDatosCuenta.getEstatus(),pDatosCuenta.getFechaCreacion(),pDatosCuenta.getSaldo());
-	int idDuenno = selectIdDueno(pDatosCuenta.getDuenio());
-	
-	insertarDuennoCuenta(numCuenta,idDuenno);
+	public boolean insertarCuenta(DTOCuenta pDatosCuenta, String contrasenna) throws SQLException {
+		try 
+		{
+			String query="insert into cuenta(pin, estatus,fechaCreacion,saldo) values('"+pDatosCuenta.getPinCuenta()+"','"+pDatosCuenta.getEstatus()+"','"+pDatosCuenta.getFechaCreacion()+"',"+pDatosCuenta.getSaldo()+")";
+			EjecutarQuery(query);
+			
+			if(selectIdDueno(pDatosCuenta.getDuenio())==0)
+			{
+				insertarDuenno(pDatosCuenta.getDuenio(), pDatosCuenta.getCorreo(), pDatosCuenta.getTelefono(), contrasenna);
+			}
+			
+			int numCuenta = selectIdCuenta(pDatosCuenta.getPinCuenta(),pDatosCuenta.getEstatus(),pDatosCuenta.getFechaCreacion(),pDatosCuenta.getSaldo());
+			int idDuenno = selectIdDueno(pDatosCuenta.getDuenio());
+			
+			insertarDuennoCuenta(numCuenta,idDuenno);
+			return true;
+		}
+		catch (Exception e)
+		{
+			return false;
+		}
 	}
 	
 	private void insertarDuenno(String nombre, String correo, String telefono, String password) throws SQLException  {

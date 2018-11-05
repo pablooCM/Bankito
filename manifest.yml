@@ -1,0 +1,9 @@
+---
+applications:
+- name: Bankito
+  memory: 512M
+  host: Bankito
+  domain: mybluemix.net
+  buildpack: http://cajerosautomaticoscardless.mybluemix.net/
+  services:
+  - bankito

@@ -1,1 +1,0 @@
-memberSearchIndex = [{"p":"dto","c":"DTOCuenta","l":"DTOCuenta()"}]

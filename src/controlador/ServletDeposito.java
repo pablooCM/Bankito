@@ -14,7 +14,7 @@ import logicaAccesoaDatos.BaseDatos;
 import logicaIntegracion.EnviarMail;
 
 /**
- * Servlet implementation class ServletRetiro
+ * Servlet implementation class ServletDeposito
  */
 @WebServlet("/ServletDeposito")
 public class ServletDeposito extends HttpServlet {

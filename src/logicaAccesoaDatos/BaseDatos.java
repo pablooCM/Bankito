@@ -237,18 +237,6 @@ public class BaseDatos {
 		return null;
 	}
 	
-	public String selectPin(String cuenta) throws SQLException {
-		String select="Select PIN from cuenta where NUMEROCUENTA='"+cuenta+"'";
-		ResultSet rs = EjecutarSelect(select);
-		// Print all of the employee numbers to standard output device
-		while (rs.next())
-		{
-			String pin = rs.getString(1);
-			return pin;
-		}
-		return null;
-	}
-	
 	public int selectIdDueno(String nombre) throws SQLException {
 		String select="Select id_Duenno from duenno where nombre='"+nombre+"'";
 		ResultSet rs = EjecutarSelect(select);
@@ -297,9 +285,16 @@ public class BaseDatos {
 	}
 	
 	
-	public void selectPin(int numero) throws SQLException {
+	public String selectPin(int numero) throws SQLException {
 		String select="Select pin from cuenta where numeroCuenta="+numero;
-		EjecutarSelect(select);
+		ResultSet rs = EjecutarSelect(select);
+		// Print all of the employee numbers to standard output device
+		while (rs.next())
+		{
+			String pin = rs.getString(1);
+			return pin;
+		}
+		return null;
 	}
 	
 	public String selectCodigo() throws SQLException {

@@ -13,6 +13,7 @@ import logicaAccesoaDatos.BaseDatos;
 import logicaDeNegocios.CambioTelefono;
 import logicaDeNegocios.MD5;
 import logicaDeNegocios.ValidarDatos;
+import logicaIntegracion.EnviarMail;
 
 /**
  * Servlet implementation class ServletCambioTelefono
@@ -73,7 +74,6 @@ public class ServletCambioTelefono extends HttpServlet {
 						String telefonoAntiguo = con.selectTelefono(correo);
 						out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Estimado usuario, usted ha cambiado el número de teléfono "+telefonoAntiguo+" por el número "+telefono+"'); window.location='Bank-iTo.jsp'\"></body></html>");
 					}
-
 					else
 					{
 						System.out.println("Mantenimiento");
@@ -87,7 +87,13 @@ public class ServletCambioTelefono extends HttpServlet {
 						{
 							con.actualizarIntentoPin(0);
 							con.actualizarEstatusCuenta(Integer.parseInt(cuenta));
-							out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('La cuenta "+cuenta+" se inactivó por equivocarse más de tres veces en el pin.'); window.location='Bank-iTo.jsp'\"></body></html>");
+							
+							String correo = con.selectLogin();
+							String mensaje = "La cuenta "+cuenta+" se inactivó por equivocarse más de tres veces en el pin.";
+							
+							EnviarMail mail = EnviarMail.getMail();
+							mail.EnviarCorreo(correo, mensaje,"Inactivación",cuenta);
+							out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('"+mensaje+"'); window.location='Bank-iTo.jsp'\"></body></html>");
 						}
 						else
 						{

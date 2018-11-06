@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import logicaAccesoaDatos.BaseDatos;
 import logicaDeNegocios.MD5;
+import logicaIntegracion.EnviarMail;
 
 /**
  * Servlet implementation class ServletGraficos
@@ -155,7 +156,6 @@ public class ServletGraficos extends HttpServlet {
 								"</body>" + 
 								"</html>");
 					}
-
 					else
 					{
 						System.out.println("Mantenimiento");
@@ -169,7 +169,13 @@ public class ServletGraficos extends HttpServlet {
 						{
 							con.actualizarIntentoPin(0);
 							con.actualizarEstatusCuenta(Integer.parseInt(cuenta));
-							out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('La cuenta "+cuenta+" se inactivó por equivocarse más de tres veces en el pin.'); window.location='Bank-iTo.jsp'\"></body></html>");
+							
+							String correo = con.selectLogin();
+							String mensaje = "La cuenta "+cuenta+" se inactivó por equivocarse más de tres veces en el pin.";
+							
+							EnviarMail mail = EnviarMail.getMail();
+							mail.EnviarCorreo(correo, mensaje,"Inactivación",cuenta);
+							out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('"+mensaje+"'); window.location='Bank-iTo.jsp'\"></body></html>");
 						}
 						else
 						{

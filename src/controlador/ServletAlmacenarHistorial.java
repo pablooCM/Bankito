@@ -10,21 +10,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import logicaAccesoaDatos.BaseDatos;
-import logicaDeNegocios.ConsultaEstadoCuentaCambioMoneda;
+import logicaDeNegocios.CambioPin;
 import logicaDeNegocios.MD5;
+import logicaDeNegocios.ValidarDatos;
 import logicaIntegracion.EnviarMail;
 
 /**
- * Servlet implementation class ServletEstadoCuentaDolares
+ * Servlet implementation class ServletAlmacenarHistorial
  */
-@WebServlet("/ServletEstadoCuentaDolares")
-public class ServletEstadoCuentaDolares extends HttpServlet {
+@WebServlet("/ServletAlmacenarHistorial")
+public class ServletAlmacenarHistorial extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletEstadoCuentaDolares() {
+    public ServletAlmacenarHistorial() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -48,10 +49,9 @@ public class ServletEstadoCuentaDolares extends HttpServlet {
 
 		PrintWriter out = response.getWriter();	
 
-		int cuentaInt = Integer.parseInt(cuenta);
 		try 
 		{
-			if(con.selectEstatus(cuentaInt).equals("activa"))
+			if(con.selectEstatus(Integer.parseInt(cuenta)).equals("activa"))
 			{
 				try 
 				{			        
@@ -61,13 +61,21 @@ public class ServletEstadoCuentaDolares extends HttpServlet {
 					
 					int cuenta_consult = con.selectCuenta(cuenta, pinEncriptado);
 			        
-					if(cuenta_consult != 0)
-					{	
+					ValidarDatos validar = new ValidarDatos();
+					
+					
+					if(cuenta_consult != 0 && validar.validarPin(pinNuevo))
+					{			
 						con.actualizarIntentoPin(0);
-						ConsultaEstadoCuentaCambioMoneda consulta = new ConsultaEstadoCuentaCambioMoneda(cuentaInt, pinEncriptado);
-						String msg = consulta.consultarBaseDatos();
-						out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('"+msg+"'); window.location='Bank-iTo.jsp'\"></body></html>");
+						String pinEncriptadoNuevo = MD5.Encriptar(pinNuevo);
+				         
+				        System.out.println("Verifica:"+pinEncriptado);
+						CambioPin cambiar = new CambioPin(Integer.parseInt(cuenta), pinEncriptadoNuevo);
+						cambiar.actualizarBaseDatos();
+						out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Estimado usuario, se ha cambiado satisfactoriamente el PIN de su cuenta "+cuenta+"'); window.location='Bank-iTo.jsp'\"></body></html>");
 					}
+
+
 					else
 					{
 						System.out.println("Mantenimiento");

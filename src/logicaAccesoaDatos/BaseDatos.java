@@ -54,7 +54,7 @@ public class BaseDatos {
 		
 		double saldo = selectSaldoCuenta(numero);
 		double total = monto+comision;
-		String query="insert into deposito(numeroCuenta,monto,comision, fecha) values("+numero+","+total+","+comision+"','"+sqlDate+"')";	
+		String query="insert into deposito(numeroCuenta,monto,comision, fecha) values("+numero+","+total+","+comision+",'"+sqlDate+"')";	
 		EjecutarQuery(query);
 		
 		actualizarSaldo(numero, saldo+monto-comision);
@@ -71,7 +71,7 @@ public class BaseDatos {
 		System.out.println(saldo+">"+total);
 		if(saldo>=total)
 		{
-			String query="insert into retiro(numeroCuenta,monto,comision,fecha) values("+numero+","+total+","+comision+"','"+sqlDate+"')";
+			String query="insert into retiro(numeroCuenta,monto,comision,fecha) values("+numero+","+total+","+comision+",'"+sqlDate+"')";
 			System.out.println(query);
 			EjecutarQuery(query);
 			

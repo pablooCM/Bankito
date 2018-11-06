@@ -14,9 +14,9 @@ import logicaAccesoaDatos.BaseDatos;
 public class CambioPin implements IActualizacion{
 	private int numeroCuenta;
 	private String pinCuenta;
-	public CambioPin(int pNumeroCuenta, String pinCuenta) {
+	public CambioPin(int pNumeroCuenta, String pPinCuenta) {
 		this.numeroCuenta= pNumeroCuenta;
-		this.pinCuenta=pinCuenta;
+		this.pinCuenta=pPinCuenta;
 	}
 	@Override
 	public void actualizarBaseDatos() throws SQLException {

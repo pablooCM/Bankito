@@ -4,18 +4,18 @@ import logicaAccesoaDatos.BaseDatos;
 
 
 public class CambioCorreo implements IActualizacion{
-	private String nombre;
+	private String correoAnterior;
 	private String nuevoCorreo;
 	 
 	public CambioCorreo(String pCorreoAnterior, String pNuevoCorreo) {
-		nombre=pCorreoAnterior;
+		correoAnterior=pCorreoAnterior;
 		nuevoCorreo=pNuevoCorreo;
 	}
 
 	@Override
 	public void actualizarBaseDatos() throws SQLException {
 		BaseDatos bs= new BaseDatos();
-		bs.actualizarCorreo(nombre, nuevoCorreo);
+		bs.actualizarCorreo(correoAnterior, nuevoCorreo);
 	}
 }
 

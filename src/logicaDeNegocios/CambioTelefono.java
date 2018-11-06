@@ -16,8 +16,8 @@ public class CambioTelefono implements IActualizacion{
 	private String correo;
 	private String telefono;
 	
-	public CambioTelefono(String pnombre, String pcorreo, String pTelefono) {
-		this.nombre=pnombre;
+	public CambioTelefono(String pNombre, String pcorreo, String pTelefono) {
+		this.nombre=pNombre;
 		this.correo= pcorreo;
 		this.telefono=pTelefono;
 	

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import logicaAccesoaDatos.BaseDatos;
 import logicaDeNegocios.ConsultaSaldoCambioMoneda;
 import logicaDeNegocios.MD5;
+import logicaIntegracion.EnviarMail;
 import logicaIntegracion.TipoCambio;
 
 /**
@@ -70,7 +71,6 @@ public class ServletSaldoDolares extends HttpServlet {
 						double compra = cambio.getCompra();
 						out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Estimado usuario, el saldo actual de su cuenta es "+saldo+" dólares. Para esta conversión se utilizó el tipo de cambio del dólar, precio de compra. [Según el BCCR, el tipo de cambio de compra del dólar de hoy es: "+compra+"]'); window.location='Bank-iTo.jsp'\"></body></html>");
 					}
-
 					else
 					{
 						System.out.println("Mantenimiento");
@@ -84,7 +84,13 @@ public class ServletSaldoDolares extends HttpServlet {
 						{
 							con.actualizarIntentoPin(0);
 							con.actualizarEstatusCuenta(Integer.parseInt(cuenta));
-							out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('La cuenta "+cuenta+" se inactivó por equivocarse más de tres veces en el pin.'); window.location='Bank-iTo.jsp'\"></body></html>");
+							
+							String correo = con.selectLogin();
+							String mensaje = "La cuenta "+cuenta+" se inactivó por equivocarse más de tres veces en el pin.";
+							
+							EnviarMail mail = EnviarMail.getMail();
+							mail.EnviarCorreo(correo, mensaje,"Inactivación",cuenta);
+							out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('"+mensaje+"'); window.location='Bank-iTo.jsp'\"></body></html>");
 						}
 						else
 						{

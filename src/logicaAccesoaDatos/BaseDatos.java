@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
 import java.sql.Statement;
+import java.sql.Time;
 
 import dto.DTOCuenta;
 
@@ -15,6 +16,7 @@ public class BaseDatos {
 	{
 		this.con = Conexion.getInstance();		
 	}
+	
 	public boolean insertarCuenta(DTOCuenta pDatosCuenta, String contrasenna) throws SQLException {
 		try 
 		{
@@ -45,10 +47,14 @@ public class BaseDatos {
 		EjecutarQuery(query);
 	}
 	
-	public boolean insertarDeposito(int numero, double monto, double comision ) throws SQLException {
+	public boolean insertarDeposito(int numero, double monto, double comision) throws SQLException {
+		
+		java.util.Date date = new java.util.Date();
+		java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+		
 		double saldo = selectSaldoCuenta(numero);
 		double total = monto+comision;
-		String query="insert into deposito(numeroCuenta,monto,comision) values("+numero+","+total+","+comision+")";	
+		String query="insert into deposito(numeroCuenta,monto,comision, fecha) values("+numero+","+total+","+comision+",'"+sqlDate+"')";	
 		EjecutarQuery(query);
 		
 		actualizarSaldo(numero, saldo+monto-comision);
@@ -56,12 +62,16 @@ public class BaseDatos {
 	}
 	
 	public boolean insertarRetiro(int numero, double monto,double comision) throws SQLException {
+		
+		java.util.Date date = new java.util.Date();
+		java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+		
 		double saldo = selectSaldoCuenta(numero);
 		double total = monto+comision;
 		System.out.println(saldo+">"+total);
 		if(saldo>=total)
 		{
-			String query="insert into retiro(numeroCuenta,monto,comision) values("+numero+","+total+","+comision+")";
+			String query="insert into retiro(numeroCuenta,monto,comision,fecha) values("+numero+","+total+","+comision+",'"+sqlDate+"')";
 			System.out.println(query);
 			EjecutarQuery(query);
 			
@@ -70,6 +80,13 @@ public class BaseDatos {
 		}			
 		return false;
 	}
+
+	public void insertarHistorial(Date fecha, Time hora, String accion, int idDuenno) throws SQLException {
+		String query="insert into historial(FECHA, HORA, ACCION, USUARIO) values('"+fecha+"','"+hora+"','"+accion+"',"+idDuenno+")";
+		System.out.println(query);
+		EjecutarQuery(query);
+	}
+	
 	public void insertarCodigoVerificacion(String codigo) throws SQLException {
 		eliminarCodigo();
 		
@@ -237,18 +254,6 @@ public class BaseDatos {
 		return null;
 	}
 	
-	public String selectPin(String cuenta) throws SQLException {
-		String select="Select PIN from cuenta where NUMEROCUENTA='"+cuenta+"'";
-		ResultSet rs = EjecutarSelect(select);
-		// Print all of the employee numbers to standard output device
-		while (rs.next())
-		{
-			String pin = rs.getString(1);
-			return pin;
-		}
-		return null;
-	}
-	
 	public int selectIdDueno(String nombre) throws SQLException {
 		String select="Select id_Duenno from duenno where nombre='"+nombre+"'";
 		ResultSet rs = EjecutarSelect(select);
@@ -297,9 +302,16 @@ public class BaseDatos {
 	}
 	
 	
-	public void selectPin(int numero) throws SQLException {
+	public String selectPin(int numero) throws SQLException {
 		String select="Select pin from cuenta where numeroCuenta="+numero;
-		EjecutarSelect(select);
+		ResultSet rs = EjecutarSelect(select);
+		// Print all of the employee numbers to standard output device
+		while (rs.next())
+		{
+			String pin = rs.getString(1);
+			return pin;
+		}
+		return null;
 	}
 	
 	public String selectCodigo() throws SQLException {
@@ -313,7 +325,7 @@ public class BaseDatos {
 		return null;
 	}
 	
-	public ResultSet selectHistorial() throws SQLException {
+	public ResultSet selectHistorial(int idDuenno) throws SQLException {
 		String select="Select * from Historial";
 		ResultSet rs=EjecutarSelect(select);
 		return rs;
@@ -397,7 +409,7 @@ public class BaseDatos {
 		return 0;
 	}
 		public double selectComisionRetiros(int numeroCuenta) throws SQLException{
-			String select="select sum(comisiones) as monto_comisiones from retiro where numeroCuenta="+numeroCuenta;
+			String select="select sum(comision) as monto_comisiones from retiro where numeroCuenta="+numeroCuenta;
 			ResultSet rs=EjecutarSelect(select);
 			while(rs.next()) {
 				double monto=rs.getDouble(1);
@@ -408,7 +420,7 @@ public class BaseDatos {
 			
 		}
 		public double selectComisionDebitos(int numeroCuenta) throws SQLException{
-			String select="select sum(comisiones) as monto_comisiones from deposito where numeroCuenta="+numeroCuenta;
+			String select="select sum(comision) as monto_comisiones from deposito where numeroCuenta="+numeroCuenta;
 			ResultSet rs=EjecutarSelect(select);
 			while(rs.next()) {
 				double monto=rs.getDouble(1);

@@ -11,7 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import logicaAccesoaDatos.BaseDatos;
+import logicaIntegracion.AlmacenarBitacora;
+import logicaIntegracion.Bitacora;
+import logicaIntegracion.CSV;
 import logicaIntegracion.EnviarMail;
+import logicaIntegracion.Posicional;
+import logicaIntegracion.XML;
 
 /**
  * Servlet implementation class ServletLogin
@@ -58,6 +63,17 @@ public class ServletLogin extends HttpServlet
 			con.insertarLogin(correo);
 			EnviarMail.getMail();
 			
+			AlmacenarBitacora bitacora = AlmacenarBitacora.getInstancia();
+			Bitacora csv;
+			Posicional posicional;
+			XML xml;
+			
+			csv = new CSV(bitacora);
+			posicional = new Posicional(bitacora);
+			xml = new XML(bitacora);
+			bitacora.agregarBitacora(posicional);
+			bitacora.agregarBitacora(xml);
+			bitacora.agregarBitacora(csv);
 		} 
 		catch (SQLException e) 
 		{

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import logicaAccesoaDatos.BaseDatos;
 import logicaDeNegocios.ConsultaSaldo;
 import logicaDeNegocios.MD5;
+import logicaIntegracion.EnviarMail;
 
 /**
  * Servlet implementation class ServletSaldoColones
@@ -67,7 +68,6 @@ public class ServletSaldoColones extends HttpServlet {
 						double saldo = (double) consulta.consultarBaseDatos();
 						out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Estimado usuario, el saldo actual de su cuenta es "+saldo+" colones'); window.location='Bank-iTo.jsp'\"></body></html>");
 					}
-
 					else
 					{
 						System.out.println("Mantenimiento");
@@ -75,20 +75,24 @@ public class ServletSaldoColones extends HttpServlet {
 						if(intentos<3)
 						{
 							con.actualizarIntentoPin(intentos+1);
-
 							response.sendRedirect("Bank-iTo.jsp");
 						}
 						else if (intentos==3)
 						{
 							con.actualizarIntentoPin(0);
 							con.actualizarEstatusCuenta(Integer.parseInt(cuenta));
-							out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('La cuenta "+cuenta+" se inactivó por equivocarse más de tres veces en el pin.'); window.location='Bank-iTo.jsp'\"></body></html>");
+							
+							String correo = con.selectLogin();
+							String mensaje = "La cuenta "+cuenta+" se inactivó por equivocarse más de tres veces en el pin.";
+							
+							EnviarMail mail = EnviarMail.getMail();
+							mail.EnviarCorreo(correo, mensaje,"Inactivación",cuenta);
+							out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('"+mensaje+"'); window.location='Bank-iTo.jsp'\"></body></html>");
 						}
 						else
 						{
 							out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Raios .__.'); window.location='Bank-iTo.jsp'\"></body></html>");
 						}
-						
 					}
 				}
 				catch (Exception e) 

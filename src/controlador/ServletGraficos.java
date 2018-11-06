@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import logicaAccesoaDatos.BaseDatos;
 import logicaDeNegocios.MD5;
+import logicaIntegracion.EnviarMail;
 
 /**
  * Servlet implementation class ServletGraficos
@@ -67,6 +68,10 @@ public class ServletGraficos extends HttpServlet {
 						int retiros = con.selectCantidadRetiros(cuentaInt);
 						double montoDeb = con.selectMontoDebitos(cuentaInt);
 						double montoCre = con.selectMontoRetiros(cuentaInt);
+						double comisionesDeb = con.selectComisionDebitos(cuentaInt);
+						double comisionesCre = con.selectComisionRetiros(cuentaInt);
+						double comisionesTotales = con.selectComisionesTotales(cuentaInt);
+						double saldo = con.selectSaldoCuenta(cuentaInt);
 						
 						out.println("<!DOCTYPE html>\r\n" + 
 								"<html style=\"width: 706px; height: 1064px\">\r\n" + 
@@ -99,7 +104,11 @@ public class ServletGraficos extends HttpServlet {
 								"  </head>\r\n" + 
 								"	<body>  \r\n" + 
 								"	<fieldset style=\" text-align: left; width: 621px; height: 328px\">  \r\n" + 
-								"		<legend style=\"width: 287px; \">Gráfico:</legend>  \r\n" + 
+								"		<legend style=\"width: 287px; \">Reportes:</legend>  \r\n" + 
+								"		<p>--Monto total de comisiones:"+comisionesTotales+"</p>"+
+								"		<p>----Monto comisiones de crédito:"+comisionesCre+"</p>"+
+								"		<p>----Monto comisiones de débito:"+comisionesDeb+"</p>"+
+								"		<p>--Saldo actual de la cuenta:"+saldo+"</p>"+
 								"		<a href=\"Bank-iTo.jsp\"> <input type=\"button\" class=\"btn btn-info\" value=\"Volver\" style=\"width: 132px; height: 53px;\"></a>"+
 								"		<div id=\"movimientos\" style=\"width: 466px; height: 257px;\"></div>  \r\n" + 
 								"  	</fieldset>		  \r\n" + 
@@ -121,12 +130,12 @@ public class ServletGraficos extends HttpServlet {
 								"      google.charts.setOnLoadCallback(drawStuff);\r\n" + 
 								"\r\n" + 
 								"      function drawStuff() {\r\n" +  
-								"        var data = google.visualization.arrayToDataTable([\r\n" + 
+								"        var data1 = google.visualization.arrayToDataTable([\r\n" + 
 								"          ['Movimiento', 'Cantidad',{ role: 'style' }],\r\n" + 
 								"          ['Retiros',  "+montoCre+",'"+retirosColor+"'],\r\n" + 
 								"          ['Depósitos', "+montoDeb+",'"+debitosColor+"'],\r\n" + 
 								"        ]);\r\n" +
-								"        var options = {\r\n" + 
+								"        var options1 = {\r\n" + 
 								"          title: 'Montos por movimientos',\r\n" + 
 								"          width: 900,\r\n" + 
 								"          legend: { position: 'none' },\r\n" + 
@@ -142,7 +151,7 @@ public class ServletGraficos extends HttpServlet {
 								"        };\r\n" + 
 								"\r\n" + 
 								"        var chart = new google.charts.Bar(document.getElementById('DATOS'));\r\n" + 
-								"        chart.draw(data, options);\r\n" + 
+								"        chart.draw(data1, options1);\r\n" + 
 								"      };\r\n" + 
 								"    </script>\r\n" + 
 								"  \r\n" + 
@@ -155,7 +164,6 @@ public class ServletGraficos extends HttpServlet {
 								"</body>" + 
 								"</html>");
 					}
-
 					else
 					{
 						System.out.println("Mantenimiento");
@@ -169,7 +177,13 @@ public class ServletGraficos extends HttpServlet {
 						{
 							con.actualizarIntentoPin(0);
 							con.actualizarEstatusCuenta(Integer.parseInt(cuenta));
-							out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('La cuenta "+cuenta+" se inactivó por equivocarse más de tres veces en el pin.'); window.location='Bank-iTo.jsp'\"></body></html>");
+							
+							String correo = con.selectLogin();
+							String mensaje = "La cuenta "+cuenta+" se inactivó por equivocarse más de tres veces en el pin.";
+							
+							EnviarMail mail = EnviarMail.getMail();
+							mail.EnviarCorreo(correo, mensaje,"Inactivación",cuenta);
+							out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('"+mensaje+"'); window.location='Bank-iTo.jsp'\"></body></html>");
 						}
 						else
 						{

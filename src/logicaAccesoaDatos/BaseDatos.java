@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
 import java.sql.Statement;
+import java.sql.Time;
 
 import dto.DTOCuenta;
 
@@ -15,6 +16,7 @@ public class BaseDatos {
 	{
 		this.con = Conexion.getInstance();		
 	}
+	
 	public boolean insertarCuenta(DTOCuenta pDatosCuenta, String contrasenna) throws SQLException {
 		try 
 		{
@@ -70,6 +72,13 @@ public class BaseDatos {
 		}			
 		return false;
 	}
+
+	public void insertarHistorial(Date fecha, Time hora, String accion, String correo) throws SQLException {
+		String query="insert into historial(FECHA, HORA, ACCION, USUARIO) values("+fecha+","+hora+","+accion+","+correo+")";
+		System.out.println(query);
+		EjecutarQuery(query);
+	}
+	
 	public void insertarCodigoVerificacion(String codigo) throws SQLException {
 		eliminarCodigo();
 		

@@ -90,7 +90,7 @@ body {
 	<center class="vertical-menu" style="width: 321px; height: 238px; visibility: visible; top: auto; left: auto; bottom: auto; position: absolute; right: auto">
 		<a href="Bank-iTo.jsp" class="active" style="font-family: Arial, Helvetica, sans-serif;">Bank-iTo</a>
 		<a href="consultarEstatus.jsp" style="font-family: Arial, Helvetica, sans-serif;">Consultar estatus de cuenta. </a>
-		<a href="No Disponible" style="font-family: Arial, Helvetica, sans-serif;">Módulo de bitácora. </a>
+		<a href="moduloBitacora" style="font-family: Arial, Helvetica, sans-serif;">Módulo de bitácora. </a>
 	</center>
 </body>
 </html>

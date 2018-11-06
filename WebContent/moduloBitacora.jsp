@@ -71,23 +71,24 @@ body {
 <body style="width: 472px; height: 780px; ">
 	<fieldset style="text-align: left; width: 381px; height: 394px">
 		<legend style="width: 340px; ">Módulo Bitácora:</legend>
-		<form action="ServletCambiarPin" method="post" style="width: 375px; height: 231px">
+		<form action="ServletAlmacenarHistorial" method="post" style="width: 375px; height: 231px">
+			<p style="width: 481px;">
+				<label for="fecha" style="width: 147px;">Fecha:</label> 
+					<input size="9" type="date" id="fecha" name="fecha" style="width: 197px;">
+			</p>
+			<p style="width: 477px;">
+				<label for="horaInicio" style="width: 144px;">Hora Inicio:</label>
+					<input name="horaInicio" type="text" id="horaInicio" class="horaInicio" style="width: 200px;"> 
+			</p>				
 			<p style="width: 369px; height: 37px">
-				<label for="cuenta" style="width: 143px;">Número de cuenta:</label>
-				<input name="cuenta" type="text" id="cuenta" class="cuenta" style="width: 202px;">
-			</p> 	
-			<p style="width: 369px; height: 37px">
-				<label for="pinA" style="width: 143px;">Pin actual:</label>
-				<input name="pinA" type="text" id="pinA" class="pinA" style="width: 202px;" value="El pin debe ser alfanumérico">
-			</p> 				
-			<p style="width: 369px; height: 37px">
-				<label for="pin" style="width: 143px;">Pin:</label>
-				<input name="pin" type="text" id="pin" class="pin" style="width: 202px;" value="El pin debe ser alfanumérico"> 				
+				<label for="accion" style="width: 143px;">Acción realizada:</label>
+				<input name="accion" type="text" id="accion" class="accion" style="width: 202px;"> 				
 			</p>
 			<p style="text-align: center; width: 361px" >
 				<a href="Bank-iTo.jsp"> <input type="button" class="btn btn-info" value="Volver" style="width: 132px; height: 53px;"></a>
-				<input type="submit" class="btn btn-warning" value="Actualizar" style="width: 132px; height: 53px;">
+				<input type="submit" class="btn btn-warning" value="Registrar" style="width: 132px; height: 53px;">
 			</p>
+			<a href="verBitacora" style="text-align: center; font-family: Arial, Helvetica, sans-serif; width: 408px; height: 25px;">Ver bitácora. </a>
 		</form>
 	</fieldset>	
 </body>

@@ -122,12 +122,12 @@ public class ServletGraficos extends HttpServlet {
 								"      google.charts.setOnLoadCallback(drawStuff);\r\n" + 
 								"\r\n" + 
 								"      function drawStuff() {\r\n" +  
-								"        var data = google.visualization.arrayToDataTable([\r\n" + 
+								"        var data1 = google.visualization.arrayToDataTable([\r\n" + 
 								"          ['Movimiento', 'Cantidad',{ role: 'style' }],\r\n" + 
 								"          ['Retiros',  "+montoCre+",'"+retirosColor+"'],\r\n" + 
 								"          ['Depósitos', "+montoDeb+",'"+debitosColor+"'],\r\n" + 
 								"        ]);\r\n" +
-								"        var options = {\r\n" + 
+								"        var options1 = {\r\n" + 
 								"          title: 'Montos por movimientos',\r\n" + 
 								"          width: 900,\r\n" + 
 								"          legend: { position: 'none' },\r\n" + 
@@ -143,7 +143,7 @@ public class ServletGraficos extends HttpServlet {
 								"        };\r\n" + 
 								"\r\n" + 
 								"        var chart = new google.charts.Bar(document.getElementById('DATOS'));\r\n" + 
-								"        chart.draw(data, options);\r\n" + 
+								"        chart.draw(data1, options1);\r\n" + 
 								"      };\r\n" + 
 								"    </script>\r\n" + 
 								"  \r\n" + 

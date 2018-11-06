@@ -73,7 +73,7 @@ body {
 		<form action="SERVLET" method="post" style="width: 375px; height: 339px">
 			<p>
 				<label for="montoTransferir" style="width: 143px;">Monto a transferir:</label>  
-				<input name="montoTransferir" type="number" id="montoTransferir" class="montoTransferir" style="width: 136px;">
+				<input name="montoTransferir" type="text" id="montoTransferir" class="montoTransferir" style="width: 136px;">
 				colones.		
 			</p>	
 					<p style="width: 369px; height: 37px">

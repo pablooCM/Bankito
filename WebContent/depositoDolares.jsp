@@ -78,7 +78,7 @@ body {
 			</p> 	
 			<p>
 				<label for="monto" style="width: 143px;">Monto a depositar:</label> 
-				<input name="monto" type="number" id="monto" class="monto" style="width: 136px;">		
+				<input name="monto" type="text" id="monto" class="monto" style="width: 136px;">		
 				dólares.
 				
 			</p>

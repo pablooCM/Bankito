@@ -55,7 +55,7 @@ public class ServletLogin extends HttpServlet
 		{
 			user = con.selectLogin(correo, contrasenna);
 			nombreDuenno = con.selectNombreDuenno(correo);
-			request.getSession().setAttribute("user", user);   
+			con.insertarLogin(correo);
 			EnviarMail.getMail();
 			
 		} 

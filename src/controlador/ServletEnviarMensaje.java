@@ -47,7 +47,8 @@ public class ServletEnviarMensaje extends HttpServlet {
 			System.out.println(codigo);
 			BaseDatos con = new BaseDatos();
 			
-			String correo = request.getSession().getAttribute("user").toString();
+
+			String correo = con.selectLogin();
 			String telefono = con.selectTelefono(correo);
 			
 			if(telefono != null) 

@@ -65,7 +65,7 @@ public class ServletCambioTelefono extends HttpServlet {
 					if(cuenta_consult != 0 && validar.validarTelefono(telefono)==true)
 					{		
 						con.actualizarIntentoPin(0);
-						String correo = request.getSession().getAttribute("user").toString();
+						String correo = con.selectLogin();
 						String nombre = con.selectNombreDuenno(correo);
 						CambioTelefono cambiar = new CambioTelefono(nombre, correo, telefono);
 						cambiar.actualizarBaseDatos();

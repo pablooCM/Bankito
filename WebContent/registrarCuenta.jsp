@@ -89,7 +89,7 @@ body {
 		</p>
 		<p>
 			<label for="montoInicial" style="width: 143px;">Monto Inicial:</label> 
-			<input name="montoInicial" type="number" id="montoInicial" class="monto" style="width: 204px;">		
+			<input name="montoInicial" type="text" id="montoInicial" class="monto" style="width: 204px;">		
 		</p>			
 		<p style="text-align: center; width: 358px" >
 			<a href="login.jsp"> <input type="button" class="btn btn-info" value="Volver" style="width: 132px; height: 53px;"></a>

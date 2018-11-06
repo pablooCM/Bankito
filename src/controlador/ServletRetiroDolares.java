@@ -34,10 +34,8 @@ public class ServletRetiroDolares extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
         String cuenta = request.getParameter("cuenta").toString();
-        String correo = request.getSession().getAttribute("user").toString();
         
 		double montoDolares = Double.parseDouble(request.getParameter("monto").toString());
-		
 		
 		TipoCambio servicioTipoCambio = new TipoCambio();
 		double venta = servicioTipoCambio.getVenta();
@@ -48,7 +46,13 @@ public class ServletRetiroDolares extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		try 
 		{
-			double comision = (montoColones*0.02);
+			String correo = con.selectLogin();
+			int transacciones = con.selectCantidadRetiros(Integer.parseInt(cuenta)) + con.selectCantidadDebitos(Integer.parseInt(cuenta));
+			double comision = 0;
+			if (transacciones > 5)
+			{
+				comision = (montoColones*0.02);
+			}
 			boolean valor = con.insertarRetiro(Integer.parseInt(cuenta), montoColones, comision);
 			
 			if(valor==true)
@@ -56,15 +60,8 @@ public class ServletRetiroDolares extends HttpServlet {
 				String mensaje = "Estimado usuario, se han retirado correctamente "+montoColones+" colones. [El monto real retirado de su cuenta "+cuenta+" fue de "+(montoColones+comision)+" colones][El monto cobrado por concepto de comisión fue de "+ comision +" colones, que fueron rebajados automáticamente de su saldo actual]";
 				
 				EnviarMail mail = EnviarMail.getMail();
-				if(mail.EnviarCorreo(correo, mensaje,"retiro",cuenta)==true)
-				{
-					out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('"+mensaje+"'); window.location='Bank-iTo.jsp'\"></body></html>");	
-				} 
-				else
-				{
-					out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Verifique que los datos ingresados sean correctos.'); window.location='Bank-iTo.jsp'\"></body></html>");
-				}
-				
+				mail.EnviarCorreo(correo, mensaje,"depósito",cuenta);
+				out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('"+mensaje+"'); window.location='Bank-iTo.jsp'\"></body></html>");	
 			}
 			else
 			{

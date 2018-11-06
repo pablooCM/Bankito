@@ -79,42 +79,31 @@ public class ServletGraficos extends HttpServlet {
 								"<title>Bank-iTo</title>\r\n" +
 								"<script type=\"text/javascript\" src=\"https://www.gstatic.com/charts/loader.js\"></script>\r\n" + 
 								"    <script type=\"text/javascript\">\r\n" + 
-								"          google.charts.load('current', {'packages':['corechart']});\r\n" + 
-								"    google.charts.setOnLoadCallback(drawChart);\r\n" + 
-								"\r\n" + 
-								"    function drawChart() {\r\n" + 
-								"\r\n" + 
-								"      var data = new google.visualization.DataTable();\r\n" + 
-								"      data.addColumn('string', 'Pizza');\r\n" + 
-								"      data.addColumn('number', 'Populartiy');\r\n" + 
-								"      data.addRows([\r\n" + 
-								"        ['Pepperoni', 33],\r\n" + 
-								"        ['Hawaiian', 26],\r\n" + 
-								"        ['Mushroom', 22],\r\n" + 
-								"        ['Sausage', 10], // Below limit.\r\n" + 
-								"        ['Anchovies', 9] // Below limit.\r\n" + 
-								"      ]);\r\n" + 
-								"\r\n" + 
-								"      var options = {\r\n" + 
-								"        title: 'Popularity of Types of Pizza',\r\n" + 
-								"        sliceVisibilityThreshold: .2\r\n" + 
-								"      };\r\n" + 
-								"\r\n" + 
-								"      var chart = new google.visualization.PieChart(document.getElementById('MOVIMIENTOS'));\r\n" + 
-								"      chart.draw(data, options);\r\n" + 
-								"    }"+
+								"      google.charts.load(\"current\", {packages:[\"corechart\"]});\r\n" + 
+								"      google.charts.setOnLoadCallback(drawChart);\r\n" + 
+								"      function drawChart() {\r\n" + 
+								"        var data = google.visualization.arrayToDataTable([\r\n" + 
+								"          ['Movimiento', 'Cantidad'],\r\n" + 
+								"          ['Retiros',  "+retiros+"],\r\n" + 
+								"          ['Depósitos', "+debitos+"],\r\n" + 
+								"          ['Transferencias', "+transferencias+"],\r\n" + 
+								"        ]);\r\n" +
+								"        var options = {\r\n" + 
+								"          title: 'Movimientos de la cuenta "+cuenta+"',\r\n" + 
+								"          is3D: true,\r\n" + 
+								"		   slices: {0: {color: '"+retirosColor+"'}, 1:{color: '"+debitosColor+"'}, 2:{color: 'red'}}}\r\n" +  
+								"        var chart = new google.visualization.PieChart(document.getElementById('movimientos'));\r\n" + 
+								"        chart.draw(data, options);\r\n" + 
+								"      }\r\n" + 
 								"    </script>\r\n" + 
-								"  \r\n" + 
-								"</head>\r\n" + 
-								"<body style=\"width: 485px; height: 555px; \">\r\n" + 
-								"	<fieldset style=\" text-align: left; width: 381px; height: 394px\">\r\n" + 
-								"		<legend style=\"width: 287px; \">Reportes cuenta: "+cuenta+":</legend>\r\n" + 
-								"		<p style=\"text-align: center; width: 358px\" >\r\n" + 
-								"			<a href=\"Consultas.jsp\"> <input type=\"button\" class=\"btn btn-info\" value=\"Volver\" style=\"width: 132px; height: 53px;\"></a>\r\n" + 								 
-								"		</p>" + 
-								"		<div id=\"MOVIMIENTOS\" style=\"background-color: #f1f1f1;width: 360px; height: 270px;\"></div>\r\n" + 
-								"  	</fieldset>		\r\n" + 
-								"</body>\r\n" + 
+								"  </head>\r\n" + 
+								"	<body>  \r\n" + 
+								"	<fieldset style=\" text-align: left; width: 621px; height: 328px\">  \r\n" + 
+								"		<legend style=\"width: 287px; \">Gráfico:</legend>  \r\n" + 
+								"		<a href=\"Bank-iTo.jsp\"> <input type=\"button\" class=\"btn btn-info\" value=\"Volver\" style=\"width: 132px; height: 53px;\"></a>"+
+								"		<div id=\"movimientos\" style=\"width: 466px; height: 257px;\"></div>  \r\n" + 
+								"  	</fieldset>		  \r\n" + 
+								"</body>  \r\n" + 
 								"</html>");
 						
 						out.println("<!DOCTYPE html>\r\n" + 
@@ -131,26 +120,22 @@ public class ServletGraficos extends HttpServlet {
 								"      google.charts.load('current', {'packages':['bar']});\r\n" + 
 								"      google.charts.setOnLoadCallback(drawStuff);\r\n" + 
 								"\r\n" + 
-								"      function drawStuff() {\r\n" + 
-								"        var data = new google.visualization.arrayToDataTable([\r\n" + 
-								"          ['Opening Move', 'Percentage'],\r\n" + 
-								"          [\"King's pawn (e4)\", 44],\r\n" + 
-								"          [\"Queen's pawn (d4)\", 31],\r\n" + 
-								"          [\"Knight to King 3 (Nf3)\", 12],\r\n" + 
-								"          [\"Queen's bishop pawn (c4)\", 10],\r\n" + 
-								"          ['Other', 3]\r\n" + 
-								"        ]);\r\n" + 
-								"\r\n" + 
+								"      function drawStuff() {\r\n" +  
+								"        var data = google.visualization.arrayToDataTable([\r\n" + 
+								"          ['Movimiento', 'Cantidad',{ role: 'style' }],\r\n" + 
+								"          ['Retiros',  "+montoCre+",'"+retirosColor+"'],\r\n" + 
+								"          ['Depósitos', "+montoDeb+",'"+debitosColor+"'],\r\n" + 
+								"        ]);\r\n" +
 								"        var options = {\r\n" + 
-								"          title: 'Chess opening moves',\r\n" + 
+								"          title: 'Montos por movimientos',\r\n" + 
 								"          width: 900,\r\n" + 
 								"          legend: { position: 'none' },\r\n" + 
-								"          chart: { title: 'Chess opening moves',\r\n" + 
-								"                   subtitle: 'popularity by percentage' },\r\n" + 
+								"          chart: { title: 'Movimientos',\r\n" + 
+								"                   subtitle: 'Montos por movimientos' },\r\n" + 
 								"          bars: 'horizontal', // Required for Material Bar Charts.\r\n" + 
 								"          axes: {\r\n" + 
 								"            x: {\r\n" + 
-								"              0: { side: 'top', label: 'Percentage'} // Top x-axis.\r\n" + 
+								"              0: { side: 'top', label: 'Montos'} // Top x-axis.\r\n" + 
 								"            }\r\n" + 
 								"          },\r\n" + 
 								"          bar: { groupWidth: \"90%\" }\r\n" + 
@@ -162,11 +147,12 @@ public class ServletGraficos extends HttpServlet {
 								"    </script>\r\n" + 
 								"  \r\n" + 
 								"</head>\r\n" + 
-								"<body style=\"width: 485px; height: 555px; \">\r\n" + 
-								"	<fieldset style=\" text-align: left; width: 381px; height: 394px\">\r\n" + 
-								"		<div id=\"DATOS\" style=\"background-color: #f1f1f1;width: 360px; height: 270px;\"></div>\r\n" + 
-								"  	</fieldset>		\r\n" + 
-								"</body>\r\n" + 
+								"<body style=\"width: 424px; height: 256px;\">\r\n" + 
+								"<fieldset style=\" text-align: left; width: 381px; height: 250px\">\r\n" + 
+								"	<legend style=\"width: 287px; \">Gráfico:</legend>\r\n" + 
+								"	<div id=\"DATOS\" style=\"background-color: #f1f1f1;width: 405px; height: 186px;\"></div>\r\n" + 
+								"</fieldset>\r\n" + 
+								"</body>" + 
 								"</html>");
 					}
 

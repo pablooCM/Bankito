@@ -33,7 +33,6 @@ public class ServletRetiro extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
         String cuenta = request.getParameter("cuenta").toString();
-        String correo = request.getSession().getAttribute("user").toString();
         
 		double monto = Double.parseDouble(request.getParameter("monto").toString());
 		
@@ -42,7 +41,13 @@ public class ServletRetiro extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		try 
 		{
-			double comision = (monto*0.02);
+			String correo = con.selectLogin();
+			int transacciones = con.selectCantidadRetiros(Integer.parseInt(cuenta)) + con.selectCantidadDebitos(Integer.parseInt(cuenta));
+			double comision = 0;
+			if (transacciones > 5)
+			{
+				comision = (monto*0.02);
+			}
 			boolean valor = con.insertarRetiro(Integer.parseInt(cuenta), monto, comision);
 			
 			if(valor==true)
@@ -50,15 +55,8 @@ public class ServletRetiro extends HttpServlet {
 				String mensaje = "Estimado usuario, se han retirado correctamente "+monto+" colones. [El monto real retirado de su cuenta "+cuenta+" fue de "+(monto+comision)+" colones][El monto cobrado por concepto de comisión fue de "+ comision +" colones, que fueron rebajados automáticamente de su saldo actual]";
 				
 				EnviarMail mail = EnviarMail.getMail();
-				if(mail.EnviarCorreo(correo, mensaje,"retiro",cuenta)==true)
-				{
-					out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('"+mensaje+"'); window.location='Bank-iTo.jsp'\"></body></html>");	
-				} 
-				else
-				{
-					out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Verifique que la cuenta para enviar notificaciones posee permisos por google para aplicaciones externas.'); window.location='Bank-iTo.jsp'\"></body></html>");
-				}
-				
+				mail.EnviarCorreo(correo, mensaje,"depósito",cuenta);
+				out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('"+mensaje+"'); window.location='Bank-iTo.jsp'\"></body></html>");	
 			}
 			else
 			{

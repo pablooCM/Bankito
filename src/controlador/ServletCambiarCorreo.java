@@ -66,9 +66,10 @@ public class ServletCambiarCorreo extends HttpServlet {
 					{			
 						con.actualizarIntentoPin(0);
 						String correoAnterior = con.selectCorreo(Integer.parseInt(cuenta)); 
-						CambioCorreo cambiar = new CambioCorreo(correoAnterior, correoNuevo);
+						String nombreDuenno = con.selectNombreDuenno(correoAnterior);
+						CambioCorreo cambiar = new CambioCorreo(nombreDuenno, correoNuevo);
 						cambiar.actualizarBaseDatos();
-						request.getSession().setAttribute("user", correoNuevo);
+						con.insertarLogin(correoNuevo);
 						out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Estimado usuario, usted ha cambiado la dirección de correo "+correoAnterior+" por "+correoNuevo+"'); window.location='Bank-iTo.jsp'\"></body></html>");
 					}
 					else

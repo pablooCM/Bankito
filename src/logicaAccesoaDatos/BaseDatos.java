@@ -44,6 +44,7 @@ public class BaseDatos {
 		String query="insert into duenno(nombre,correo,telefono, password) values('"+nombre+"','"+correo+"','"+telefono+"','"+password+"')";	
 		EjecutarQuery(query);
 	}
+	
 	public boolean insertarDeposito(int numero, double monto, double comision ) throws SQLException {
 		double saldo = selectSaldoCuenta(numero);
 		double total = monto+comision;
@@ -53,6 +54,7 @@ public class BaseDatos {
 		actualizarSaldo(numero, saldo+monto-comision);
 		return true;
 	}
+	
 	public boolean insertarRetiro(int numero, double monto,double comision) throws SQLException {
 		double saldo = selectSaldoCuenta(numero);
 		double total = monto+comision;
@@ -98,6 +100,17 @@ public class BaseDatos {
 		
 	} 
 	
+	public void insertarLogin(String correo) throws SQLException{
+		eliminarLogin();
+		String query="insert into login(correo) values('"+correo+"')";
+		EjecutarQuery(query);
+	} 
+	
+	private void eliminarLogin() throws SQLException {
+		String query="delete from login";
+		EjecutarQuery(query);
+	}
+	
 	private void eliminarCodigo() throws SQLException {
 		String query="delete from codigoVerificacion";
 		EjecutarQuery(query);
@@ -108,9 +121,9 @@ public class BaseDatos {
 		EjecutarQuery(query);
 	}
 	
-	public void actualizarCorreo(String correoN, String correoA) throws SQLException{
+	public void actualizarCorreo(String nombre, String correoN) throws SQLException {
 		String query="	UPDATE duenno SET correo ='"+correoN+
-			     "' WHERE correo='"+correoA+"'";
+			     "' WHERE nombre='"+nombre+"'";
 		EjecutarQuery(query);
 	}
 
@@ -128,7 +141,7 @@ public class BaseDatos {
 	}
 	public void actualizarSaldo(int numero, double saldo) throws SQLException {
 		String query="	UPDATE cuenta SET saldo ="+saldo+
-			     " WHERE numeroCuenta="+numero+"";
+			     " WHERE numeroCuenta="+numero;
 		EjecutarQuery(query);
 	}
 	public void actualizarIntentoPin(int numero) throws SQLException {
@@ -162,6 +175,18 @@ public class BaseDatos {
 			return intento;
 		}
 		return 0;
+	}
+	
+	public String selectLogin() throws SQLException {
+		String select="select correo from login";
+		ResultSet rs = EjecutarSelect(select);
+		// Print all of the employee numbers to standard output device
+		while (rs.next())
+		{
+			String correo = rs.getString(1);
+			return correo;
+		}
+		return null;
 	}
 	
 	public int selectIdCuenta(String pin,String estatus, Date fechaCreacion, double saldo) throws SQLException {

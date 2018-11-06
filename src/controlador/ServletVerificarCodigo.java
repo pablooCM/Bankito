@@ -150,7 +150,7 @@ public class ServletVerificarCodigo extends HttpServlet {
 										"	        </p> 	\r\n" + 
 										"			<p>\r\n" + 
 										"				<label for=\"monto\" style=\"width: 143px;\">Monto a retirar:</label> \r\n" + 
-										"				<input name=\"monto\" type=\"number\" id=\"monto\" class=\"monto\" style=\"width: 110px;\">		\r\n" + 
+										"				<input name=\"monto\" type=\"text\" id=\"monto\" class=\"monto\" style=\"width: 110px;\">		\r\n" + 
 										"				<input name=\"tipo\" type=\"text\" id=\"tipo\" class=\"tipo\" value=\"colones\" style=\"text-align:center; width: 353px;\"> \r\n" + 
 										"			</p>\r\n" + 
 										"			<p style=\"text-align: center; width: 358px\" >\r\n" + 
@@ -244,7 +244,7 @@ public class ServletVerificarCodigo extends HttpServlet {
 										"	        </p> 	\r\n" + 
 										"			<p>\r\n" + 
 										"				<label for=\"monto\" style=\"width: 143px;\">Monto a retirar:</label> \r\n" + 
-										"				<input name=\"monto\" type=\"number\" id=\"monto\" class=\"monto\" style=\"width: 110px;\">		\r\n" + 
+										"				<input name=\"monto\" type=\"text\" id=\"monto\" class=\"monto\" style=\"width: 110px;\">		\r\n" + 
 										"				<input name=\"tipo\" type=\"text\" id=\"tipo\" class=\"tipo\" value=\"dólares\" style=\"text-align:center; width: 353px;\"> \r\n" + 
 										"			</p>\r\n" + 
 										"			<p style=\"text-align: center; width: 358px\" >\r\n" + 
@@ -337,7 +337,7 @@ public class ServletVerificarCodigo extends HttpServlet {
 										"	        </p> 	\r\n" + 
 										"			<p>\r\n" + 
 										"				<label for=\"montoTransferir\" style=\"width: 143px;\">Monto a transferir:</label>  \r\n" + 
-										"				<input name=\"montoTransferir\" type=\"number\" id=\"montoTransferir\" class=\"montoTransferir\" style=\"width: 136px;\">\r\n" + 
+										"				<input name=\"montoTransferir\" type=\"text\" id=\"montoTransferir\" class=\"montoTransferir\" style=\"width: 136px;\">\r\n" + 
 										"				colones.		\r\n" + 
 										"			</p>	\r\n" + 
 										"					<p style=\"width: 369px; height: 37px\">\r\n" + 

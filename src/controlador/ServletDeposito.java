@@ -33,16 +33,25 @@ public class ServletDeposito extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		String cuenta = request.getParameter("cuenta").toString();
-        String correo = request.getSession().getAttribute("user").toString();
+        
         
 		double monto = Double.parseDouble(request.getParameter("monto").toString());
 		
 		BaseDatos con = new BaseDatos();
 		
+		
 		PrintWriter out = response.getWriter();
 		try 
 		{
-			double comision = (monto*0.02);
+			String correo = con.selectLogin();
+
+			int transacciones = con.selectCantidadRetiros(Integer.parseInt(cuenta)) + con.selectCantidadDebitos(Integer.parseInt(cuenta));
+			double comision = 0;
+			if (transacciones > 5)
+			{
+				comision = (monto*0.02);
+			}
+			
 			boolean valor = con.insertarDeposito(Integer.parseInt(cuenta), monto, comision);
 			
 			if(valor==true)
@@ -53,15 +62,8 @@ public class ServletDeposito extends HttpServlet {
 						"fueron rebajados automáticamente de su saldo actual]";
 				
 				EnviarMail mail = EnviarMail.getMail();
-				if(mail.EnviarCorreo(correo, mensaje,"depósito",cuenta)==true)
-				{
-					out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('"+mensaje+"'); window.location='Bank-iTo.jsp'\"></body></html>");	
-				} 
-				else
-				{
-					out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Verifique que los datos ingresados sean correctos.'); window.location='Bank-iTo.jsp'\"></body></html>");
-				}
-				
+				mail.EnviarCorreo(correo, mensaje,"depósito",cuenta);
+				out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('"+mensaje+"'); window.location='Bank-iTo.jsp'\"></body></html>");	
 			}
 			else
 			{

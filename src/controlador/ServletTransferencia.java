@@ -40,8 +40,7 @@ public class ServletTransferencia extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String cuenta = request.getParameter("cuenta").toString();
-        String correo = request.getSession().getAttribute("user").toString();        
+		String cuenta = request.getParameter("cuenta").toString();        
         String cuentaAcreditar = request.getParameter("cuentaA").toString();
         
 		double monto = Double.parseDouble(request.getParameter("montoTransferir").toString());
@@ -51,6 +50,7 @@ public class ServletTransferencia extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		try 
 		{
+			String correo = con.selectLogin();
 			double comision = (monto*0.02);
 			boolean valor = con.insertarTransferencia(Integer.parseInt(cuenta), monto, Integer.parseInt(cuentaAcreditar));
 			
@@ -62,15 +62,9 @@ public class ServletTransferencia extends HttpServlet {
 						"[El monto cobrado por concepto de comisión a la cuenta origen fue de "+comision+" colones, que fueron rebajados automáticamente de su saldo actual]";
 				
 				EnviarMail mail = EnviarMail.getMail();
-				if(mail.EnviarCorreo(correo, mensaje,"retiro",cuenta)==true && mail.EnviarCorreo(correoAcreditar, mensaje,"deposito",cuenta)==true)
-				{
-					out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('"+mensaje+"'); window.location='Bank-iTo.jsp'\"></body></html>");	
-				} 
-				else
-				{
-					out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Verifique que la cuenta para enviar notificaciones posee permisos por google para aplicaciones externas.'); window.location='Bank-iTo.jsp'\"></body></html>");
-				}
-				
+				mail.EnviarCorreo(correo, mensaje,"transferencia",cuenta);
+				mail.EnviarCorreo(correoAcreditar, mensaje,"transferencia",cuenta);
+				out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('"+mensaje+"'); window.location='Bank-iTo.jsp'\"></body></html>");	
 			}
 			else
 			{

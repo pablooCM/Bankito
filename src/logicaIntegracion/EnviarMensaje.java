@@ -14,9 +14,9 @@ public class EnviarMensaje
 	public EnviarMensaje() 
 	{
 		this.api = "https://api.labsmobile.com/json/send";
-		this.user = "pcorrales@estudiantec.cr";// "dvindas@estudiantec.cr"; 
+		this.user = "danycarse@estudiantec.cr";// "dvindas@estudiantec.cr  YtL10SJYJcjCXtS27hqVIZwK2xF93S5Q  "; 
 		//pcorrales@estudiantec.cr  cp22zw87
-		this.password = "cp22zw87"; //"YtL10SJYJcjCXtS27hqVIZwK2xF93S5Q";
+		this.password = "mw89nb17";
 	}
 	
 	public void enviarCodigo(String mensaje, String destinatario)

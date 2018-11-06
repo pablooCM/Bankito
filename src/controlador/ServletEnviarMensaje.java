@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import logicaAccesoaDatos.BaseDatos;
 import logicaIntegracion.CodigoVerificacion;
+import logicaIntegracion.EnviarMensaje;
 /**
  * Servlet implementation class ServletEnviarMensaje
  */
@@ -55,7 +56,9 @@ public class ServletEnviarMensaje extends HttpServlet {
 			{
 				System.out.println(telefono);
 				con.insertarCodigoVerificacion(codigo);
-				//enviar.enviarCodigo(codigo, telefono);
+				
+				EnviarMensaje enviar = new EnviarMensaje();
+				enviar.enviarCodigo(codigo, telefono);
 				
 				out.println("<!DOCTYPE html>\r\n" + 
 						"<html style=\"width: 644px; height: 993px; \">\r\n" + 

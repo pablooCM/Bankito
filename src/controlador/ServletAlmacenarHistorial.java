@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import logicaAccesoaDatos.BaseDatos;
-import logicaIntegracion.AlmacenarBitacora;
 /**
  * Servlet implementation class ServletAlmacenarHistorial
  */
@@ -54,18 +53,23 @@ public class ServletAlmacenarHistorial extends HttpServlet {
 		try 
 		{
 			String correo = con.selectLogin();
+			String nombre = con.selectNombreDuenno(correo);
+			int idDuenno = con.selectIdDueno(nombre);
+			
 			newHora = availTime.parse(hora);
 			java.sql.Time sqlHora = new java.sql.Time(newHora.getTime());
+			
 			newFecha = availDate.parse(fecha);
 			java.sql.Date sqlFecha = new java.sql.Date(newFecha.getTime());
 			
-			con.insertarHistorial(sqlFecha, sqlHora, accion, correo);
-			AlmacenarBitacora bitacoras = AlmacenarBitacora.getInstancia();
-			bitacoras.registrarAccion();
+			
+			con.insertarHistorial(sqlFecha, sqlHora, accion, idDuenno);
+			
 			out.println("<html><head></head><title>Bank-iTo</title><body onload=\"alert('Se ha registrado la acción.'); window.location='Bank-iTo.jsp'\"></body></html>");
 		} 
 		catch (Exception e) 
 		{
+			e.getStackTrace();
 		}
 
 	}

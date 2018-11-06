@@ -1,7 +1,5 @@
 package logicaIntegracion;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -17,7 +15,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
 
-import logicaAccesoaDatos.BaseDatos;
 
 public class XML extends Bitacora 
 {	
@@ -97,8 +94,8 @@ public class XML extends Bitacora
 		        Result result = new StreamResult(new java.io.File(rutaArchivo)); //nombre del archivo
 		        Transformer transformer = TransformerFactory.newInstance().newTransformer();
 		        transformer.transform(source, result);
+		     
 		    }
-		    
 		}
 
 }

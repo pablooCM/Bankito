@@ -71,7 +71,7 @@ body {
 <body style="width: 472px; height: 780px; ">
 	<fieldset style="text-align: left; width: 381px; height: 394px">
 		<legend style="width: 340px; ">Módulo Bitácora:</legend>
-		<form action="ServletAlmacenarHistorial" method="post" style="width: 375px; height: 231px">
+		<form action="ServletAlmacenarHistorial" method="post" style="width: 441px; height: 231px">
 			<p style="width: 481px;">
 				<label for="fecha" style="width: 147px;">Fecha:</label> 
 					<input size="9" type="date" id="fecha" name="fecha" style="width: 197px;">
@@ -88,7 +88,9 @@ body {
 				<a href="Bank-iTo.jsp"> <input type="button" class="btn btn-info" value="Volver" style="width: 132px; height: 53px;"></a>
 				<input type="submit" class="btn btn-warning" value="Registrar" style="width: 132px; height: 53px;">
 			</p>
-			<a href="verBitacora" style="text-align: center; font-family: Arial, Helvetica, sans-serif; width: 408px; height: 25px;">Ver bitácora. </a>
+		</form>
+		<form action="ServletVerHistorial" method="post" style="text-align:center; width: 413px">
+			<input type="submit" class="btn btn-success" value="Ver mi Historial" style="width: 151px; height: 53px;">
 		</form>
 	</fieldset>	
 </body>

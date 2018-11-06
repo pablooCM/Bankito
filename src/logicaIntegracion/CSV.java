@@ -14,7 +14,7 @@ public class CSV extends Bitacora {
 	private String rutaArchivo;
 	public CSV(AlmacenarBitacora biblioteca) 
 	{
-		this.rutaArchivo = "C:\\Bitacoras\\Persistencia.txt";
+		this.rutaArchivo = "C:\\Bitacoras\\CSV.csv";
 		this.biblioteca = biblioteca;
 		this.biblioteca.agregarBitacora((Bitacora)this);
 	}
@@ -71,8 +71,7 @@ public class CSV extends Bitacora {
 	    libro.write(archivo);
 	    
 	    /*Cerramos el flujo de datos*/
-	    archivo.close();
-	    	    
+	    archivo.close();  	    
 	}
 	
 

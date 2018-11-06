@@ -68,6 +68,10 @@ public class ServletGraficos extends HttpServlet {
 						int retiros = con.selectCantidadRetiros(cuentaInt);
 						double montoDeb = con.selectMontoDebitos(cuentaInt);
 						double montoCre = con.selectMontoRetiros(cuentaInt);
+						double comisionesDeb = con.selectComisionDebitos(cuentaInt);
+						double comisionesCre = con.selectComisionRetiros(cuentaInt);
+						double comisionesTotales = con.selectComisionesTotales(cuentaInt);
+						double saldo = con.selectSaldoCuenta(cuentaInt);
 						
 						out.println("<!DOCTYPE html>\r\n" + 
 								"<html style=\"width: 706px; height: 1064px\">\r\n" + 
@@ -100,7 +104,11 @@ public class ServletGraficos extends HttpServlet {
 								"  </head>\r\n" + 
 								"	<body>  \r\n" + 
 								"	<fieldset style=\" text-align: left; width: 621px; height: 328px\">  \r\n" + 
-								"		<legend style=\"width: 287px; \">Gráfico:</legend>  \r\n" + 
+								"		<legend style=\"width: 287px; \">Reportes:</legend>  \r\n" + 
+								"		<p>--Monto total de comisiones:"+comisionesTotales+"</p>"+
+								"		<p>----Monto comisiones de crédito:"+comisionesCre+"</p>"+
+								"		<p>----Monto comisiones de débito:"+comisionesDeb+"</p>"+
+								"		<p>--Saldo actual de la cuenta:"+saldo+"</p>"+
 								"		<a href=\"Bank-iTo.jsp\"> <input type=\"button\" class=\"btn btn-info\" value=\"Volver\" style=\"width: 132px; height: 53px;\"></a>"+
 								"		<div id=\"movimientos\" style=\"width: 466px; height: 257px;\"></div>  \r\n" + 
 								"  	</fieldset>		  \r\n" + 
